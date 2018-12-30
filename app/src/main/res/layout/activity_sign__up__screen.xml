@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/signup"
+    tools:context=".Sign_Up_Screen">
+
+    <LinearLayout
+        android:id="@+id/signuplay"
+        android:layout_width="330dp"
+        android:layout_height="388dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/round_layout"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.561">
+
+        <EditText
+            android:id="@+id/etName"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@drawable/rounded_textfield"
+            android:drawableLeft="@drawable/ic_action_username"
+            android:drawablePadding="10dp"
+            android:ems="10"
+            android:focusable="true"
+            android:fontFamily="serif"
+            android:hint=" Name"
+            android:inputType="textPersonName"
+            android:paddingLeft="10dp"
+            android:textColor="@android:color/black"
+            android:textCursorDrawable="@drawable/color_cursor"
+            android:textSize="18sp"
+            tools:layout_editor_absoluteX="30dp"
+            tools:layout_editor_absoluteY="129dp" />
+
+        <EditText
+            android:id="@+id/etEmail"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/rounded_textfield"
+            android:drawableLeft="@drawable/ic_action_email"
+            android:drawablePadding="10dp"
+            android:ems="10"
+            android:fontFamily="serif"
+            android:hint=" Email"
+            android:inputType="textEmailAddress"
+            android:paddingLeft="10dp"
+            android:textColor="@android:color/black"
+            android:textCursorDrawable="@drawable/color_cursor" />
+
+        <EditText
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/rounded_textfield"
+            android:drawableLeft="@drawable/ic_action_password"
+            android:drawablePadding="10dp"
+
+            android:ems="10"
+            android:fontFamily="serif"
+            android:hint=" Password"
+            android:inputType="textPassword"
+            android:paddingLeft="10dp"
+            android:textColor="@android:color/black"
+            android:textCursorDrawable="@drawable/color_cursor" />
+
+        <EditText
+            android:id="@+id/etConfirmPass"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/rounded_textfield"
+            android:drawableLeft="@drawable/ic_action_checkbox"
+            android:drawablePadding="10dp"
+
+            android:ems="10"
+            android:fontFamily="serif"
+            android:hint="Confirm Password"
+            android:inputType="textPassword"
+            android:paddingLeft="10dp"
+            android:textColor="@android:color/black"
+            android:textCursorDrawable="@drawable/color_cursor" />
+
+        <EditText
+            android:id="@+id/etAddress"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/rounded_textfield"
+            android:drawableLeft="@drawable/ic_action_address"
+            android:drawablePadding="10dp"
+            android:ems="10"
+            android:fontFamily="serif"
+            android:hint=" Address"
+            android:inputType="textPersonName"
+            android:paddingLeft="10dp"
+            android:textColor="@android:color/black"
+            android:textCursorDrawable="@drawable/color_cursor" />
+
+        <EditText
+            android:id="@+id/etPhneNo"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/rounded_textfield"
+            android:drawableLeft="@drawable/ic_action_phoneno"
+            android:drawablePadding="10dp"
+            android:ems="10"
+            android:fontFamily="serif"
+            android:hint=" Phone Number"
+            android:inputType="number"
+            android:paddingLeft="10dp"
+            android:textColor="@android:color/black"
+            android:textCursorDrawable="@drawable/color_cursor" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btncreateacc"
+        android:layout_width="147dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/rounded_button"
+        android:fontFamily="serif"
+        android:text="@string/create_acount"
+        android:textColor="@android:color/background_light"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signuplay"
+        app:layout_constraintVertical_bias="0.0" />
+
+
+</android.support.constraint.ConstraintLayout>

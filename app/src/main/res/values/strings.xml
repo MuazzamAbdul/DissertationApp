@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">DissertAppDemo</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+
+    <string name="login">Login</string>
+    <string name="signup">SignUp</string>
+    <string name="forget_password">Forget Password?</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="create_acount">Create Acount</string>
+</resources>
