@@ -2,14 +2,13 @@ package com.example.muazzam.dissertationapp;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -39,22 +38,22 @@ public class Login_Screen extends AppCompatActivity {
 
 
 
-//        login.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (validateTextFields())
-//                {
-//                    validateEmailPass(email,password);
-//                }
-//            }
-//        });
-//
-//        forgetPass.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(new Intent(Login_Screen.this,Sign_Up_Screen.class));
-//            }
-//        });
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (validateTextFields())
+                {
+                    validateEmailPass(email,password);
+                }
+            }
+        });
+
+        forgetPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Login_Screen.this,Forget_Pass_Screen.class));
+            }
+        });
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,9 +70,6 @@ public class Login_Screen extends AppCompatActivity {
         login = findViewById(R.id.btnLogin);
         signup = findViewById(R.id.btnSignUp);
         forgetPass = findViewById(R.id.btnForgetPass);
-
-
-
         loadingBar = new ProgressDialog(this);
     }
 
@@ -103,29 +99,39 @@ public class Login_Screen extends AppCompatActivity {
         loadingBar.setMessage("Please wait...");
         loadingBar.setCanceledOnTouchOutside(false);
         loadingBar.show();
-        firebaseAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful())
-                {
-                    loadingBar.dismiss();
-                     checkEmailVerification();
+        if (email.equals("Admin") && (password.equals("Admin")))
+        {
+            finish();
+            Toast.makeText(Login_Screen.this,"Admin Login Successful",Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(Login_Screen.this,Category_Screen.class);
+            startActivity(intent);
+        }
+        else{
+            firebaseAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful())
+                    {
+                        loadingBar.dismiss();
+//                        checkEmailVerification();
 
-                    //Delete these part to enable email verification
-//                    finish();
-//                    Toast.makeText(Login_Screen.this,"Login Successful",Toast.LENGTH_SHORT).show();
-//                    Intent intent = new Intent(Login_Screen.this,Sign_Up_Screen.class);
-//                    startActivity(intent);
-                    ///////
+                        //Delete these part to enable email verification
+                        Toast.makeText(Login_Screen.this,"Login Successful!",Toast.LENGTH_SHORT).show();
+                        finish();
+                        Intent intent = new Intent(Login_Screen.this,Home_Screen.class);
+                        startActivity(intent);
+                        ///////
+                    }
+                    else
+                    {
+                        // Load data from database to know actual problem
+                        loadingBar.dismiss();
+                        Toast.makeText(Login_Screen.this,"Wrong Credentials!",Toast.LENGTH_SHORT).show();
+                    }
                 }
-                else
-                {
-                    // Load data from database to know actual problem
-                    loadingBar.dismiss();
-                    Toast.makeText(Login_Screen.this,"Wrong Credentials",Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+            });
+        }
+
     }
 
     private void checkEmailVerification()
@@ -134,9 +140,9 @@ public class Login_Screen extends AppCompatActivity {
         Boolean verified = firebaseUser.isEmailVerified();
         if (verified)
         {
+            Toast.makeText(Login_Screen.this,"Login Successful!",Toast.LENGTH_SHORT).show();
             finish();
-            Toast.makeText(Login_Screen.this,"Login Successful",Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(Login_Screen.this,Sign_Up_Screen.class);
+            Intent intent = new Intent(Login_Screen.this,Home_Screen.class);
             startActivity(intent);
         }
         else

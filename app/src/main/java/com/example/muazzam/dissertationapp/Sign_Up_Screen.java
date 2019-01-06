@@ -102,6 +102,10 @@ public class Sign_Up_Screen extends AppCompatActivity {
         {
             Toast.makeText(this,"Password do not match!",Toast.LENGTH_SHORT).show();
         }
+        else if (password.length() < 6 )
+        {
+            Toast.makeText(this,"Password length must be greater that 5!!",Toast.LENGTH_SHORT).show();
+        }
         else{
             result = true;
         }
@@ -154,16 +158,11 @@ public class Sign_Up_Screen extends AppCompatActivity {
 
                     if (task.isSuccessful())
                     {
-
-                        loadingBar.dismiss();
                         saveUserData();
-                        firebaseAuth.signOut();
-                        finish();
-                        Intent intent = new Intent(Sign_Up_Screen.this,Login_Screen.class);
-                        startActivity(intent);
                     }
                     else
                     {
+                        loadingBar.dismiss();
                         //Catch all exceptions
                         Toast.makeText(Sign_Up_Screen.this,"Verification mail has not been sent!",Toast.LENGTH_SHORT).show();
                     }
@@ -184,7 +183,6 @@ public class Sign_Up_Screen extends AppCompatActivity {
                     HashMap<String,Object> userDataMap = new HashMap<>();
                     userDataMap.put("Name",name);
                     userDataMap.put("Email",email);
-                    userDataMap.put("Password",password);
                     userDataMap.put("Address",address);
                     userDataMap.put("PhoneNumber",phneNo);
 
@@ -195,12 +193,16 @@ public class Sign_Up_Screen extends AppCompatActivity {
 
                             if (task.isSuccessful())
                             {
+                                loadingBar.dismiss();
                                 Toast.makeText(Sign_Up_Screen.this,"Registration Successful, Verification mail sent!",Toast.LENGTH_SHORT).show();
+                                firebaseAuth.signOut();
+                                finish();
+                                Intent intent = new Intent(Sign_Up_Screen.this,Login_Screen.class);
+                                startActivity(intent);
                             }
                             else
                             {
                                 // Catch allExceptions
-                                loadingBar.dismiss();
                                 Toast.makeText(Sign_Up_Screen.this,"Network Error! PLease try again later",Toast.LENGTH_SHORT).show();
 
                             }
@@ -209,7 +211,6 @@ public class Sign_Up_Screen extends AppCompatActivity {
                 }
                 else
                 {
-                    loadingBar.dismiss();
                     Toast.makeText(Sign_Up_Screen.this,"This email " + email + " already exists!!",Toast.LENGTH_SHORT).show();
                 }
             }

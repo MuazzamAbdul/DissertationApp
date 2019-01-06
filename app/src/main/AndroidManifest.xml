@@ -17,7 +17,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".Sign_Up_Screen" />
-        <activity android:name=".Category_Screen"></activity>
+        <activity android:name=".Category_Screen" />
+        <activity
+            android:name=".Home_Screen"
+            android:label="@string/title_activity_home__screen"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".Forget_Pass_Screen"></activity>
     </application>
 
 </manifest>
