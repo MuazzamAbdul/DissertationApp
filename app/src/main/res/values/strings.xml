@@ -26,4 +26,8 @@
     <string name="shopping_cart">shopping Cart</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="cancel">Cancel</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="address">Address</string>
+    <string name="phone_number">Phone Number</string>
 </resources>

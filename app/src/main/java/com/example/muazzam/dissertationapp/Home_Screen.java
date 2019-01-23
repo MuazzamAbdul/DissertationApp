@@ -12,6 +12,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.example.muazzam.dissertationapp.Prevalent.Prevalent;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Home_Screen extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -24,7 +29,6 @@ public class Home_Screen extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home__screen);
-        resetPassword();
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitle("Home");
@@ -47,6 +51,16 @@ public class Home_Screen extends AppCompatActivity
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        View headerView = navigationView.getHeaderView(0);
+        TextView usernameText = headerView.findViewById(R.id.tvnavbar_name);
+        TextView usernameEmail = headerView.findViewById(R.id.tvnavbar_email);
+        CircleImageView profileImage = headerView.findViewById(R.id.image_profile_pic);
+
+        usernameText.setText(Prevalent.onlineUser.getName());
+        usernameEmail.setText(Prevalent.onlineUser.getEmail());
+
+
     }
 
     @Override
@@ -90,32 +104,25 @@ public class Home_Screen extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-//        if (id == R.id.nav_camera) {
-//            // Handle the camera action
-//        } else if (id == R.id.nav_gallery) {
-//
-//        } else if (id == R.id.nav_slideshow) {
-//
-//        } else if (id == R.id.nav_manage) {
-//
-//        } else if (id == R.id.nav_share) {
-//
-//        } else if (id == R.id.nav_send) {
-//
-//        }
-//        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (id == R.id.my_account) {
+            Intent intent = new Intent(Home_Screen.this, My_Account_Screen.class);
+            startActivity(intent);
+        }else if (id == R.id.rules_reg) {
+            Intent intent = new Intent(Home_Screen.this, Rules_Reg_Screen.class);
+            startActivity(intent);
+        } else if (id == R.id.contact_us) {
+            Intent intent = new Intent(Home_Screen.this, My_Account_Screen.class);
+            startActivity(intent);
+        } else if (id == R.id.settings) {
+            Intent intent = new Intent(Home_Screen.this, My_Account_Screen.class);
+            startActivity(intent);
+        } else if (id == R.id.sign_out) {
+            finish();
+            Intent intent = new Intent(Home_Screen.this, Login_Screen.class);
+            startActivity(intent);
+        }
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
-    private void resetPassword()
-    {
-
-        if (!Forget_Pass_Screen.reset)
-        {
-
-
-
-        }
-    }
 }
