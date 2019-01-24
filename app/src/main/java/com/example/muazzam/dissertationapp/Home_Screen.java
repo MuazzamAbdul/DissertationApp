@@ -2,6 +2,7 @@ package com.example.muazzam.dissertationapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -13,26 +14,52 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.muazzam.dissertationapp.Model.Users;
 import com.example.muazzam.dissertationapp.Prevalent.Prevalent;
-
-import de.hdodenhof.circleimageview.CircleImageView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class Home_Screen extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private ImageView im;
+    private TextView usernameText;
+    private TextView usernameEmail;
     private DrawerLayout drawer;
-
+    private FirebaseAuth firebaseAuth;
+    private FirebaseDatabase firebaseDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home__screen);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        toolbar.setTitle("Home");
-        im = findViewById(R.id.ivFruitVeg);
+        setupUIViews();
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseDatabase = FirebaseDatabase.getInstance();
+
+
+
+
+        drawer = findViewById(R.id.drawer_layout);
+        ActionBar actionbar = getSupportActionBar();
+        actionbar.setDisplayHomeAsUpEnabled(true);
+        actionbar.setHomeAsUpIndicator(R.drawable.ic_action_menu);
+
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+        View headerView = navigationView.getHeaderView(0);
+        usernameText= headerView.findViewById(R.id.tvnavbar_name);
+        usernameEmail = headerView.findViewById(R.id.tvnavbar_email);
+        getUserData();
 
 
         im.setOnClickListener(new View.OnClickListener() {
@@ -44,22 +71,17 @@ public class Home_Screen extends AppCompatActivity
             }
         });
 
-        drawer = findViewById(R.id.drawer_layout);
-        ActionBar actionbar = getSupportActionBar();
-        actionbar.setDisplayHomeAsUpEnabled(true);
-        actionbar.setHomeAsUpIndicator(R.drawable.ic_action_menu);
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
 
-        View headerView = navigationView.getHeaderView(0);
-        TextView usernameText = headerView.findViewById(R.id.tvnavbar_name);
-        TextView usernameEmail = headerView.findViewById(R.id.tvnavbar_email);
-        CircleImageView profileImage = headerView.findViewById(R.id.image_profile_pic);
 
-        usernameText.setText(Prevalent.onlineUser.getName());
-        usernameEmail.setText(Prevalent.onlineUser.getEmail());
+    }
 
+    private void setupUIViews()
+    {
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setTitle("Home");
+        im = findViewById(R.id.ivFruitVeg);
 
     }
 
@@ -111,12 +133,13 @@ public class Home_Screen extends AppCompatActivity
             Intent intent = new Intent(Home_Screen.this, Rules_Reg_Screen.class);
             startActivity(intent);
         } else if (id == R.id.contact_us) {
-            Intent intent = new Intent(Home_Screen.this, My_Account_Screen.class);
+            Intent intent = new Intent(Home_Screen.this, Contact_Us_Screen.class);
             startActivity(intent);
         } else if (id == R.id.settings) {
-            Intent intent = new Intent(Home_Screen.this, My_Account_Screen.class);
+            Intent intent = new Intent(Home_Screen.this, Settings_Screen.class);
             startActivity(intent);
         } else if (id == R.id.sign_out) {
+            firebaseAuth.signOut();
             finish();
             Intent intent = new Intent(Home_Screen.this, Login_Screen.class);
             startActivity(intent);
@@ -125,4 +148,31 @@ public class Home_Screen extends AppCompatActivity
         return true;
     }
 
+    private void getUserData()
+    {
+        DatabaseReference mDb = firebaseDatabase.getReference();
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        String userAuthKey = user.getUid();
+        mDb.child("Users").child(userAuthKey).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+
+                String userEmail = String.valueOf(dataSnapshot.child("Email").getValue());
+                String userName = String.valueOf(dataSnapshot.child("Name").getValue());
+                String userPhone = String.valueOf(dataSnapshot.child("PhoneNumber").getValue());
+                String userAddress = String.valueOf(dataSnapshot.child("Address").getValue());
+
+                Users userData = new Users(userName,userEmail,userAddress,userPhone);
+                Prevalent.onlineUser = userData;
+                usernameText.setText(Prevalent.onlineUser.getName());
+                usernameEmail.setText(Prevalent.onlineUser.getEmail());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(Home_Screen.this,"Failure Retrieving data from Database",Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 }

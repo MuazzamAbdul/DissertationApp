@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Rules_Reg_Screen">
+    tools:context=".Contact_Us_Screen">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbarRulesReg"
+        android:id="@+id/toolbarContactUs"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -20,33 +20,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:title="Rules And Regulations"
+        app:title="Contact Us"
         app:titleTextAppearance="@style/TextAppearanceToolbar"
-        app:titleTextColor="@color/textColor"/>
-
-    <TextView
-        android:id="@+id/tvRules"
-        android:layout_width="311dp"
-        android:layout_height="253dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="dsgbjsdbgjdsgbbjbj
-jbjbjbjbjkbjbjk
-kjkbjbjbjb
-bjb
--b b b
--
-"
-        android:textAlignment="viewStart"
-        android:fontFamily="serif"
-        android:textSize="18sp"
-        android:textColor="@android:color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.508"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbarRulesReg"
-        app:layout_constraintVertical_bias="0.024" />
+        app:titleTextColor="@color/textColor" />
 </android.support.constraint.ConstraintLayout>

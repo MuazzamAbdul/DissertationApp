@@ -11,8 +11,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.muazzam.dissertationapp.Model.Users;
-import com.example.muazzam.dissertationapp.Prevalent.Prevalent;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -114,8 +112,8 @@ public class Login_Screen extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful())
                     {
-                        Users userdata = new Users(password,email);
-                        Prevalent.onlineUser = userdata;
+//                        Users userdata = new Users(password,email,"123456","stpierre");
+//                        Prevalent.onlineUser = userdata;
                         loadingBar.dismiss();
 //                        checkEmailVerification();
 
@@ -156,8 +154,5 @@ public class Login_Screen extends AppCompatActivity {
         }
     }
 
-    private void getUserData()
-    {
 
-    }
 }
