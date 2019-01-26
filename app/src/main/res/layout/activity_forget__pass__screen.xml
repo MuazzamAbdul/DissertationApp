@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/backgroundpic"
     tools:context=".Forget_Pass_Screen">
 
     <android.support.v7.widget.Toolbar
@@ -63,21 +64,22 @@
 
     <EditText
         android:id="@+id/etForgetPass"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="315dp"
+        android:layout_height="45dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="56dp"
         android:layout_marginEnd="8dp"
         android:drawableLeft="@drawable/ic_action_email"
         android:drawablePadding="10dp"
+        android:paddingLeft="10dp"
         android:ems="10"
         android:fontFamily="serif"
         android:hint="Email"
-        android:backgroundTint="@color/colorPrimary"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@android:color/black"
         android:textCursorDrawable="@drawable/color_cursor"
         android:inputType="textPersonName"
+        android:background="@drawable/rounded_textfield_myaccount"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"

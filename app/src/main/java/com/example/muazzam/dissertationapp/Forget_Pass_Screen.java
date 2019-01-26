@@ -64,7 +64,7 @@ public class Forget_Pass_Screen extends AppCompatActivity {
 
         if (TextUtils.isEmpty(email))
         {
-            Toast.makeText(Forget_Pass_Screen.this,"Please Enter your Email address!!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(Forget_Pass_Screen.this,"Please enter your email address", Toast.LENGTH_SHORT).show();
         }
         else
         {
@@ -74,14 +74,14 @@ public class Forget_Pass_Screen extends AppCompatActivity {
                 public void onComplete(@NonNull Task<Void> task) {
                     if (task.isSuccessful())
                     {
-                        Toast.makeText(Forget_Pass_Screen.this,"Password reset email sent!!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Forget_Pass_Screen.this,"Password reset email sent", Toast.LENGTH_SHORT).show();
                         finish();
                         Intent intent = new Intent(Forget_Pass_Screen.this,Login_Screen.class);
                         startActivity(intent);
                     }
                     else
                     {
-                        Toast.makeText(Forget_Pass_Screen.this,"Invalid Email address!!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Forget_Pass_Screen.this,"Invalid Email address!", Toast.LENGTH_SHORT).show();
                     }
                 }
             });

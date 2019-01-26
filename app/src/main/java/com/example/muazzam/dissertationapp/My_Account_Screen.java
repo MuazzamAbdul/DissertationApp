@@ -52,8 +52,8 @@ public class My_Account_Screen extends AppCompatActivity {
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(My_Account_Screen.this,UpdateAccount_Screen.class);
-//                startActivity(intent);
+                Intent intent = new Intent(My_Account_Screen.this,UpdateAccount_Screen.class);
+                startActivity(intent);
             }
         });
     }
