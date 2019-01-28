@@ -29,9 +29,7 @@ public class Forget_Pass_Screen extends AppCompatActivity {
         setContentView(R.layout.activity_forget__pass__screen);
         setupUIViews();
 
-        Toolbar toolbar = findViewById(R.id.toolbarPass);
-        setSupportActionBar(toolbar);
-        toolbar.setTitle("Forget Password");
+
 
         resetPass.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,10 +50,14 @@ public class Forget_Pass_Screen extends AppCompatActivity {
 
     private void setupUIViews()
     {
-        userEmail = findViewById(R.id.etForgetPass);
+        userEmail = findViewById(R.id.etOldPass);
         resetPass = findViewById(R.id.btnReset_Pass);
         cancel= findViewById(R.id.btnCancel);
         firebaseAuth = FirebaseAuth.getInstance();
+
+        Toolbar toolbar = findViewById(R.id.toolbarPass);
+        setSupportActionBar(toolbar);
+        toolbar.setTitle("Forget Password");
     }
 
     private void changePassword()

@@ -32,6 +32,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
 
@@ -40,10 +41,10 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class UpdateAccount_Screen extends AppCompatActivity {
 
     private CircleImageView profilepic;
-    private TextView choose,changePass;
-    private EditText uptName,uptEmail,uptAddress,uptPhoneNo;
-    private Button done;
-    private String name,email,address,phone,downloadImageUrl;
+    private Button done,choose;
+    private EditText uptName,uptAddress,uptPhoneNo;
+    private TextView uptEmail;
+    private String name,email,address,phone;
     private String userAuthKey;
     private FirebaseAuth firebaseAuth;
     private FirebaseDatabase firebaseDatabase;
@@ -67,17 +68,20 @@ public class UpdateAccount_Screen extends AppCompatActivity {
         setTextDetails();
 
 
+
         done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if (validateTextField())
                 {
-//                    if (changePic)
-//                    {
-//                        storeProfilePic();
-//                    }
+                    if (changePic)
+                    {
+                        storeProfilePic();
+                    }
                     uploadData();
                     setUpdateToUsers();
+                    finish();
                 }
             }
         });
@@ -88,6 +92,7 @@ public class UpdateAccount_Screen extends AppCompatActivity {
                 openGallery();
             }
         });
+
 
 
     }
@@ -104,12 +109,12 @@ public class UpdateAccount_Screen extends AppCompatActivity {
 
         profilepic = findViewById(R.id.update_Profile_Pic);
         choose = findViewById(R.id.tvChoosePhoto);
-        changePass = findViewById(R.id.tvChangePass);
         uptName = findViewById(R.id.etUptName);
         uptEmail = findViewById(R.id.etUptEmail);
         uptPhoneNo = findViewById(R.id.etUptPhone);
         uptAddress = findViewById(R.id.etUptAddress);
         done = findViewById(R.id.btnDone);
+
     }
 
     private void setTextDetails()
@@ -118,6 +123,13 @@ public class UpdateAccount_Screen extends AppCompatActivity {
         uptEmail.setText(Prevalent.onlineUser.getEmail());
         uptAddress.setText(Prevalent.onlineUser.getAddress());
         uptPhoneNo.setText(Prevalent.onlineUser.getPhoneNo());
+        storageReference.child("Users").child(userAuthKey).child("Images").child("Profile Pic").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri)
+            {
+                Picasso.get().load(uri).fit().centerCrop().into(profilepic);
+            }
+        });
     }
 
     @Override
@@ -170,15 +182,15 @@ public class UpdateAccount_Screen extends AppCompatActivity {
         final DatabaseReference databaseReference = firebaseDatabase.getReference();
 //        user = firebaseAuth.getCurrentUser();
 //        userAuthKey = user.getUid();
-        user.updateEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-
-                if (!task.isSuccessful()) {
-                    //log out the errors
-                }
-            }
-        });////// add on complete listener for log.
+//        user.updateEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
+//            @Override
+//            public void onComplete(@NonNull Task<Void> task) {
+//
+//                if (!task.isSuccessful()) {
+//                    Toast.makeText(UpdateAccount_Screen.this,"UpdateEmail unsuccessful",Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        });
         databaseReference.child("Users").child(userAuthKey).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -188,7 +200,6 @@ public class UpdateAccount_Screen extends AppCompatActivity {
                     userDataMap.put("Email",email);
                     userDataMap.put("Address",address);
                     userDataMap.put("PhoneNumber",phone);
-//                    userDataMap.put("Image Url",downloadImageUrl);
 
                     databaseReference.child("Users").child(userAuthKey).updateChildren(userDataMap)
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -259,31 +270,8 @@ public class UpdateAccount_Screen extends AppCompatActivity {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
-                Toast.makeText(UpdateAccount_Screen.this,"Upload successful",Toast.LENGTH_SHORT).show();
-
-//                 image upload is successful
-//                Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
-//                    @Override
-//                    public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception
-//                    {
-//                        if (!task.isSuccessful())
-//                        {
-//                            throw task.getException();
-//                        }
-//
-//                        downloadImageUrl = filePath.getDownloadUrl().toString();
-//                        return filePath.getDownloadUrl();
-//                    }
-//                }).addOnCompleteListener(new OnCompleteListener<Uri>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<Uri> task) {
-//
-//                        if (task.isSuccessful())
-//                        {
-//                            /// Product image url successfully obtained
-//                        }
-//                    }
-//                });
+//                Toast.makeText(UpdateAccount_Screen.this,"Upload successful",Toast.LENGTH_SHORT).show();
+                //image successfully Uploaded
             }
         });
     }

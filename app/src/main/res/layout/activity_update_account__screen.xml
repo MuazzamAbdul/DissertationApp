@@ -11,7 +11,7 @@
     <LinearLayout
         android:id="@+id/layoutUpdate"
         android:layout_width="345dp"
-        android:layout_height="325dp"
+        android:layout_height="279dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
@@ -26,12 +26,34 @@
         app:layout_constraintVertical_bias="0.321">
 
 
+        <TextView
+            android:id="@+id/etUptEmail"
+            android:layout_width="315dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/rounded_textfield_myaccount"
+            android:drawableLeft="@drawable/ic_action_black_email"
+            android:drawablePadding="10dp"
+            android:ems="10"
+            android:fontFamily="serif"
+            android:gravity="fill"
+            android:hint="Email"
+            android:inputType="textEmailAddress|textPersonName"
+            android:paddingLeft="10dp"
+            android:text="Email"
+            android:textColor="@android:color/black"
+            android:textCursorDrawable="@drawable/color_cursor"
+            android:textSize="18sp" />
+
         <EditText
             android:id="@+id/etUptName"
             android:layout_width="315dp"
             android:layout_height="45dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:background="@drawable/rounded_textfield_myaccount"
@@ -47,28 +69,6 @@
             android:textColor="@android:color/black"
             android:textCursorDrawable="@drawable/color_cursor"
             android:textSize="18sp" />
-
-        <EditText
-            android:id="@+id/etUptEmail"
-            android:layout_width="315dp"
-            android:layout_height="45dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/rounded_textfield_myaccount"
-            android:drawableLeft="@drawable/ic_action_black_email"
-            android:drawablePadding="10dp"
-            android:ems="10"
-            android:fontFamily="serif"
-            android:gravity="fill"
-            android:hint="Email"
-            android:inputType="textEmailAddress|textPersonName"
-            android:paddingLeft="10dp"
-            android:text="Email"
-            android:textColor="@android:color/black"
-            android:textSize="18sp"
-            android:textCursorDrawable="@drawable/color_cursor"/>
 
         <EditText
             android:id="@+id/etUptPhone"
@@ -89,8 +89,8 @@
             android:paddingLeft="10dp"
             android:text="Phone Number"
             android:textColor="@android:color/black"
-            android:textSize="18sp"
-            android:textCursorDrawable="@drawable/color_cursor"/>
+            android:textCursorDrawable="@drawable/color_cursor"
+            android:textSize="18sp" />
 
         <EditText
             android:id="@+id/etUptAddress"
@@ -111,24 +111,8 @@
             android:paddingLeft="10dp"
             android:text="Address"
             android:textColor="@android:color/black"
-            android:textSize="18sp"
-            android:textCursorDrawable="@drawable/color_cursor"/>
-
-        <TextView
-            android:id="@+id/tvChangePass"
-            android:layout_width="315dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:fontFamily="serif"
-            android:text="Change Password"
-            android:textAlignment="center"
-            android:textAllCaps="false"
-            android:textColor="@color/common_google_signin_btn_text_dark_focused"
-            android:textSize="18sp"
-            android:textStyle="italic" />
+            android:textCursorDrawable="@drawable/color_cursor"
+            android:textSize="18sp" />
 
 
     </LinearLayout>
@@ -169,10 +153,11 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbarUpdateAcc"
         app:layout_constraintVertical_bias="0.025" />
 
-    <TextView
+    <Button
         android:id="@+id/tvChoosePhoto"
+        style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="104dp"
-        android:layout_height="20dp"
+        android:layout_height="23dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -182,7 +167,7 @@
         android:gravity="center"
         android:text="Choose Photo"
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
-        android:textSize="14sp"
+        android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.021"

@@ -27,9 +27,8 @@
         <activity android:name=".Rules_Reg_Screen" />
         <activity android:name=".Contact_Us_Screen" />
         <activity android:name=".Settings_Screen" />
-        <activity android:name=".UpdateAccount_Screen"/>
-
-
+        <activity android:name=".UpdateAccount_Screen" />
+        <activity android:name=".Change_Pass_Screen"></activity>
     </application>
 
 </manifest>

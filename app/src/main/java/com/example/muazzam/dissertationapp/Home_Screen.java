@@ -1,6 +1,7 @@
 package com.example.muazzam.dissertationapp;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -18,6 +19,7 @@ import android.widget.Toast;
 
 import com.example.muazzam.dissertationapp.Model.Users;
 import com.example.muazzam.dissertationapp.Prevalent.Prevalent;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -25,6 +27,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Home_Screen extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -35,6 +42,10 @@ public class Home_Screen extends AppCompatActivity
     private DrawerLayout drawer;
     private FirebaseAuth firebaseAuth;
     private FirebaseDatabase firebaseDatabase;
+    private FirebaseStorage firebaseStorage;
+    private StorageReference storageReference;
+    private CircleImageView imagePic;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +55,7 @@ public class Home_Screen extends AppCompatActivity
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
+        firebaseStorage = FirebaseStorage.getInstance();
 
 
 
@@ -59,6 +71,7 @@ public class Home_Screen extends AppCompatActivity
         View headerView = navigationView.getHeaderView(0);
         usernameText= headerView.findViewById(R.id.tvnavbar_name);
         usernameEmail = headerView.findViewById(R.id.tvnavbar_email);
+        imagePic = headerView.findViewById(R.id.myAccount_pic);
         getUserData();
 
 
@@ -153,6 +166,15 @@ public class Home_Screen extends AppCompatActivity
         DatabaseReference mDb = firebaseDatabase.getReference();
         FirebaseUser user = firebaseAuth.getCurrentUser();
         String userAuthKey = user.getUid();
+        StorageReference storageReference = firebaseStorage.getReference();
+        storageReference.child("Users").child(userAuthKey).child("Images").child("Profile Pic").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+
+                Picasso.get().load(uri).fit().centerCrop().into(imagePic);
+            }
+        });
+
         mDb.child("Users").child(userAuthKey).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

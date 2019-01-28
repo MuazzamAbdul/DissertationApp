@@ -39,7 +39,7 @@ public class Sign_Up_Screen extends AppCompatActivity {
         setContentView(R.layout.activity_sign__up__screen);
         setupUIViews();
         firebaseAuth = FirebaseAuth.getInstance();
-        downloadImageUrl = "https://firebasestorage.googleapis.com/v0/b/dissertationapp-9b413.appspot.com/o/Users%2FDefault%2FImages%2FDefault_Profile_Pic.png?alt=media&token=e524965d-92fa-4e5b-ae19-bf99a73eeea4";
+//        downloadImageUrl = "https://firebasestorage.googleapis.com/v0/b/dissertationapp-9b413.appspot.com/o/Users%2FDefault%2FImages%2FDefault_Profile_Pic.png?alt=media&token=e524965d-92fa-4e5b-ae19-bf99a73eeea4";
         btncreateAcc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -185,7 +185,7 @@ public class Sign_Up_Screen extends AppCompatActivity {
                     userDataMap.put("Email",email);
                     userDataMap.put("Address",address);
                     userDataMap.put("PhoneNumber",phneNo);
-                    userDataMap.put("Image Url",downloadImageUrl);
+//                    userDataMap.put("ImageUrl",downloadImageUrl);
 
                     RootRef.child("Users").child(useriD).updateChildren(userDataMap)
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
