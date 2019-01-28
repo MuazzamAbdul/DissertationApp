@@ -7,7 +7,7 @@
     tools:context=".Rules_Reg_Screen">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbarRulesReg"
+        android:id="@+id/toolbarReviews"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -47,6 +47,6 @@ bjb
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbarRulesReg"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarReviews"
         app:layout_constraintVertical_bias="0.024" />
 </android.support.constraint.ConstraintLayout>

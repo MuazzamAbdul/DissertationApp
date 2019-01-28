@@ -6,26 +6,40 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.RatingBar;
 
-public class Rules_Reg_Screen extends AppCompatActivity {
+public class Reviews_Screen extends AppCompatActivity {
+
+    private RatingBar ratingBar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_rules__reg__screen);
+        setContentView(R.layout.activity_reviews__screen);
         setupUIViews();
 
+        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser)
+            {
+                ///onbtain the rating
+            }
+        });
     }
+
 
     private void setupUIViews()
     {
         Toolbar toolbar = findViewById(R.id.toolbarReviews);
         setSupportActionBar(toolbar);
-        toolbar.setTitle("Rules & Regulations");
+        toolbar.setTitle("Reviews");
 
         ActionBar actionbar = getSupportActionBar();
         actionbar.setDisplayHomeAsUpEnabled(true);
         actionbar.setHomeAsUpIndicator(R.drawable.ic_action_arrow_back);
+
+        ratingBar = findViewById(R.id.ratingBar);
     }
 
     @Override
@@ -36,7 +50,7 @@ public class Rules_Reg_Screen extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 finish();
-                Intent intent = new Intent(Rules_Reg_Screen.this,Home_Screen.class);
+                Intent intent = new Intent(Reviews_Screen.this,Home_Screen.class);
                 startActivity(intent);
         }
         return super.onOptionsItemSelected(item);

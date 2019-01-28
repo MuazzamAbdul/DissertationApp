@@ -145,6 +145,11 @@ public class Home_Screen extends AppCompatActivity
         }else if (id == R.id.rules_reg) {
             Intent intent = new Intent(Home_Screen.this, Rules_Reg_Screen.class);
             startActivity(intent);
+        }
+        else if (id ==R.id.reviews)
+        {
+            Intent intent = new Intent(Home_Screen.this, Reviews_Screen.class);
+            startActivity(intent);
         } else if (id == R.id.contact_us) {
             Intent intent = new Intent(Home_Screen.this, Contact_Us_Screen.class);
             startActivity(intent);
