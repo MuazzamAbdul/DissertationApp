@@ -31,4 +31,6 @@
     <string name="address">Address</string>
     <string name="phone_number">Phone Number</string>
     <string name="update">Update</string>
+    <string name="faq">FAQ</string>
+    <string name="about_us">About Us</string>
 </resources>

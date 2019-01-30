@@ -41,7 +41,7 @@ public class Change_Pass_Screen extends AppCompatActivity {
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sendUserToUpdate();
+                sendUserToMyAccount();
             }
         });
     }
@@ -60,10 +60,10 @@ public class Change_Pass_Screen extends AppCompatActivity {
         cancel = findViewById(R.id.btnCancel_Pass);
     }
 
-    private void sendUserToUpdate()
+    private void sendUserToMyAccount()
     {
         finish();
-        Intent intent = new Intent(Change_Pass_Screen.this,UpdateAccount_Screen.class);
+        Intent intent = new Intent(Change_Pass_Screen.this,My_Account_Screen.class);
         startActivity(intent);
     }
 

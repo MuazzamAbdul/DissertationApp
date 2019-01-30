@@ -24,12 +24,12 @@
             android:theme="@style/AppTheme" />
         <activity android:name=".Forget_Pass_Screen" />
         <activity android:name=".My_Account_Screen" />
-        <activity android:name=".Rules_Reg_Screen" />
-        <activity android:name=".Contact_Us_Screen" />
         <activity android:name=".Settings_Screen" />
         <activity android:name=".UpdateAccount_Screen" />
         <activity android:name=".Change_Pass_Screen" />
-        <activity android:name=".Reviews_Screen"></activity>
+        <activity android:name=".Reviews_Screen" />
+        <activity android:name=".FAQ_Screen" />
+        <activity android:name=".About_Us_Screen"></activity>
     </application>
 
 </manifest>

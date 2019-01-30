@@ -27,15 +27,17 @@
 
     <TextView
         android:id="@+id/tvRateApp"
-        android:layout_width="174dp"
-        android:layout_height="45dp"
+        android:layout_width="204dp"
+        android:layout_height="31dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:drawableLeft="@drawable/ic_action_black_star"
+        android:drawablePadding="10dp"
         android:fontFamily="serif"
         android:text="Rate this app"
-        android:textAlignment="center"
+
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -43,7 +45,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbarReviews"
-        app:layout_constraintVertical_bias="0.062" />
+        app:layout_constraintVertical_bias="0.035" />
 
     <TextView
         android:id="@+id/textView2"
@@ -118,11 +120,11 @@
         android:background="@drawable/rounded_textfield_myaccount"
         android:ems="10"
         android:fontFamily="serif"
+        android:hint="Leave your message here"
         android:inputType="textPersonName"
         android:paddingLeft="10dp"
-        android:text="Leave your message here"
-        android:textCursorDrawable="@drawable/color_cursor"
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        android:textCursorDrawable="@drawable/color_cursor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.512"
@@ -150,7 +152,7 @@
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etSubmit"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.078" />
 
     <TextView
         android:id="@+id/textView4"
@@ -168,6 +170,6 @@
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnSubmit"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.125" />
 
 </android.support.constraint.ConstraintLayout>

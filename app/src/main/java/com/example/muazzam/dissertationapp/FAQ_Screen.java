@@ -7,20 +7,22 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
-public class Contact_Us_Screen extends AppCompatActivity {
+public class FAQ_Screen extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_contact__us__screen);
+        setContentView(R.layout.activity_faq__screen);
+
         setupUIViews();
     }
 
+
     private void setupUIViews()
     {
-        Toolbar toolbar = findViewById(R.id.toolbarContactUs);
+        Toolbar toolbar = findViewById(R.id.toolbarFaq);
         setSupportActionBar(toolbar);
-        toolbar.setTitle("Contact Us");
+        toolbar.setTitle("FAQ");
 
         ActionBar actionbar = getSupportActionBar();
         actionbar.setDisplayHomeAsUpEnabled(true);
@@ -35,7 +37,7 @@ public class Contact_Us_Screen extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 finish();
-                Intent intent = new Intent(Contact_Us_Screen.this,Home_Screen.class);
+                Intent intent = new Intent(FAQ_Screen.this,Home_Screen.class);
                 startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
