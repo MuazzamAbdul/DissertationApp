@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/backgroundpic"
-    tools:context=".FAQ_Screen">
+    tools:context=".Users.FAQ_Screen">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbarFaq"

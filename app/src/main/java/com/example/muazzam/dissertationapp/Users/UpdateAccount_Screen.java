@@ -1,4 +1,4 @@
-package com.example.muazzam.dissertationapp;
+package com.example.muazzam.dissertationapp.Users;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.example.muazzam.dissertationapp.Model.Users;
 import com.example.muazzam.dissertationapp.Prevalent.Prevalent;
+import com.example.muazzam.dissertationapp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;

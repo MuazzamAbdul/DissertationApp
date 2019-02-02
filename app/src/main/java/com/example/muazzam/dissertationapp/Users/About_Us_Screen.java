@@ -1,4 +1,4 @@
-package com.example.muazzam.dissertationapp;
+package com.example.muazzam.dissertationapp.Users;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.muazzam.dissertationapp.R;
 
 public class About_Us_Screen extends AppCompatActivity {
 

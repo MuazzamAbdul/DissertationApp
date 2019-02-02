@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/log"
 
-    tools:context=".Login_Screen">
+    tools:context=".Users.Login_Screen">
 
     <EditText
         android:id="@+id/password"

@@ -8,6 +8,14 @@
         <item name="colorAccent">@color/textColor</item>
     </style>
 
+    <style name="AdminAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/adminColorPrimary</item>
+        <item name="colorPrimaryDark">@color/adminColorPrimaryDark</item>
+        <item name="colorAccent">@color/adminTextColor</item>
+    </style>
+
+
 
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
@@ -34,4 +42,5 @@
         <!--This line changes the color of icons in toolbar (back, overflow menu icons)-->
         <item name="android:textColorSecondary">@color/textColor</item>
     </style>
+
 </resources>

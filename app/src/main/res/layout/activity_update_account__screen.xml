@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/backgroundpic"
     android:scrollbarAlwaysDrawVerticalTrack="true"
-    tools:context=".UpdateAccount_Screen">
+    tools:context=".Users.UpdateAccount_Screen">
 
     <LinearLayout
         android:id="@+id/layoutUpdate"

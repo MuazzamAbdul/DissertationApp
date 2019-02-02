@@ -9,27 +9,34 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Login_Screen">
+        <activity android:name=".Users.Login_Screen">
+
+        </activity>
+        <activity android:name=".Users.Sign_Up_Screen" />
+        <activity android:name=".Users.Category_Screen" />
+        <activity
+            android:name=".Users.Home_Screen"
+            android:label="@string/title_activity_home__screen"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".Users.Forget_Pass_Screen" />
+        <activity android:name=".Users.My_Account_Screen" />
+        <activity android:name=".Users.Settings_Screen" />
+        <activity android:name=".Users.UpdateAccount_Screen" />
+        <activity android:name=".Users.Change_Pass_Screen" />
+        <activity android:name=".Users.Reviews_Screen" />
+        <activity android:name=".Users.FAQ_Screen" />
+        <activity android:name=".Users.About_Us_Screen" />
+        <activity
+            android:name=".Admin.Admin_Home_Screen"
+            android:label="@string/title_activity_admin__home__screen"
+            android:theme="@style/AdminAppTheme" >
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Sign_Up_Screen" />
-        <activity android:name=".Category_Screen" />
-        <activity
-            android:name=".Home_Screen"
-            android:label="@string/title_activity_home__screen"
-            android:theme="@style/AppTheme" />
-        <activity android:name=".Forget_Pass_Screen" />
-        <activity android:name=".My_Account_Screen" />
-        <activity android:name=".Settings_Screen" />
-        <activity android:name=".UpdateAccount_Screen" />
-        <activity android:name=".Change_Pass_Screen" />
-        <activity android:name=".Reviews_Screen" />
-        <activity android:name=".FAQ_Screen" />
-        <activity android:name=".About_Us_Screen"></activity>
     </application>
 
 </manifest>
