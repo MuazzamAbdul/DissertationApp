@@ -75,14 +75,14 @@ public class Home_Screen extends AppCompatActivity
         getUserData();
 
 
-        im.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Home_Screen.this,Category_Screen.class);
-                startActivity(intent);
-
-            }
-        });
+//        im.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(Home_Screen.this,Category_Screen.class);
+//                startActivity(intent);
+//
+//            }
+//        });
 
 
 
@@ -94,7 +94,7 @@ public class Home_Screen extends AppCompatActivity
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitle("Home");
-        im = findViewById(R.id.ivFruitVeg);
+//        im = findViewById(R.id.ivFruitVeg);
 
     }
 

@@ -1,6 +1,7 @@
 package com.example.muazzam.dissertationapp;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -63,6 +64,7 @@ public class About_Us_Screen extends AppCompatActivity {
         String recipient = "muazzamabdul@gmail.com";
 
         Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setData(Uri.parse("mailto:"));
         intent.putExtra(Intent.EXTRA_EMAIL,new String[] {recipient});
         intent.setType("message/rfc822");
         startActivity(Intent.createChooser(intent,"Choose an email client"));
