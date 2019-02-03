@@ -10,7 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Users.Login_Screen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".Users.Sign_Up_Screen" />
         <activity android:name=".Users.Category_Screen" />
@@ -30,12 +34,6 @@
             android:name=".Admin.Admin_Home_Screen"
             android:label="@string/title_activity_admin__home__screen"
             android:theme="@style/AdminAppTheme" >
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

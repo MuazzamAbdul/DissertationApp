@@ -6,6 +6,7 @@
     <color name="textColor">#ffffff</color>
 
     <color name="adminColorPrimary">#ffae42</color>
+    <color name="background">#85ffae42</color>
     <color name="adminColorPrimaryDark">#ffa500</color>
     <color name="adminTextColor">#000000</color>
     <color name="bottomNavTrans">#80000000</color>

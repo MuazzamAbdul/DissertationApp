@@ -16,15 +16,12 @@ public class Admin_Home_Screen extends AppCompatActivity implements BottomNaviga
 
 
     private BottomNavigationView bottomNavigationView;
-    Fragment_Home home = new Fragment_Home();
-    Fragment_Add add = new Fragment_Add();
-    Fragment_Delete delete = new Fragment_Delete();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin__home__screen);
+
 
 
         bottomNavigationView = findViewById(R.id.navigation);
@@ -38,14 +35,17 @@ public class Admin_Home_Screen extends AppCompatActivity implements BottomNaviga
         switch(menuItem.getItemId())
         {
             case R.id.navigation_home:
+                Fragment_Home home = new Fragment_Home();
                 getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.fade_in,R.anim.fade_out).replace(R.id.main_frame,home).commit();
                 return true;
 
             case R.id.navigation_add:
+                Fragment_Add add = new Fragment_Add();
                 getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.fade_in,R.anim.fade_out).replace(R.id.main_frame,add).commit();
                 return true;
 
             case R.id.navigation_delete:
+                Fragment_Delete delete = new Fragment_Delete();
                 getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.fade_in,R.anim.fade_out).replace(R.id.main_frame,delete).commit();
                 return true;
         }

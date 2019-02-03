@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.muazzam.dissertationapp.Admin.Admin_Home_Screen;
 import com.example.muazzam.dissertationapp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -104,7 +105,7 @@ public class Login_Screen extends AppCompatActivity {
         {
             finish();
             Toast.makeText(Login_Screen.this,"Admin Login Successful",Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(Login_Screen.this,Category_Screen.class);
+            Intent intent = new Intent(Login_Screen.this,Admin_Home_Screen.class);
             startActivity(intent);
         }
         else{
