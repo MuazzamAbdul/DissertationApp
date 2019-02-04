@@ -118,7 +118,7 @@ public class My_Account_Screen extends AppCompatActivity {
         phoneNo = findViewById(R.id.tvAccountPhone);
         update = findViewById(R.id.btnUpdate);
         changePass = findViewById(R.id.tvChangePass);
-        imagePic = findViewById(R.id.myAccount_pic);
+        imagePic = findViewById(R.id.reg_Users);
         swipeRefreshLayout = findViewById(R.id.Swipe);
 
     }

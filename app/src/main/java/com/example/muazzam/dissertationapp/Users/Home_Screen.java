@@ -72,7 +72,7 @@ public class Home_Screen extends AppCompatActivity
         View headerView = navigationView.getHeaderView(0);
         usernameText= headerView.findViewById(R.id.tvnavbar_name);
         usernameEmail = headerView.findViewById(R.id.tvnavbar_email);
-        imagePic = headerView.findViewById(R.id.myAccount_pic);
+        imagePic = headerView.findViewById(R.id.reg_Users);
         getUserData();
 
 
@@ -141,18 +141,23 @@ public class Home_Screen extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.my_account) {
+            finish();
             Intent intent = new Intent(Home_Screen.this, My_Account_Screen.class);
             startActivity(intent);
         }else if (id == R.id.faq) {
+            finish();
             Intent intent = new Intent(Home_Screen.this, FAQ_Screen.class);
             startActivity(intent);
         } else if (id ==R.id.reviews) {
+            finish();
             Intent intent = new Intent(Home_Screen.this, Reviews_Screen.class);
             startActivity(intent);
         } else if (id == R.id.about_us) {
+            finish();
             Intent intent = new Intent(Home_Screen.this, About_Us_Screen.class);
             startActivity(intent);
         } else if (id == R.id.settings) {
+            finish();
             Intent intent = new Intent(Home_Screen.this, Settings_Screen.class);
             startActivity(intent);
         } else if (id == R.id.sign_out) {

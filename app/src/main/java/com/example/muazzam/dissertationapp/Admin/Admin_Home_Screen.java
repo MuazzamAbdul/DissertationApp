@@ -1,5 +1,6 @@
 package com.example.muazzam.dissertationapp.Admin;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -10,6 +11,7 @@ import com.example.muazzam.dissertationapp.Admin.Fragments.Fragment_Add;
 import com.example.muazzam.dissertationapp.Admin.Fragments.Fragment_Delete;
 import com.example.muazzam.dissertationapp.Admin.Fragments.Fragment_Home;
 import com.example.muazzam.dissertationapp.R;
+import com.example.muazzam.dissertationapp.Users.Login_Screen;
 
 public class Admin_Home_Screen extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
@@ -48,7 +50,15 @@ public class Admin_Home_Screen extends AppCompatActivity implements BottomNaviga
                 Fragment_Delete delete = new Fragment_Delete();
                 getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.fade_in,R.anim.fade_out).replace(R.id.main_frame,delete).commit();
                 return true;
+
+            case R.id.navigation_sign_out:
+                finish();
+                Intent intent = new Intent(Admin_Home_Screen.this,Login_Screen.class);
+                startActivity(intent);
+
         }
+
+
         return false;
     }
 }

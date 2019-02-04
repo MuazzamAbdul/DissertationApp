@@ -103,7 +103,6 @@ public class Login_Screen extends AppCompatActivity {
         loadingBar.show();
         if (email.equals("Admin") && (password.equals("Admin")))
         {
-            finish();
             Toast.makeText(Login_Screen.this,"Admin Login Successful",Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(Login_Screen.this,Admin_Home_Screen.class);
             startActivity(intent);
