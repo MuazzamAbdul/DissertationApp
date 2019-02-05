@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.muazzam.dissertationapp.Admin.Admin_Add_Product_Screen;
+import com.example.muazzam.dissertationapp.Admin.Admin_Add_Supermarket_Screen;
 import com.example.muazzam.dissertationapp.R;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -31,6 +32,15 @@ public class Fragment_Add extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_fragment__add, container, false);
         CircleImageView addProduct = view.findViewById(R.id.Add_Product);
+        CircleImageView addSupermarket = view.findViewById(R.id.Add_Supermarket);
+
+        addSupermarket.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(),Admin_Add_Supermarket_Screen.class);
+                startActivity(intent);
+            }
+        });
 
         addProduct.setOnClickListener(new View.OnClickListener() {
             @Override

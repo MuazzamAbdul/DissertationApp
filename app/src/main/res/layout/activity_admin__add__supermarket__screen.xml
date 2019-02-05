@@ -5,29 +5,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/adminpicture"
-    tools:context=".Admin.Admin_Add_Product_Screen">
+    tools:context=".Admin.Admin_Add_Supermarket_Screen">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/add_Product"
-        android:layout_width="125dp"
-        android:layout_height="125dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:src="@drawable/addphoto"
-        app:civ_border_color="#ffcc6e"
+        android:src="@drawable/supermarketadd"
+        app:civ_border_color="@color/bottomNavTrans"
         app:civ_border_width="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.019" />
+        app:layout_constraintVertical_bias="0.084" />
+
 
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="330dp"
-        android:layout_height="366dp"
+        android:layout_height="196dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -37,21 +38,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/add_Product"
-        app:layout_constraintVertical_bias="0.0">
-
-        <Spinner
-            android:id="@+id/spinner"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/spinner_bg"
-            android:dropDownSelector="#ffffff" />
+        app:layout_constraintVertical_bias="0.151">
 
         <EditText
-            android:id="@+id/etProductId"
+            android:id="@+id/etSupermarketId"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="45dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
@@ -59,16 +51,16 @@
             android:drawablePadding="10dp"
             android:ems="10"
             android:fontFamily="serif"
-            android:hint="Product ID"
+            android:hint="Supermarket Id"
             android:inputType="text"
             android:paddingLeft="10dp"
             android:textColor="@android:color/black"
             android:textCursorDrawable="@drawable/admin_color_cursor" />
 
         <EditText
-            android:id="@+id/etProductName"
+            android:id="@+id/etSupermarketName"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="45dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
@@ -76,16 +68,16 @@
             android:drawablePadding="10dp"
             android:ems="10"
             android:fontFamily="serif"
-            android:hint="Product Name"
+            android:hint="Supermarket Name"
             android:inputType="text"
             android:paddingLeft="10dp"
             android:textColor="@android:color/black"
             android:textCursorDrawable="@drawable/admin_color_cursor" />
 
         <EditText
-            android:id="@+id/etProductDesc"
+            android:id="@+id/etSupermarketLoc"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="45dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
@@ -93,68 +85,17 @@
             android:drawablePadding="10dp"
             android:ems="10"
             android:fontFamily="serif"
-            android:hint="Product Description"
+            android:hint="Supermarket Location"
             android:inputType="text"
-            android:paddingLeft="10dp"
-            android:textColor="@android:color/black"
-            android:textCursorDrawable="@drawable/admin_color_cursor" />
-
-        <EditText
-            android:id="@+id/etProductCat"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/rounded_textfield"
-            android:drawablePadding="10dp"
-            android:ems="10"
-            android:fontFamily="serif"
-            android:hint="Product Category"
-            android:inputType="text"
-            android:paddingLeft="10dp"
-            android:textColor="@android:color/black"
-            android:textCursorDrawable="@drawable/admin_color_cursor" />
-
-        <EditText
-            android:id="@+id/etProductQty"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/rounded_textfield"
-            android:drawablePadding="10dp"
-            android:ems="10"
-            android:fontFamily="serif"
-            android:hint="Quantity"
-            android:inputType="number"
-            android:paddingLeft="10dp"
-            android:textColor="@android:color/black"
-            android:textCursorDrawable="@drawable/admin_color_cursor" />
-
-        <EditText
-            android:id="@+id/etProductPrice"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/rounded_textfield"
-            android:drawablePadding="10dp"
-            android:ems="10"
-            android:fontFamily="serif"
-            android:hint="Price"
-            android:inputType="number"
             android:paddingLeft="10dp"
             android:textColor="@android:color/black"
             android:textCursorDrawable="@drawable/admin_color_cursor" />
     </LinearLayout>
 
     <Button
-        android:id="@+id/btnInsert"
+        android:id="@+id/btnAddSup"
         style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="143dp"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
@@ -162,7 +103,7 @@
         android:layout_marginBottom="8dp"
         android:background="@drawable/admin_rounded_button"
         android:fontFamily="serif"
-        android:text="Add Product"
+        android:text="Add Supermarket"
         android:textAlignment="center"
         android:textColor="@color/adminTextColor"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -173,9 +114,9 @@
         app:layout_constraintVertical_bias="0.432" />
 
     <Button
-        android:id="@+id/btncancel"
+        android:id="@+id/btncancelSup"
         style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="143dp"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
@@ -192,4 +133,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
         app:layout_constraintVertical_bias="0.432" />
+
+
 </android.support.constraint.ConstraintLayout>
