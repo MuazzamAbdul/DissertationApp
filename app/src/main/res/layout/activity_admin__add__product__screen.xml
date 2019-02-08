@@ -20,14 +20,15 @@
         app:civ_border_width="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.019" />
+        app:layout_constraintVertical_bias="0.056" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="330dp"
-        android:layout_height="366dp"
+        android:layout_height="252dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -37,21 +38,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/add_Product"
-        app:layout_constraintVertical_bias="0.0">
-
-        <Spinner
-            android:id="@+id/spinner"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/spinner_bg"
-            android:dropDownSelector="#ffffff" />
+        app:layout_constraintVertical_bias="0.126">
 
         <EditText
             android:id="@+id/etProductId"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="45dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
@@ -68,7 +60,7 @@
         <EditText
             android:id="@+id/etProductName"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="45dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
@@ -85,7 +77,7 @@
         <EditText
             android:id="@+id/etProductDesc"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="45dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
@@ -102,7 +94,7 @@
         <EditText
             android:id="@+id/etProductCat"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="45dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
@@ -116,39 +108,6 @@
             android:textColor="@android:color/black"
             android:textCursorDrawable="@drawable/admin_color_cursor" />
 
-        <EditText
-            android:id="@+id/etProductQty"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/rounded_textfield"
-            android:drawablePadding="10dp"
-            android:ems="10"
-            android:fontFamily="serif"
-            android:hint="Quantity"
-            android:inputType="number"
-            android:paddingLeft="10dp"
-            android:textColor="@android:color/black"
-            android:textCursorDrawable="@drawable/admin_color_cursor" />
-
-        <EditText
-            android:id="@+id/etProductPrice"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/rounded_textfield"
-            android:drawablePadding="10dp"
-            android:ems="10"
-            android:fontFamily="serif"
-            android:hint="Price"
-            android:inputType="number"
-            android:paddingLeft="10dp"
-            android:textColor="@android:color/black"
-            android:textCursorDrawable="@drawable/admin_color_cursor" />
     </LinearLayout>
 
     <Button
@@ -162,7 +121,7 @@
         android:layout_marginBottom="8dp"
         android:background="@drawable/admin_rounded_button"
         android:fontFamily="serif"
-        android:text="Add Product"
+        android:text="Add into supermarket"
         android:textAlignment="center"
         android:textColor="@color/adminTextColor"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -170,7 +129,7 @@
         app:layout_constraintHorizontal_bias="0.084"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-        app:layout_constraintVertical_bias="0.432" />
+        app:layout_constraintVertical_bias="0.642" />
 
     <Button
         android:id="@+id/btncancel"
@@ -188,8 +147,7 @@
         android:textColor="@color/adminTextColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.915"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnInsert"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-        app:layout_constraintVertical_bias="0.432" />
+        app:layout_constraintVertical_bias="0.642" />
 </android.support.constraint.ConstraintLayout>

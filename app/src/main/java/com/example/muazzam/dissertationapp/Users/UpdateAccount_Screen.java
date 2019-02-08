@@ -181,17 +181,6 @@ public class UpdateAccount_Screen extends AppCompatActivity {
     private void uploadData()
     {
         final DatabaseReference databaseReference = firebaseDatabase.getReference();
-//        user = firebaseAuth.getCurrentUser();
-//        userAuthKey = user.getUid();
-//        user.updateEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
-//            @Override
-//            public void onComplete(@NonNull Task<Void> task) {
-//
-//                if (!task.isSuccessful()) {
-//                    Toast.makeText(UpdateAccount_Screen.this,"UpdateEmail unsuccessful",Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        });
         databaseReference.child("Users").child(userAuthKey).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
