@@ -40,7 +40,7 @@
         <activity
             android:name=".Admin.Admin_Add_Supermarket_Screen"
             android:theme="@style/AdminAppTheme" />
-        <activity android:name=".Admin_Add_Product_Screen2"
+        <activity android:name=".Admin.Admin_Add_Product_Screen2"
             android:theme="@style/AdminAppTheme"></activity>
     </application>
 

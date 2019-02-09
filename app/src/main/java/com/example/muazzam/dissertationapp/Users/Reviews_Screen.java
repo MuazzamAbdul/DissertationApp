@@ -98,7 +98,7 @@ public class Reviews_Screen extends AppCompatActivity {
         message = leaveMessage.getText().toString();
         if (TextUtils.isEmpty(message))
         {
-            Toast.makeText(Reviews_Screen.this,"Please leave a message",Toast.LENGTH_SHORT).show();
+            leaveMessage.setError("Please leave a message");
         }
         else
         {

@@ -77,35 +77,37 @@ public class Sign_Up_Screen extends AppCompatActivity {
 
         if (TextUtils.isEmpty(name))
         {
-            Toast.makeText(this,"Please enter Name",Toast.LENGTH_SHORT).show();
+            userName.setError("Please enter Name");
         }
         else if(TextUtils.isEmpty(email))
         {
-            Toast.makeText(this,"Please enter Email",Toast.LENGTH_SHORT).show();
+            userEmail.setError("Please enter Email");
         }
         else if(TextUtils.isEmpty(password))
         {
-            Toast.makeText(this,"Please enter Password",Toast.LENGTH_SHORT).show();
+            userPassword.setError("Please enter Password");
         }
         else if(TextUtils.isEmpty(confirmPass))
         {
-            Toast.makeText(this,"Please confirm Password",Toast.LENGTH_SHORT).show();
+            userconfirmPass.setError("Please confirm Password");
         }
         else if(TextUtils.isEmpty(address))
         {
-            Toast.makeText(this,"Please enter Address",Toast.LENGTH_SHORT).show();
+            userAddress.setError("Please enter Address");
         }
         else if(TextUtils.isEmpty(phneNo))
         {
-            Toast.makeText(this,"Please enter Phone Number",Toast.LENGTH_SHORT).show();
+            userPhoneNo.setError("Please enter Phone Number");
+
         }
         else if(!(password.equals(confirmPass)))
         {
-            Toast.makeText(this,"Password do not match!",Toast.LENGTH_SHORT).show();
+            userPassword.setError("Passwords do not match!");
+            userconfirmPass.setError("Passwords do not match!");
         }
         else if (password.length() < 6 )
         {
-            Toast.makeText(this,"Password length must be greater that 5!!",Toast.LENGTH_SHORT).show();
+            userPassword.setError("Password length must be greater that 5!!");
         }
         else{
             result = true;

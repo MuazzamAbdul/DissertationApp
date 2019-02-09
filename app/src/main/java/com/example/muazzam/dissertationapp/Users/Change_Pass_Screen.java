@@ -76,24 +76,24 @@ public class Change_Pass_Screen extends AppCompatActivity {
         confirmP = confirmPass.getText().toString();
         if (TextUtils.isEmpty(oldP))
         {
-            Toast.makeText(Change_Pass_Screen.this,"Please enter your old address", Toast.LENGTH_SHORT).show();
+            oldPass.setError("Please enter your old address");
         }
         else if(TextUtils.isEmpty(newP))
         {
-            Toast.makeText(Change_Pass_Screen.this,"Please enter new Password", Toast.LENGTH_SHORT).show();
-
+            newPass.setError("Please enter new Password");
         }
         else if (newP.length() < 6)
         {
-            Toast.makeText(Change_Pass_Screen.this,"New Password must be at least 6 characters", Toast.LENGTH_SHORT).show();
+            newPass.setError("New Password must be at least 6 characters");
         }
         else if (TextUtils.isEmpty(confirmP))
         {
-            Toast.makeText(Change_Pass_Screen.this,"Please confirm new Password", Toast.LENGTH_SHORT).show();
+            confirmPass.setError("Please confirm new Password");
         }
         else if (!(newP.equals(confirmP)))
         {
-            Toast.makeText(Change_Pass_Screen.this,"Password do not match", Toast.LENGTH_SHORT).show();
+            newPass.setError("Passwords do not match");
+            confirmPass.setError("Passwords do not match");
         }
         else
         {

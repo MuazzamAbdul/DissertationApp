@@ -3,6 +3,7 @@ package com.example.muazzam.dissertationapp.Admin;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -11,12 +12,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.muazzam.dissertationapp.Admin_Add_Product_Screen2;
 import com.example.muazzam.dissertationapp.Model.AdminAddProduct;
 import com.example.muazzam.dissertationapp.Prevalent.Prevalent;
 import com.example.muazzam.dissertationapp.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -29,8 +35,7 @@ public class Admin_Add_Product_Screen extends AppCompatActivity {
     private static final int galleryPic = 123;
     private  Uri imageUri;
     private FirebaseStorage firebaseStorage;
-
-
+    private FirebaseDatabase firebaseDatabase;
     private String productId, productName,productDesc,productCat;
     private List<String> list;
 
@@ -40,11 +45,10 @@ public class Admin_Add_Product_Screen extends AppCompatActivity {
         setContentView(R.layout.activity_admin__add__product__screen);
 
 
-
+        firebaseDatabase =FirebaseDatabase.getInstance();
 
         setupUIViews();
-
-
+        retrieveProductID();
 
         productPic.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,9 +62,11 @@ public class Admin_Add_Product_Screen extends AppCompatActivity {
             public void onClick(View v) {
                 if (validateTextFields())
                 {
-                    storeDetails();
-                    Intent intent = new Intent(Admin_Add_Product_Screen.this,Admin_Add_Product_Screen2.class);
-                    startActivity(intent);
+
+                        storeDetails();
+                        Intent intent = new Intent(Admin_Add_Product_Screen.this, Admin_Add_Product_Screen2.class);
+                        startActivity(intent);
+
                 }
             }
         });
@@ -82,6 +88,7 @@ public class Admin_Add_Product_Screen extends AppCompatActivity {
         prodCat = findViewById(R.id.etProductCat);
         insertSup= findViewById(R.id.btnInsert);
         cancel = findViewById(R.id.btncancel);
+        list = new ArrayList<>();
     }
 
     private void openGallery()
@@ -116,19 +123,23 @@ public class Admin_Add_Product_Screen extends AppCompatActivity {
         }
         else if (TextUtils.isEmpty(productId))
         {
-            Toast.makeText(this,"Please enter product ID",Toast.LENGTH_SHORT).show();
+            prodId.setError("Please enter product ID");
         }
         else if (TextUtils.isEmpty(productName))
         {
-            Toast.makeText(this,"Please enter product Name",Toast.LENGTH_SHORT).show();
+            prodName.setError("Please enter product Name");
         }
         else if (TextUtils.isEmpty(productDesc))
         {
-            Toast.makeText(this,"Please enter product Description",Toast.LENGTH_SHORT).show();
+            prodDesc.setError("Please enter product Description");
         }
         else if (TextUtils.isEmpty(productCat))
         {
-            Toast.makeText(this,"Please enter product Category",Toast.LENGTH_SHORT).show();
+            prodCat.setError("Please enter product Category");
+        }
+        else if (list.contains(productId))
+        {
+            prodId.setError("Product ID already taken");
         }
         else
         {
@@ -140,6 +151,34 @@ public class Admin_Add_Product_Screen extends AppCompatActivity {
     private void storeDetails(){
         AdminAddProduct adminAdd = new AdminAddProduct(productId,productName,productDesc,productCat,imageUri);
         Prevalent.products = adminAdd;
+    }
+
+
+    private void retrieveProductID()
+    {
+        DatabaseReference mDb = firebaseDatabase.getReference();
+        mDb.child("Products").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+
+                    String category = ds.getKey();
+
+
+                    for(DataSnapshot dSnapshot : dataSnapshot.child(category).getChildren()) {
+                        String id = dSnapshot.getKey();
+
+                        list.add(id);
+                    }
+                }
+
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
     }
 
 

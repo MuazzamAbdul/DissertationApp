@@ -157,19 +157,20 @@ public class UpdateAccount_Screen extends AppCompatActivity {
 
         if (TextUtils.isEmpty(name))
         {
-            Toast.makeText(this,"Please enter Name",Toast.LENGTH_SHORT).show();
+            uptName.setError("Please enter Name");
+
         }
         else if (TextUtils.isEmpty(email))
         {
-            Toast.makeText(this,"Please enter Email",Toast.LENGTH_SHORT).show();
+            uptEmail.setError("Please enter Email");
         }
         else if (TextUtils.isEmpty(address))
         {
-            Toast.makeText(this,"Please enter Address",Toast.LENGTH_SHORT).show();
+            uptAddress.setError("Please enter Address");
         }
         else if (TextUtils.isEmpty(phone))
         {
-            Toast.makeText(this,"Please enter Phone Number",Toast.LENGTH_SHORT).show();
+            uptPhoneNo.setError("Please enter Phone Number");
         }
         else
         {

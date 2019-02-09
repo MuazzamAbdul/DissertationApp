@@ -67,7 +67,8 @@ public class Forget_Pass_Screen extends AppCompatActivity {
 
         if (TextUtils.isEmpty(email))
         {
-            Toast.makeText(Forget_Pass_Screen.this,"Please enter your email address", Toast.LENGTH_SHORT).show();
+            userEmail.setError("Please enter your email address");
+
         }
         else
         {

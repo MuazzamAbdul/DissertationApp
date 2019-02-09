@@ -1,11 +1,10 @@
-package com.example.muazzam.dissertationapp;
+package com.example.muazzam.dissertationapp.Admin;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -16,8 +15,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.muazzam.dissertationapp.Prevalent.Prevalent;
+import com.example.muazzam.dissertationapp.R;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,9 +28,13 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Admin_Add_Product_Screen2 extends AppCompatActivity {
 
@@ -42,6 +48,8 @@ public class Admin_Add_Product_Screen2 extends AppCompatActivity {
     private String quantity,prices;
     private ProgressDialog loadingBar,loadingBar2;
     private ArrayList<String> supName,supId;
+    private int supermarketPos;
+    private CircleImageView prodPic;
 
 
 
@@ -55,20 +63,11 @@ public class Admin_Add_Product_Screen2 extends AppCompatActivity {
 
         setupUIViews();
 
-        loadingBar2.setTitle("Retrieveing Supermarkets");
+        loadingBar2.setTitle("Retrieving Supermarkets");
         loadingBar2.setMessage("Please wait...");
         loadingBar2.setCanceledOnTouchOutside(false);
         loadingBar2.show();
         setProductDetails();
-//        getSupermarkets();
-//
-//        list = new ArrayList<String>();
-//        list.add("Choose Supermarket");
-////        getSupermarkets();
-//        list.add("Intermart");
-//        list.add("SuperU");
-//        list.add("Winners");
-//        list.add("Jumbo");
 
         supName = new ArrayList<>();
         supName.add("Choose Supermarket");
@@ -81,28 +80,21 @@ public class Admin_Add_Product_Screen2 extends AppCompatActivity {
 
 
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
-
                     String location = ds.getKey();
-
-                    Log.d("TAG", location);
-
                     for(DataSnapshot dSnapshot : dataSnapshot.child(location).getChildren()) {
                         String id = dSnapshot.getKey();
                         supId.add(id);
-
                         String name = String.valueOf(dSnapshot.child("Supermarket Name").getValue(String.class));
                         supName.add(name);
                     }
                 }
                 loadingBar2.dismiss();
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Toast.makeText(Admin_Add_Product_Screen2.this,"Failure Retrieving data from Database",Toast.LENGTH_SHORT).show();
             }
         });
-
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,R.layout.my_spinner,supName);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -112,15 +104,12 @@ public class Admin_Add_Product_Screen2 extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 spinner.setSelection(position);
+                supermarketPos = position;
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
             }
         });
-
-
 
         add2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -128,6 +117,8 @@ public class Admin_Add_Product_Screen2 extends AppCompatActivity {
                 if (validateTextFields())
                 {
                         storeProductPic();
+                        storeProductDetails();
+                        storeProductIntoSupermarkets();
 
                 }
             }
@@ -153,13 +144,12 @@ public class Admin_Add_Product_Screen2 extends AppCompatActivity {
         spinner = findViewById(R.id.spinner);
         loadingBar = new ProgressDialog(this);
         loadingBar2 = new ProgressDialog(this);
-
-
-
+        prodPic = findViewById(R.id.productPic);
+        Picasso.get().load(Prevalent.products.getImageUri()).fit().centerCrop().into(prodPic);
+        //        Glide.with(My_Account_Screen.this).load(uri).into(imagePic);
         supId = new ArrayList<>();
 
     }
-
 
     private void setProductDetails()
     {
@@ -169,21 +159,21 @@ public class Admin_Add_Product_Screen2 extends AppCompatActivity {
 
     private boolean validateTextFields()
     {
-        loadingBar.setTitle("Adding Product");
-        loadingBar.setMessage("Please wait...");
-        loadingBar.setCanceledOnTouchOutside(false);
-        loadingBar.show();
         boolean result = false;
         quantity = qty.getText().toString();
         prices = price.getText().toString();
 
         if (TextUtils.isEmpty(quantity))
         {
-            Toast.makeText(this,"Please enter Quantity",Toast.LENGTH_SHORT).show();
+            qty.setError("Please enter Quantity");
         }
         else if (TextUtils.isEmpty(prices))
         {
-            Toast.makeText(this,"Please enter Price",Toast.LENGTH_SHORT).show();
+            price.setError("Please enter Price");
+        }
+        else if (supermarketPos == 0)
+        {
+            Toast.makeText(this,"Please select Supermarket",Toast.LENGTH_SHORT).show();
         }
         else
         {
@@ -192,9 +182,12 @@ public class Admin_Add_Product_Screen2 extends AppCompatActivity {
         return result;
     }
 
-
     private void storeProductPic()
     {
+        loadingBar.setTitle("Adding Product");
+        loadingBar.setMessage("Please wait...");
+        loadingBar.setCanceledOnTouchOutside(false);
+        loadingBar.show();
 
         final StorageReference filePath = storageReference.child("Products").child(Prevalent.products.getId()).child("Images").child("Product Pic");
         final UploadTask uploadTask = filePath.putFile(Prevalent.products.getImageUri());
@@ -213,41 +206,81 @@ public class Admin_Add_Product_Screen2 extends AppCompatActivity {
         });
     }
 
-    private void getSupermarkets()
+    private void storeProductDetails()
     {
-        DatabaseReference mDb = firebaseDatabase.getReference();
-        mDb.child("Supermarkets").addListenerForSingleValueEvent(new ValueEventListener() {
+        final DatabaseReference databaseReference = firebaseDatabase.getReference();
+        databaseReference.child("Products").child(Prevalent.products.getCategory()).child(Prevalent.products.getId()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                supName.add("Choose Supermarket");
 
-                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                HashMap<String,Object> userDataMap = new HashMap<>();
+                userDataMap.put("Product ID",Prevalent.products.getId());
+                userDataMap.put("Product Name",Prevalent.products.getName());
+                userDataMap.put("Product Description",Prevalent.products.getDesc());
+                userDataMap.put("Product Category",Prevalent.products.getCategory());
 
-                    String location = ds.getKey();
+                databaseReference.child("Products").child(Prevalent.products.getCategory()).child(Prevalent.products.getId()).updateChildren(userDataMap)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
 
-                    Log.d("TAG", location);
-
-                    for(DataSnapshot dSnapshot : dataSnapshot.child(location).getChildren()) {
-                        String id = dSnapshot.getKey();
-                        supId.add(id);
-
-                        String name = String.valueOf(dSnapshot.child("Supermarket Name").getValue(String.class));
-                        supName.add(name);
-                        Toast.makeText(Admin_Add_Product_Screen2.this,name,Toast.LENGTH_SHORT).show();
-
-                    }
-                }
+                                if (task.isSuccessful())
+                                {
+                                    loadingBar.dismiss();
+                                    Toast.makeText(Admin_Add_Product_Screen2.this,"Update Successful!",Toast.LENGTH_SHORT).show();
+                                }
+                                else
+                                {
+                                    // Catch allExceptions
+                                    Toast.makeText(Admin_Add_Product_Screen2.this,"Network Error! PLease try again later",Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(Admin_Add_Product_Screen2.this,"Failure Retrieving data from Database",Toast.LENGTH_SHORT).show();
+
+                Toast.makeText(Admin_Add_Product_Screen2.this,"Database Error",Toast.LENGTH_SHORT).show();
             }
         });
+    }
 
-//        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,R.layout.my_spinner,supName);
-//        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        arrayAdapter.notifyDataSetChanged();
-//        spinner.setAdapter(arrayAdapter);
+    private void storeProductIntoSupermarkets()
+    {
+        final String key = supId.get(supermarketPos-1)+"-"+Prevalent.products.getId();
+        final DatabaseReference databaseReference = firebaseDatabase.getReference();
+        databaseReference.child("Supermarkets_Products").child(key).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                HashMap<String,Object> userDataMap = new HashMap<>();
+                userDataMap.put("Quantity",quantity);
+                userDataMap.put("Price",prices);
+
+                databaseReference.child("Supermarkets_Products").child(key).updateChildren(userDataMap)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+
+                                if (task.isSuccessful())
+                                {
+                                    loadingBar.dismiss();
+                                    Toast.makeText(Admin_Add_Product_Screen2.this,"Update Successful!",Toast.LENGTH_SHORT).show();
+                                }
+                                else
+                                {
+                                    // Catch allExceptions
+                                    Toast.makeText(Admin_Add_Product_Screen2.this,"Network Error! PLease try again later",Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                Toast.makeText(Admin_Add_Product_Screen2.this,"Database Error",Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

@@ -18,6 +18,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Admin_Add_Supermarket_Screen extends AppCompatActivity {
@@ -26,6 +27,8 @@ public class Admin_Add_Supermarket_Screen extends AppCompatActivity {
     private Button addSuper,cancel;
     private String id, name,location;
     private FirebaseDatabase firebaseDatabase;
+    private ArrayList<String> list;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +37,7 @@ public class Admin_Add_Supermarket_Screen extends AppCompatActivity {
         firebaseDatabase = FirebaseDatabase.getInstance();
 
         setupUIViews();
+        retrieveSupermarketID();
 
         addSuper.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,6 +66,7 @@ public class Admin_Add_Supermarket_Screen extends AppCompatActivity {
         superLocation = findViewById(R.id.etSupermarketLoc);
         addSuper= findViewById(R.id.btnAddSup);
         cancel = findViewById(R.id.btncancelSup);
+        list = new ArrayList<>();
     }
 
     private boolean validateTextFields()
@@ -74,16 +79,20 @@ public class Admin_Add_Supermarket_Screen extends AppCompatActivity {
 
          if (TextUtils.isEmpty(id))
         {
-            Toast.makeText(this,"Please enter supermarket ID",Toast.LENGTH_SHORT).show();
+            superId.setError("Please enter supermarket ID");
         }
         else if (TextUtils.isEmpty(name))
         {
-            Toast.makeText(this,"Please enter supermarket Name",Toast.LENGTH_SHORT).show();
+            superName.setError("Please enter supermarket Name");
         }
         else if (TextUtils.isEmpty(location))
         {
-            Toast.makeText(this,"Please enter supermarket Location",Toast.LENGTH_SHORT).show();
+            superLocation.setError("Please enter supermarket Location");
         }
+         else if (list.contains(id))
+         {
+             superId.setError("Supermarket ID already taken");
+         }
         else
         {
             result = true;
@@ -129,6 +138,31 @@ public class Admin_Add_Supermarket_Screen extends AppCompatActivity {
             }
         });
     }
+    private void retrieveSupermarketID()
+    {
+        DatabaseReference mDb = firebaseDatabase.getReference();
+        mDb.child("Supermarkets").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
+
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+
+                    String location = ds.getKey();
+
+
+                    for(DataSnapshot dSnapshot : dataSnapshot.child(location).getChildren()) {
+                        String id = dSnapshot.getKey();
+
+                        list.add(id);
+                    }
+                }
+
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
+    }
 
 }

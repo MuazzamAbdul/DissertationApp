@@ -82,11 +82,11 @@ public class Login_Screen extends AppCompatActivity {
         password= userpassword.getText().toString();
         if (TextUtils.isEmpty(email))
         {
-            Toast.makeText(this,"Please enter Email",Toast.LENGTH_SHORT).show();
+            useremail.setError("Please enter Email");
         }
         else if(TextUtils.isEmpty(password))
         {
-            Toast.makeText(this,"Please enter Password",Toast.LENGTH_SHORT).show();
+            userpassword.setError("Please enter Password");
         }
         else
         {
