@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Users.Login_Screen"></activity>
+        <activity android:name=".Users.Login_Screen" />
         <activity android:name=".Users.Sign_Up_Screen" />
         <activity android:name=".Users.Category_Screen" />
         <activity
@@ -40,8 +40,10 @@
         <activity
             android:name=".Admin.Admin_Add_Supermarket_Screen"
             android:theme="@style/AdminAppTheme" />
-        <activity android:name=".Admin.Admin_Add_Product_Screen2"
-            android:theme="@style/AdminAppTheme"></activity>
+        <activity
+            android:name=".Admin.Admin_Add_Product_Screen2"
+            android:theme="@style/AdminAppTheme" />
+        <activity android:name=".Admin.Admin_Delete_Supermarket_Screen"></activity>
     </application>
 
 </manifest>
