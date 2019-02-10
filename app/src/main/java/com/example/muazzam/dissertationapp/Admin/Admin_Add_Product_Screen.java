@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.muazzam.dissertationapp.Model.AdminAddProduct;
+import com.example.muazzam.dissertationapp.Model.AdminSupermarkets;
 import com.example.muazzam.dissertationapp.Prevalent.Prevalent;
 import com.example.muazzam.dissertationapp.R;
 import com.google.firebase.database.DataSnapshot;
@@ -48,6 +49,7 @@ public class Admin_Add_Product_Screen extends AppCompatActivity {
         firebaseDatabase =FirebaseDatabase.getInstance();
 
         setupUIViews();
+        retrieveSupermarkets();
         retrieveProductID();
 
         productPic.setOnClickListener(new View.OnClickListener() {
@@ -181,7 +183,40 @@ public class Admin_Add_Product_Screen extends AppCompatActivity {
         });
     }
 
+    private void retrieveSupermarkets()
+    {
+        final AdminSupermarkets adminSupermarkets = new AdminSupermarkets();
+        DatabaseReference mDb = firebaseDatabase.getReference();
+        mDb.child("Supermarkets").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
+
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    String location = ds.getKey();
+                    for(DataSnapshot dSnapshot : dataSnapshot.child(location).getChildren()) {
+                        String id = dSnapshot.getKey();
+
+//                        supId.add(id);
+                        String name = String.valueOf(dSnapshot.child("Supermarket Name").getValue(String.class));
+//                        supName.add(name);
+                        adminSupermarkets.addId(id);
+                        adminSupermarkets.addName(name);
+
+//                        Prevalent.adminSupermarkets.addName(name);
+                    }
+                }
+                Prevalent.adminSupermarkets = adminSupermarkets;
+//                loadingBar2.dismiss();
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(Admin_Add_Product_Screen.this,"Failure Retrieving Supermarkets from Database",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+}
 
 
 }

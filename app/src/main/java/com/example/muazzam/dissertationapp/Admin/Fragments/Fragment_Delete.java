@@ -19,7 +19,6 @@ import de.hdodenhof.circleimageview.CircleImageView;
  */
 public class Fragment_Delete extends Fragment {
 
-
     public Fragment_Delete() {
         // Required empty public constructor
     }

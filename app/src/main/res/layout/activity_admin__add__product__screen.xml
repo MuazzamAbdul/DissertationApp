@@ -142,7 +142,7 @@
         android:layout_marginBottom="8dp"
         android:background="@drawable/admin_rounded_button"
         android:fontFamily="serif"
-        android:text="Cancel"
+        android:text="Back"
         android:textAlignment="center"
         android:textColor="@color/adminTextColor"
         app:layout_constraintBottom_toBottomOf="parent"

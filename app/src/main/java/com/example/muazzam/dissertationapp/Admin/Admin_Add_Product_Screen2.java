@@ -1,6 +1,9 @@
 package com.example.muazzam.dissertationapp.Admin;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -30,7 +33,6 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -47,7 +49,7 @@ public class Admin_Add_Product_Screen2 extends AppCompatActivity {
     private FirebaseDatabase firebaseDatabase;
     private String quantity,prices;
     private ProgressDialog loadingBar,loadingBar2;
-    private ArrayList<String> supName,supId;
+//    private ArrayList<String> supName,supId;
     private int supermarketPos;
     private CircleImageView prodPic;
 
@@ -62,41 +64,10 @@ public class Admin_Add_Product_Screen2 extends AppCompatActivity {
         firebaseDatabase = FirebaseDatabase.getInstance();
 
         setupUIViews();
-
-        loadingBar2.setTitle("Retrieving Supermarkets");
-        loadingBar2.setMessage("Please wait...");
-        loadingBar2.setCanceledOnTouchOutside(false);
-        loadingBar2.show();
         setProductDetails();
 
-        supName = new ArrayList<>();
-        supName.add("Choose Supermarket");
 
-
-        DatabaseReference mDb = firebaseDatabase.getReference();
-        mDb.child("Supermarkets").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-
-                for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    String location = ds.getKey();
-                    for(DataSnapshot dSnapshot : dataSnapshot.child(location).getChildren()) {
-                        String id = dSnapshot.getKey();
-                        supId.add(id);
-                        String name = String.valueOf(dSnapshot.child("Supermarket Name").getValue(String.class));
-                        supName.add(name);
-                    }
-                }
-                loadingBar2.dismiss();
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(Admin_Add_Product_Screen2.this,"Failure Retrieving data from Database",Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,R.layout.my_spinner,supName);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,R.layout.my_spinner,Prevalent.adminSupermarkets.getSupName());
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         arrayAdapter.notifyDataSetChanged();
         spinner.setAdapter(arrayAdapter);
@@ -127,7 +98,29 @@ public class Admin_Add_Product_Screen2 extends AppCompatActivity {
         cancel2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+
+                AlertDialog.Builder exit = new AlertDialog.Builder(Admin_Add_Product_Screen2.this);
+                exit.setMessage("Do you want to add another product?")
+                        .setCancelable(false)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                finish();
+                                Intent intent = new Intent(Admin_Add_Product_Screen2.this,Admin_Add_Product_Screen.class);
+                                startActivity(intent);
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                finish();
+                                Intent intent = new Intent(Admin_Add_Product_Screen2.this,Admin_Home_Screen.class);
+                                startActivity(intent);
+                            }
+                        });
+                AlertDialog alert = exit.create();
+                alert.setTitle("Warning");
+                alert.show();
             }
         });
     }
@@ -147,7 +140,6 @@ public class Admin_Add_Product_Screen2 extends AppCompatActivity {
         prodPic = findViewById(R.id.productPic);
         Picasso.get().load(Prevalent.products.getImageUri()).fit().centerCrop().into(prodPic);
         //        Glide.with(My_Account_Screen.this).load(uri).into(imagePic);
-        supId = new ArrayList<>();
 
     }
 
@@ -247,7 +239,7 @@ public class Admin_Add_Product_Screen2 extends AppCompatActivity {
 
     private void storeProductIntoSupermarkets()
     {
-        final String key = supId.get(supermarketPos-1)+"-"+Prevalent.products.getId();
+        final String key = Prevalent.adminSupermarkets.getSupId().get(supermarketPos-1)+"-"+Prevalent.products.getId();
         final DatabaseReference databaseReference = firebaseDatabase.getReference();
         databaseReference.child("Supermarkets_Products").child(key).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
