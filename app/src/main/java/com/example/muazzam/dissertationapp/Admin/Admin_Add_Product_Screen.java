@@ -5,8 +5,11 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -32,7 +35,7 @@ public class Admin_Add_Product_Screen extends AppCompatActivity {
 
     private CircleImageView productPic;
     private EditText prodId,prodName,prodDesc,prodCat;
-    private Button insertSup,cancel;
+    private Button insertSup;
     private static final int galleryPic = 123;
     private  Uri imageUri;
     private FirebaseStorage firebaseStorage;
@@ -73,24 +76,40 @@ public class Admin_Add_Product_Screen extends AppCompatActivity {
             }
         });
 
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
     }
 
     private void setupUIViews()
     {
+
+        Toolbar toolbar = findViewById(R.id.toolbarAddProduct1);
+        setSupportActionBar(toolbar);
+        toolbar.setTitle("Add Product");
+
+        ActionBar actionbar = getSupportActionBar();
+        actionbar.setDisplayHomeAsUpEnabled(true);
+        actionbar.setHomeAsUpIndicator(R.drawable.ic_action_black_arrow_back);
+
         productPic = findViewById(R.id.add_Product);
         prodId = findViewById(R.id.etProductId);
         prodName = findViewById(R.id.etProductName);
         prodDesc = findViewById(R.id.etProductDesc);
         prodCat = findViewById(R.id.etProductCat);
         insertSup= findViewById(R.id.btnInsert);
-        cancel = findViewById(R.id.btncancel);
         list = new ArrayList<>();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+//                Intent intent = new Intent(Admin_Registered_Users.this,Home_Screen.class);
+//                startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void openGallery()

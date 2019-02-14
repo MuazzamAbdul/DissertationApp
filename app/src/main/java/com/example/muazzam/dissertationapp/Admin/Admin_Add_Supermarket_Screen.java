@@ -2,8 +2,11 @@ package com.example.muazzam.dissertationapp.Admin;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -61,12 +64,34 @@ public class Admin_Add_Supermarket_Screen extends AppCompatActivity {
 
     private void setupUIViews()
     {
+        Toolbar toolbar = findViewById(R.id.toolbarAddSupermarket);
+        setSupportActionBar(toolbar);
+        toolbar.setTitle("Add Supermarket");
+
+        ActionBar actionbar = getSupportActionBar();
+        actionbar.setDisplayHomeAsUpEnabled(true);
+        actionbar.setHomeAsUpIndicator(R.drawable.ic_action_black_arrow_back);
+
         superId = findViewById(R.id.etSupermarketId);
         superName = findViewById(R.id.etSupermarketName);
         superLocation = findViewById(R.id.etSupermarketLoc);
         addSuper= findViewById(R.id.btnAddSup);
         cancel = findViewById(R.id.btncancelSup);
         list = new ArrayList<>();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+//                Intent intent = new Intent(Admin_Registered_Users.this,Home_Screen.class);
+//                startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private boolean validateTextFields()

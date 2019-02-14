@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="40dp"
+    android:layout_margin="10dp"
+    app:cardElevation="15dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/User_Pic"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:scaleType="centerCrop"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="107dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="107dp"
+            android:layout_marginBottom="8dp"
+            android:src="@drawable/ic_action_username"
+            app:civ_border_color="@color/bottomNavTrans"
+            app:civ_border_width="2dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:background="@drawable/admin_round_layout"
+            android:orientation="vertical"
+            android:layout_below="@id/User_Pic">
+
+        <TextView
+            android:id="@+id/user_name"
+            android:layout_below="@id/User_Pic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="serif"
+            android:drawableLeft="@drawable/ic_action_account"
+            android:drawablePadding="10dp"
+            android:text="User Name"
+            android:textColor="@color/adminTextColor"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/user_email"
+            android:layout_below="@id/user_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="serif"
+            android:drawableLeft="@drawable/ic_action_black_email"
+            android:drawablePadding="10dp"
+            android:text="User Email"
+
+            android:textColor="@color/adminTextColor"
+            android:textSize="18sp"
+            />
+
+        <TextView
+            android:id="@+id/user_address"
+            android:layout_below="@id/user_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="serif"
+            android:drawableLeft="@drawable/ic_action_black_address"
+            android:drawablePadding="10dp"
+            android:text="User Address"
+            android:textColor="@color/adminTextColor"
+            android:textSize="18sp"
+            />
+
+        <TextView
+            android:id="@+id/user_phoneNo"
+            android:layout_below="@id/user_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:drawableLeft="@drawable/ic_action_black_phone"
+            android:drawablePadding="10dp"
+            android:fontFamily="serif"
+            android:text="User Phone Number"
+            android:textColor="@color/adminTextColor"
+            android:textSize="18sp"
+            />
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

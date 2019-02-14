@@ -7,6 +7,23 @@
     android:background="@drawable/adminpicture"
     tools:context=".Admin.Admin_Add_Product_Screen2">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbarAddProduct2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:title="Add Product"
+        app:titleTextAppearance="@style/TextAppearanceToolbar"
+        app:titleTextColor="@color/adminTextColor" />
+
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/productPic"
         android:layout_width="125dp"
@@ -22,27 +39,25 @@
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.061" />
+        app:layout_constraintVertical_bias="0.14" />
 
     <Button
         android:id="@+id/btncancel2"
         style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="143dp"
+        android:layout_width="85dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
         android:background="@drawable/admin_rounded_button"
         android:fontFamily="serif"
         android:text="Cancel"
         android:textAlignment="center"
         android:textColor="@color/adminTextColor"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbarAddProduct2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnAddProduct"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-        app:layout_constraintVertical_bias="0.432" />
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/toolbarAddProduct2"
+        app:layout_constraintTop_toTopOf="@+id/toolbarAddProduct2" />
 
     <Button
         android:id="@+id/btnAddProduct"
@@ -60,15 +75,15 @@
         android:textColor="@color/adminTextColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.088"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-        app:layout_constraintVertical_bias="0.437" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="329dp"
-        android:layout_height="305dp"
+        android:layout_height="289dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -87,7 +102,6 @@
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="10dp"
             android:layout_marginEnd="8dp"
             android:background="@drawable/rounded_textfield_myaccount"
             android:fontFamily="serif"

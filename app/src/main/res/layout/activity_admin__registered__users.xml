@@ -5,10 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/adminpicture"
-    tools:context=".Admin.Admin_Delete_Supermarket_Screen">
+    tools:context=".Admin.Admin_Registered_Users"
+    tools:menu="@menu/admin_search">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbarDeleteSupermarket"
+        android:id="@+id/toolbarAddProduct1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
@@ -20,13 +21,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:title="Delete Supermarket"
+        app:title="Registered Users"
         app:titleTextAppearance="@style/TextAppearanceToolbar"
         app:titleTextColor="@color/adminTextColor"
         />
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/RecView"
+        android:id="@+id/rvUsers"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
@@ -37,8 +38,6 @@
         android:scrollbars="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbarDeleteSupermarket" />
-
+        app:layout_constraintTop_toBottomOf="@+id/toolbarAddProduct1" />
 </android.support.constraint.ConstraintLayout>

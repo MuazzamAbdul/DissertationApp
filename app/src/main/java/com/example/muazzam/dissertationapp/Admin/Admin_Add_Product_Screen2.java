@@ -6,8 +6,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -128,6 +131,14 @@ public class Admin_Add_Product_Screen2 extends AppCompatActivity {
     private void setupUIViews()
     {
 
+        Toolbar toolbar = findViewById(R.id.toolbarAddProduct2);
+        setSupportActionBar(toolbar);
+        toolbar.setTitle("Add Product");
+
+        ActionBar actionbar = getSupportActionBar();
+        actionbar.setDisplayHomeAsUpEnabled(true);
+        actionbar.setHomeAsUpIndicator(R.drawable.ic_action_black_arrow_back);
+
         prodId = findViewById(R.id.tvProductId);
         prodName = findViewById(R.id.tvProductName);
         qty = findViewById(R.id.etProductQty);
@@ -141,6 +152,20 @@ public class Admin_Add_Product_Screen2 extends AppCompatActivity {
         Picasso.get().load(Prevalent.products.getImageUri()).fit().centerCrop().into(prodPic);
         //        Glide.with(My_Account_Screen.this).load(uri).into(imagePic);
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+//                Intent intent = new Intent(Admin_Registered_Users.this,Home_Screen.class);
+//                startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void setProductDetails()

@@ -7,6 +7,24 @@
     android:background="@drawable/adminpicture"
     tools:context=".Admin.Admin_Add_Supermarket_Screen">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbarAddSupermarket"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:title="Add Supermarket"
+        app:titleTextAppearance="@style/TextAppearanceToolbar"
+        app:titleTextColor="@color/adminTextColor"
+        />
+
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/add_Product"
         android:layout_width="150dp"
@@ -21,8 +39,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.084" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbarAddSupermarket"
+        app:layout_constraintVertical_bias="0.026" />
 
 
     <LinearLayout
@@ -108,31 +126,27 @@
         android:textColor="@color/adminTextColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.084"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-        app:layout_constraintVertical_bias="0.432" />
+        app:layout_constraintVertical_bias="0.454" />
 
     <Button
         android:id="@+id/btncancelSup"
         style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="150dp"
+        android:layout_width="83dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
         android:background="@drawable/admin_rounded_button"
         android:fontFamily="serif"
         android:text="Cancel"
         android:textAlignment="center"
         android:textColor="@color/adminTextColor"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.915"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbarAddSupermarket"
+        app:layout_constraintEnd_toEndOf="@+id/toolbarAddSupermarket"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-        app:layout_constraintVertical_bias="0.432" />
+        app:layout_constraintTop_toTopOf="@+id/toolbarAddSupermarket" />
 
 
 </android.support.constraint.ConstraintLayout>

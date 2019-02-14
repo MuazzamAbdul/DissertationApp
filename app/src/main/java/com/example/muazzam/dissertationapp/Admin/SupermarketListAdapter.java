@@ -5,6 +5,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -12,9 +14,12 @@ import com.example.muazzam.dissertationapp.R;
 
 import java.util.ArrayList;
 
-public class SupermarketListAdapter extends RecyclerView.Adapter<SupermarketListAdapter.SupermarketListViewHolder> {
+public class SupermarketListAdapter extends RecyclerView.Adapter<SupermarketListAdapter.SupermarketListViewHolder> implements Filterable {
     private ArrayList<Admin_Supermarket_List> msupermarketList;
+    private ArrayList<Admin_Supermarket_List> msupermarketListFull;
     private OnItemClickListener mListener;
+
+
 
     public interface OnItemClickListener{
         void onItemClick(int position);
@@ -68,6 +73,7 @@ public class SupermarketListAdapter extends RecyclerView.Adapter<SupermarketList
     public SupermarketListAdapter(ArrayList<Admin_Supermarket_List> supermarketList)
     {
         msupermarketList = supermarketList;
+        msupermarketListFull = new ArrayList<>(supermarketList);
     }
 
     @NonNull
@@ -89,4 +95,43 @@ public class SupermarketListAdapter extends RecyclerView.Adapter<SupermarketList
     public int getItemCount() {
         return msupermarketList.size();
     }
+
+    @Override
+    public Filter getFilter() {
+        return exampleFilter;
+    }
+
+    private Filter exampleFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            ArrayList<Admin_Supermarket_List> filteredList = new ArrayList<>();
+
+            if ((constraint == null) || (constraint.length() == 0))
+            {
+                filteredList.addAll(msupermarketListFull);
+            }
+            else
+            {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+
+                for (Admin_Supermarket_List item : msupermarketListFull){
+                    if (item.getName().toLowerCase().startsWith(filterPattern))
+                    {
+                        filteredList.add(item);
+                    }
+                }
+            }
+                FilterResults results = new FilterResults();
+            results.values = filteredList;
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+
+            msupermarketList.clear();
+            msupermarketList.addAll((ArrayList) results.values);
+            notifyDataSetChanged();
+        }
+    };
 }
