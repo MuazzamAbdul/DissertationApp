@@ -1,20 +1,46 @@
 package com.example.muazzam.dissertationapp.Admin;
 
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 
+import com.bumptech.glide.Glide;
+import com.example.muazzam.dissertationapp.Model.DisplayUsers;
 import com.example.muazzam.dissertationapp.R;
+import com.example.muazzam.dissertationapp.ViewHolder.Admin_UsersList;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 public class Admin_Registered_Users extends AppCompatActivity {
+
+    private DatabaseReference databaseReference;
+    private RecyclerView recyclerView;
+    private RecyclerView.LayoutManager layoutManager;
+    private StorageReference storageReference;
+    private FirebaseStorage firebaseStorage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin__registered__users);
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Users");
+        firebaseStorage = FirebaseStorage.getInstance();
+        storageReference = firebaseStorage.getReference();
         setupUIViews();
     }
 
@@ -27,6 +53,12 @@ public class Admin_Registered_Users extends AppCompatActivity {
         ActionBar actionbar = getSupportActionBar();
         actionbar.setDisplayHomeAsUpEnabled(true);
         actionbar.setHomeAsUpIndicator(R.drawable.ic_action_black_arrow_back);
+
+
+        recyclerView = findViewById(R.id.rvUsers);
+        recyclerView.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
     }
 
     @Override
@@ -53,5 +85,38 @@ public class Admin_Registered_Users extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+
+        FirebaseRecyclerOptions<DisplayUsers> options  = new FirebaseRecyclerOptions.Builder<DisplayUsers>()
+                .setQuery(databaseReference,DisplayUsers.class).build();
+
+        FirebaseRecyclerAdapter<DisplayUsers,Admin_UsersList> adapter = new FirebaseRecyclerAdapter<DisplayUsers, Admin_UsersList>(options) {
+            @Override
+            protected void onBindViewHolder(@NonNull final Admin_UsersList holder, int position, @NonNull DisplayUsers model) {
+
+                holder.txtname.setText(model.getName());
+                holder.txtemail.setText(model.getEmail());
+                holder.txtaddress.setText(model.getAddress());
+                holder.txtphone.setText(model.getPhoneNumber());
+                storageReference.child("Users").child(model.getKey()).child("Images").child("Profile Pic").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+//                Picasso.get().load(uri).fit().centerCrop().into(imagePic);
+//                imagePic.setImageURI(uri);
+                        Glide.with(Admin_Registered_Users.this).load(uri).into(holder.userpic);
+                    }
+                });
+            }
+
+            @NonNull
+            @Override
+            public Admin_UsersList onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+
+                 View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.users_layout,viewGroup,false);
+                 Admin_UsersList holder = new Admin_UsersList((view));
+                 return holder;
+            }
+        };
+        recyclerView.setAdapter(adapter);
+        adapter.startListening();
     }
 }

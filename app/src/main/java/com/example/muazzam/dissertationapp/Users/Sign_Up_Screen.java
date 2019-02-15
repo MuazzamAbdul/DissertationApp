@@ -188,6 +188,7 @@ public class Sign_Up_Screen extends AppCompatActivity {
                     userDataMap.put("Email",email);
                     userDataMap.put("Address",address);
                     userDataMap.put("PhoneNumber",phneNo);
+                    userDataMap.put("Key",useriD);
 //                    userDataMap.put("ImageUrl",downloadImageUrl);
 
                     RootRef.child("Users").child(useriD).updateChildren(userDataMap)

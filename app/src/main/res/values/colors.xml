@@ -5,7 +5,7 @@
     <color name="colorAccent">#d81b60</color>
     <color name="textColor">#ffffff</color>
 
-    <color name="adminColorPrimary">#ffae42</color>
+    <color name="adminColorPrimary">#ffcc6e</color>
     <color name="background">#85ffae42</color>
     <color name="adminColorPrimaryDark">#ffa500</color>
     <color name="adminTextColor">#000000</color>
