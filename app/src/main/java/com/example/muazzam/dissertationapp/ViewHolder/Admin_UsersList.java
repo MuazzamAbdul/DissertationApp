@@ -26,7 +26,7 @@ public class Admin_UsersList extends RecyclerView.ViewHolder implements View.OnC
         txtphone = itemView.findViewById(R.id.user_phoneNo);
     }
 
-    public void SetItemClickListener(ItemClickListener listener)
+    public void setItemClickListener(ItemClickListener listener)
     {
         this.listener = listener;
     }

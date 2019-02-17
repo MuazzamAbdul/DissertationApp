@@ -15,7 +15,6 @@ public class Users {
 
     }
 
-
     public String getName() {
         return Name;
     }
