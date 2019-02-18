@@ -231,10 +231,10 @@ public class Admin_Add_Product_Screen2 extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 HashMap<String,Object> userDataMap = new HashMap<>();
-                userDataMap.put("Product ID",Prevalent.products.getId());
-                userDataMap.put("Product Name",Prevalent.products.getName());
-                userDataMap.put("Product Description",Prevalent.products.getDesc());
-                userDataMap.put("Product Category",Prevalent.products.getCategory());
+                userDataMap.put("ID",Prevalent.products.getId());
+                userDataMap.put("Name",Prevalent.products.getName());
+                userDataMap.put("Description",Prevalent.products.getDesc());
+                userDataMap.put("Category",Prevalent.products.getCategory());
 
                 databaseReference.child("Products").child(Prevalent.products.getCategory()).child(Prevalent.products.getId()).updateChildren(userDataMap)
                         .addOnCompleteListener(new OnCompleteListener<Void>() {

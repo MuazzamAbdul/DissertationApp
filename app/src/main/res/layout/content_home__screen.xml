@@ -10,22 +10,47 @@
     tools:showIn="@layout/app_bar_home__screen">
 
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/myAccount_pic2"
-        android:layout_width="136dp"
-        android:layout_height="144dp"
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:background="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:tabSelectedTextColor="@color/textColor"
+        app:tabTextAppearance="@style/TextAppearanceNav"
+        app:tabTextColor="@color/adminTextColor">
+
+        <android.support.design.widget.TabItem
+            android:id="@+id/tabCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Category" />
+
+        <android.support.design.widget.TabItem
+            android:id="@+id/tabProducts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Products" />
+
+
+    </android.support.design.widget.TabLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/tabViewPager"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:src="@drawable/two"
-        app:civ_border_color="@color/colorPrimary"
-        app:civ_border_width="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.202"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.11" />
-
+        app:layout_constraintTop_toBottomOf="@+id/tabLayout" />
 </android.support.constraint.ConstraintLayout>
