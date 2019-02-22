@@ -208,6 +208,7 @@ public class Admin_Add_Product_Screen2 extends AppCompatActivity {
 
         final StorageReference filePath = storageReference.child("Products").child(Prevalent.products.getId()).child("Images").child("Product Pic");
         final UploadTask uploadTask = filePath.putFile(Prevalent.products.getImageUri());
+
         uploadTask.addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
@@ -216,8 +217,16 @@ public class Admin_Add_Product_Screen2 extends AppCompatActivity {
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                loadingBar.dismiss();
                 Toast.makeText(Admin_Add_Product_Screen2.this,"Upload successful",Toast.LENGTH_SHORT).show();
+                loadingBar.dismiss();
+//                Task<Uri> urlTask = taskSnapshot.getStorage().getDownloadUrl();
+//                if(urlTask.isSuccessful())
+//                {
+//                    Uri downloadUrl = urlTask.getResult();
+//
+//                    Toast.makeText(Admin_Add_Product_Screen2.this,downloadUrl.toString(),Toast.LENGTH_SHORT).show();
+//                }
+
                 //image successfully Uploaded
             }
         });

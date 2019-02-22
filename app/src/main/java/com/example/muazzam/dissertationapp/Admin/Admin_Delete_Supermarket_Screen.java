@@ -15,6 +15,8 @@ import android.view.MenuItem;
 import android.widget.SearchView;
 import android.widget.Toast;
 
+import com.example.muazzam.dissertationapp.Adapter.SupermarketListAdapter;
+import com.example.muazzam.dissertationapp.Model.Admin_Supermarket_List;
 import com.example.muazzam.dissertationapp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;

@@ -1,4 +1,4 @@
-package com.example.muazzam.dissertationapp.Admin;
+package com.example.muazzam.dissertationapp.Model;
 
 public class Admin_Supermarket_List {
 

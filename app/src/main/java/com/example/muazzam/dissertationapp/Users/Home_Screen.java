@@ -19,6 +19,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.muazzam.dissertationapp.Adapter.PageAdapter;
 import com.example.muazzam.dissertationapp.Model.Users;
 import com.example.muazzam.dissertationapp.Prevalent.Prevalent;
 import com.example.muazzam.dissertationapp.R;
@@ -95,19 +96,6 @@ public class Home_Screen extends AppCompatActivity
         usernameText= headerView.findViewById(R.id.tvnavbar_name);
         usernameEmail = headerView.findViewById(R.id.tvnavbar_email);
         imagePic = headerView.findViewById(R.id.reg_Users);
-        getUserData();
-
-
-//        im.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(Home_Screen.this,Category_Screen.class);
-//                startActivity(intent);
-//
-//            }
-//        });
-
-
 
 
     }
@@ -201,8 +189,10 @@ public class Home_Screen extends AppCompatActivity
         return true;
     }
 
-    private void getUserData()
-    {
+    @Override
+    protected void onStart() {
+        super.onStart();
+
         DatabaseReference mDb = firebaseDatabase.getReference();
         FirebaseUser user = firebaseAuth.getCurrentUser();
         String userAuthKey = user.getUid();
@@ -237,4 +227,5 @@ public class Home_Screen extends AppCompatActivity
             }
         });
     }
+
 }

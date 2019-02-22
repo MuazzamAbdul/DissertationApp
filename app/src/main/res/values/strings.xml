@@ -40,6 +40,6 @@
     <string name="add">Add</string>
     <string name="home">Home</string>
     <string name="delete">Delete</string>
-
+    <string name="title_activity_cat__prod__screen">Cat_Prod_Screen</string>
 
 </resources>

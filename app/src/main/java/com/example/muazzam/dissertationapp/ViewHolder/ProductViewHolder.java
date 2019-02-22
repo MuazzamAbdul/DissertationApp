@@ -11,7 +11,7 @@ import com.example.muazzam.dissertationapp.R;
 
 public class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
 {
-    public TextView txtname,txtdesc,txtcat;
+    public TextView txtname,txtdesc;
     public ImageView prodPic;
     public ItemClickListener listener;
 
@@ -21,7 +21,7 @@ public class ProductViewHolder extends RecyclerView.ViewHolder implements View.O
         txtname = itemView.findViewById(R.id.product_name);
         prodPic = itemView.findViewById(R.id.product_pic);
         txtdesc = itemView.findViewById(R.id.product_desc);
-        txtcat = itemView.findViewById(R.id.product_cat);
+
     }
 
     public void setItemClickListener(ItemClickListener listener)

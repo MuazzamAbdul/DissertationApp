@@ -55,8 +55,8 @@ public class About_Us_Screen extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 finish();
-                Intent intent = new Intent(About_Us_Screen.this,Home_Screen.class);
-                startActivity(intent);
+//                Intent intent = new Intent(About_Us_Screen.this,Home_Screen.class);
+//                startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }
@@ -71,5 +71,6 @@ public class About_Us_Screen extends AppCompatActivity {
         intent.setType("message/rfc822");
         startActivity(Intent.createChooser(intent,"Choose an email client"));
         Toast.makeText(About_Us_Screen.this,"Email sent",Toast.LENGTH_SHORT).show();
+        finish();
     }
 }

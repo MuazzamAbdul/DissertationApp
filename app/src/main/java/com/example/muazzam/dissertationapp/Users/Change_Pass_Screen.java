@@ -1,6 +1,5 @@
 package com.example.muazzam.dissertationapp.Users;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -64,8 +63,8 @@ public class Change_Pass_Screen extends AppCompatActivity {
     private void sendUserToMyAccount()
     {
         finish();
-        Intent intent = new Intent(Change_Pass_Screen.this,My_Account_Screen.class);
-        startActivity(intent);
+//        Intent intent = new Intent(Change_Pass_Screen.this,My_Account_Screen.class);
+//        startActivity(intent);
     }
 
     private boolean validatePass()

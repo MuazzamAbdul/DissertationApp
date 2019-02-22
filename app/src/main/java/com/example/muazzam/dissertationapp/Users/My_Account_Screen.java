@@ -131,8 +131,8 @@ public class My_Account_Screen extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 finish();
-                Intent intent = new Intent(My_Account_Screen.this,Home_Screen.class);
-                startActivity(intent);
+//                Intent intent = new Intent(My_Account_Screen.this,Home_Screen.class);
+//                startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }

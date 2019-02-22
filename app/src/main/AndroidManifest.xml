@@ -28,13 +28,11 @@
             android:name=".Admin.Admin_Home_Screen"
             android:label="@string/title_activity_admin__home__screen"
             android:theme="@style/AdminAppTheme">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
             android:name=".Admin.Admin_Add_Product_Screen"
@@ -48,10 +46,13 @@
         <activity
             android:name=".Admin.Admin_Delete_Supermarket_Screen"
             android:theme="@style/AdminAppTheme" />
-        <activity android:name=".Admin.Admin_Registered_Users"
-            android:theme="@style/AdminAppTheme">
-
-        </activity>
+        <activity
+            android:name=".Admin.Admin_Registered_Users"
+            android:theme="@style/AdminAppTheme" />
+        <activity
+            android:name=".Users.Cat_Prod_Screen"
+            android:label="@string/title_activity_cat__prod__screen"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

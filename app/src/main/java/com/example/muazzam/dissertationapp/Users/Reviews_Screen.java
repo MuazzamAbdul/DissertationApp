@@ -1,6 +1,5 @@
 package com.example.muazzam.dissertationapp.Users;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
@@ -86,8 +85,8 @@ public class Reviews_Screen extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 finish();
-                Intent intent = new Intent(Reviews_Screen.this,Home_Screen.class);
-                startActivity(intent);
+//                Intent intent = new Intent(Reviews_Screen.this,Home_Screen.class);
+//                startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }
@@ -129,6 +128,7 @@ public class Reviews_Screen extends AppCompatActivity {
                                 if (task.isSuccessful())
                                 {
                                     Toast.makeText(Reviews_Screen.this,"Thank you for your review",Toast.LENGTH_SHORT).show();
+                                    finish();
                                 }
                                 else
                                 {

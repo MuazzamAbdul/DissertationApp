@@ -82,7 +82,7 @@ public class UpdateAccount_Screen extends AppCompatActivity {
                     }
                     uploadData();
                     setUpdateToUsers();
-                    finish();
+//                    finish();
                 }
             }
         });
@@ -141,8 +141,8 @@ public class UpdateAccount_Screen extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 finish();
-                Intent intent = new Intent(UpdateAccount_Screen.this,My_Account_Screen.class);
-                startActivity(intent);
+//                Intent intent = new Intent(UpdateAccount_Screen.this,My_Account_Screen.class);
+//                startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }
@@ -201,8 +201,8 @@ public class UpdateAccount_Screen extends AppCompatActivity {
                                     {
                                         Toast.makeText(UpdateAccount_Screen.this,"Update Successful!",Toast.LENGTH_SHORT).show();
                                         finish();
-                                        Intent intent = new Intent(UpdateAccount_Screen.this,My_Account_Screen.class);
-                                        startActivity(intent);
+//                                        Intent intent = new Intent(UpdateAccount_Screen.this,My_Account_Screen.class);
+//                                        startActivity(intent);
                                     }
                                     else
                                     {

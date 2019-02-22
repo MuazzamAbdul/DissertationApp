@@ -1,4 +1,4 @@
-package com.example.muazzam.dissertationapp.Admin;
+package com.example.muazzam.dissertationapp.Adapter;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -10,6 +10,7 @@ import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.muazzam.dissertationapp.Model.Admin_Supermarket_List;
 import com.example.muazzam.dissertationapp.R;
 
 import java.util.ArrayList;
