@@ -116,11 +116,11 @@ public class SupermarketListAdapter extends RecyclerView.Adapter<SupermarketList
                 String filterPattern = constraint.toString().toLowerCase().trim();
 
                 for (Admin_Supermarket_List item : msupermarketListFull){
-                    if (item.getName().toLowerCase().startsWith(filterPattern))
-                    {
-                        filteredList.add(item);
-                    }
+                if (item.getName().toLowerCase().startsWith(filterPattern))
+                {
+                    filteredList.add(item);
                 }
+                 }
             }
                 FilterResults results = new FilterResults();
             results.values = filteredList;

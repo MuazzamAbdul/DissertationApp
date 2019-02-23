@@ -9,8 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.muazzam.dissertationapp.Users.Cat_Prod_Screen;
 import com.example.muazzam.dissertationapp.R;
+import com.example.muazzam.dissertationapp.Users.Cat_Prod_Screen;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -147,5 +147,6 @@ public class Fragment_Category extends Fragment {
 
         return view;
     }
+
 
 }

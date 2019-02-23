@@ -148,6 +148,7 @@ public class Admin_Delete_Supermarket_Screen extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
 
+
         adapter.setOnItemClickListener(new SupermarketListAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
