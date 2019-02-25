@@ -169,10 +169,12 @@ public class Admin_Delete_Supermarket_Screen extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 Admin_Supermarket_List nameId  = list.get(position);
+                                String superId = idList.get(position);
 
                                 list.remove(nameId);
                                 adapter.notifyItemRemoved(position);
                                 deleteSupermarket(nameId);
+                                deleteSupermarketProduct(superId);
                             }
                         })
                         .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -193,7 +195,6 @@ public class Admin_Delete_Supermarket_Screen extends AppCompatActivity {
         final DatabaseReference mDb = firebaseDatabase.getReference();
         final String ids = nameId.getName();
 
-
         mDb.child("Supermarkets").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -201,15 +202,22 @@ public class Admin_Delete_Supermarket_Screen extends AppCompatActivity {
                     String location = ds.getKey();
                     for(DataSnapshot dSnapshot : dataSnapshot.child(location).getChildren()) {
                         String id = dSnapshot.getKey();
-                        Toast.makeText(Admin_Delete_Supermarket_Screen.this,id,Toast.LENGTH_SHORT).show();
 
                         if (ids.contains(id))
                         {
                             mDb.child("Supermarkets").child(location).child(id).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
-                                    buildRecyclerView();
-                                    Toast.makeText(Admin_Delete_Supermarket_Screen.this,"Delete Successful",Toast.LENGTH_SHORT).show();
+                                    if(task.isSuccessful()) {
+                                        buildRecyclerView();
+                                        Toast.makeText(Admin_Delete_Supermarket_Screen.this, "Supermarket Deleted!", Toast.LENGTH_SHORT).show();
+                                    }
+                                    else
+                                    {
+                                        // Catch allExceptions
+                                        Toast.makeText(Admin_Delete_Supermarket_Screen.this,"Failure deleting supermarket from Database",Toast.LENGTH_SHORT).show();
+
+                                    }
                                 }
                             });
 
@@ -218,6 +226,46 @@ public class Admin_Delete_Supermarket_Screen extends AppCompatActivity {
                     }
                 }
             }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(Admin_Delete_Supermarket_Screen.this,"Failure deleting data from Database",Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void deleteSupermarketProduct(final String id)
+    {
+        final DatabaseReference db = firebaseDatabase.getReference();
+
+        db.child("Supermarkets_Products").addListenerForSingleValueEvent(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot ds : dataSnapshot.getChildren())
+                {
+                    String nameID = ds.getKey();
+                    if(nameID.contains(id))
+                    {
+//                        db.child("Supermarkets_Products").child(nameID).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+//                            @Override
+//                            public void onComplete(@NonNull Task<Void> task) {
+//                                if (task.isSuccessful())
+//                                {
+//                                    Toast.makeText(Admin_Delete_Supermarket_Screen.this, "Supermarket Deleted!", Toast.LENGTH_SHORT).show();
+//                                }
+//                                else
+//                                {
+//                                    // Catch allExceptions
+//                                    Toast.makeText(Admin_Delete_Supermarket_Screen.this,"Failure deleting supermarket from Database",Toast.LENGTH_SHORT).show();
+//
+//                                }
+//                            }
+//                        });
+                    }
+                }
+            }
+
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Toast.makeText(Admin_Delete_Supermarket_Screen.this,"Failure deleting data from Database",Toast.LENGTH_SHORT).show();

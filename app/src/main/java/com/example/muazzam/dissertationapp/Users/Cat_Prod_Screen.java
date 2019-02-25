@@ -31,8 +31,11 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
@@ -67,10 +70,6 @@ public class Cat_Prod_Screen extends AppCompatActivity
         firebaseStorage = FirebaseStorage.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Products").child(category);
         storageReference = firebaseStorage.getReference();
-
-
-
-
 
     }
 
@@ -144,7 +143,6 @@ public class Cat_Prod_Screen extends AppCompatActivity
                         Glide.with(Cat_Prod_Screen.this).load(uri).into(holder.prodPic);
                     }
                 });
-
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -250,12 +248,36 @@ public class Cat_Prod_Screen extends AppCompatActivity
 
     private void getUserData()
     {
-
-        usernameText.setText(Prevalent.onlineUser.getName());
-        usernameEmail.setText(Prevalent.onlineUser.getEmail());
-
+        DatabaseReference mDb = firebaseDatabase.getReference();
         FirebaseUser user = firebaseAuth.getCurrentUser();
         String userAuthKey = user.getUid();
+        mDb.child("Users").child(userAuthKey).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+
+                String userEmail = String.valueOf(dataSnapshot.child("Email").getValue());
+                String userName = String.valueOf(dataSnapshot.child("Name").getValue());
+                String userPhone = String.valueOf(dataSnapshot.child("PhoneNumber").getValue());
+                String userAddress = String.valueOf(dataSnapshot.child("Address").getValue());
+
+                usernameText.setText(userName);
+                usernameEmail.setText(userEmail);
+//                Users userData = new Users(userName,userEmail,userAddress,userPhone);
+//                Prevalent.onlineUser = userData;
+//                usernameText.setText(Prevalent.onlineUser.getName());
+//                usernameEmail.setText(Prevalent.onlineUser.getEmail());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(Cat_Prod_Screen.this,"Failure Retrieving data from Database",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+//                usernameText.setText(Prevalent.onlineUser.getName());
+//                usernameEmail.setText(Prevalent.onlineUser.getEmail());
+
         StorageReference storageReference = firebaseStorage.getReference();
 
         storageReference.child("Users").child(userAuthKey).child("Images").child("Profile Pic").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {

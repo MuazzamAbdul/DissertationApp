@@ -52,7 +52,13 @@
         <activity
             android:name=".Users.Cat_Prod_Screen"
             android:label="@string/title_activity_cat__prod__screen"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".Users.Product_Supermarket_Screen" />
+        <activity
+            android:name=".Admin.Admin_Delete_Product_Screen"
+            android:theme="@style/AdminAppTheme" />
+        <activity android:name=".Admin.Admin_Delete_Product2_Screen"
+            android:theme="@style/AdminAppTheme"/>
     </application>
 
 </manifest>
