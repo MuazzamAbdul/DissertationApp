@@ -101,6 +101,10 @@ public class Admin_Registered_Users extends AppCompatActivity {
 
     private void firebaseSearch(String searchText)
     {
+        if (!searchText.isEmpty())
+        {
+            searchText = searchText.substring(0,1).toUpperCase()+ searchText.substring(1,searchText.length()).toLowerCase();
+        }
         FirebaseRecyclerOptions<DisplayUsers> options  = new FirebaseRecyclerOptions.Builder<DisplayUsers>()
                 .setQuery(databaseReference.orderByChild("Name").startAt(searchText).endAt(searchText + "\uf8ff"),DisplayUsers.class).build();
 

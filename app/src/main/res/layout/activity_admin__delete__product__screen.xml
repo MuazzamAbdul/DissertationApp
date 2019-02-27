@@ -59,8 +59,8 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="10dp"
                     android:layout_marginBottom="5dp"
-                    android:src="@drawable/fruitveg"
-                    app:civ_border_color="@color/colorPrimary"
+                    android:src="@drawable/addruitveg"
+                    app:civ_border_color="@color/bottomNavTrans"
                     app:civ_border_width="2dp" />
 
                 <de.hdodenhof.circleimageview.CircleImageView
@@ -71,8 +71,8 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="10dp"
                     android:layout_marginBottom="5dp"
-                    android:src="@drawable/dairy"
-                    app:civ_border_color="@color/colorPrimary"
+                    android:src="@drawable/addairy"
+                    app:civ_border_color="@color/bottomNavTrans"
                     app:civ_border_width="2dp" />
             </LinearLayout>
 
@@ -91,8 +91,8 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="10dp"
                     android:layout_marginBottom="5dp"
-                    android:src="@drawable/rice"
-                    app:civ_border_color="@color/colorPrimary"
+                    android:src="@drawable/adrice"
+                    app:civ_border_color="@color/bottomNavTrans"
                     app:civ_border_width="2dp" />
 
                 <de.hdodenhof.circleimageview.CircleImageView
@@ -103,8 +103,8 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="10dp"
                     android:layout_marginBottom="5dp"
-                    android:src="@drawable/frozenfood"
-                    app:civ_border_color="@color/colorPrimary"
+                    android:src="@drawable/adfrozenfood"
+                    app:civ_border_color="@color/bottomNavTrans"
                     app:civ_border_width="2dp" />
             </LinearLayout>
 
@@ -123,8 +123,8 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="10dp"
                     android:layout_marginBottom="5dp"
-                    android:src="@drawable/snacks"
-                    app:civ_border_color="@color/colorPrimary"
+                    android:src="@drawable/adsnacks"
+                    app:civ_border_color="@color/bottomNavTrans"
                     app:civ_border_width="2dp" />
 
                 <de.hdodenhof.circleimageview.CircleImageView
@@ -135,8 +135,8 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="10dp"
                     android:layout_marginBottom="5dp"
-                    android:src="@drawable/grains"
-                    app:civ_border_color="@color/colorPrimary"
+                    android:src="@drawable/adgrains"
+                    app:civ_border_color="@color/bottomNavTrans"
                     app:civ_border_width="2dp" />
             </LinearLayout>
 
@@ -155,8 +155,8 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="10dp"
                     android:layout_marginBottom="5dp"
-                    android:src="@drawable/cannedfood"
-                    app:civ_border_color="@color/colorPrimary"
+                    android:src="@drawable/adcannedfood"
+                    app:civ_border_color="@color/bottomNavTrans"
                     app:civ_border_width="2dp" />
 
                 <de.hdodenhof.circleimageview.CircleImageView
@@ -167,8 +167,8 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="10dp"
                     android:layout_marginBottom="5dp"
-                    android:src="@drawable/oil"
-                    app:civ_border_color="@color/colorPrimary"
+                    android:src="@drawable/adoil"
+                    app:civ_border_color="@color/bottomNavTrans"
                     app:civ_border_width="2dp" />
             </LinearLayout>
 
@@ -188,8 +188,8 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="10dp"
                     android:layout_marginBottom="5dp"
-                    android:src="@drawable/beverages"
-                    app:civ_border_color="@color/colorPrimary"
+                    android:src="@drawable/adbeverages"
+                    app:civ_border_color="@color/bottomNavTrans"
                     app:civ_border_width="2dp" />
 
                 <de.hdodenhof.circleimageview.CircleImageView
@@ -200,8 +200,8 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="10dp"
                     android:layout_marginBottom="5dp"
-                    android:src="@drawable/personalcare"
-                    app:civ_border_color="@color/colorPrimary"
+                    android:src="@drawable/adpersonalcare"
+                    app:civ_border_color="@color/bottomNavTrans"
                     app:civ_border_width="2dp" />
             </LinearLayout>
 
