@@ -291,6 +291,11 @@ public class Cat_Prod_Screen extends AppCompatActivity
 
     private void firebaseSearch(String searchText)
     {
+
+        if (!searchText.isEmpty())
+        {
+            searchText = searchText.substring(0,1).toUpperCase()+ searchText.substring(1,searchText.length()).toLowerCase();
+        }
         FirebaseRecyclerOptions<Products> options  = new FirebaseRecyclerOptions.Builder<Products>()
                 .setQuery(databaseReference.orderByChild("Name").startAt(searchText).endAt(searchText + "\uf8ff"),Products.class).build();
 

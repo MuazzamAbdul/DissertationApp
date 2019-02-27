@@ -153,10 +153,10 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             }
             else
             {
-                String filterPattern = constraint.toString().trim();
+                String filterPattern = constraint.toString().toLowerCase().trim();
 
                 for (Products item : prodListFull){
-                    if (item.getName().startsWith(filterPattern))
+                    if (item.getName().toLowerCase().startsWith(filterPattern))
                     {
                         filteredList.add(item);
                     }

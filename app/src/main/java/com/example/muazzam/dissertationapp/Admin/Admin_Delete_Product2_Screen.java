@@ -25,6 +25,7 @@ import com.example.muazzam.dissertationapp.ViewHolder.DeleteProductViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
@@ -151,6 +152,11 @@ public class Admin_Delete_Product2_Screen extends AppCompatActivity {
 
     private void firebaseSearch(String searchText)
     {
+
+        if (!searchText.isEmpty())
+        {
+            searchText = searchText.substring(0,1).toUpperCase()+ searchText.substring(1,searchText.length()).toLowerCase();
+        }
         FirebaseRecyclerOptions<Products> options  = new FirebaseRecyclerOptions.Builder<Products>()
                 .setQuery(databaseReference.orderByChild("Name").startAt(searchText).endAt(searchText + "\uf8ff"),Products.class).build();
 
@@ -265,7 +271,7 @@ public class Admin_Delete_Product2_Screen extends AppCompatActivity {
                         else
                         {
                             // Catch allExceptions
-                            Toast.makeText(Admin_Delete_Product2_Screen.this,"Failure deleting product from Database",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Admin_Delete_Product2_Screen.this,"Failure deleting product from Products Database",Toast.LENGTH_SHORT).show();
 
                         }
                     }
@@ -291,30 +297,50 @@ public class Admin_Delete_Product2_Screen extends AppCompatActivity {
                 for (DataSnapshot ds : dataSnapshot.getChildren())
                 {
                     String nameID = ds.getKey();
-                    if(nameID.contains(id))
+
+                    String prodid = nameID.substring(nameID.indexOf('-') + 1,nameID.length());
+
+                    if(prodid.equals(id))
                     {
-//                        db.child("Supermarkets_Products").child(nameID).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
-//                            @Override
-//                            public void onComplete(@NonNull Task<Void> task) {
-//                                if (task.isSuccessful())
-//                                {
-//                                    Toast.makeText(Admin_Delete_Product2_Screen.this, "Product Deleted!", Toast.LENGTH_SHORT).show();
-//                                }
-//                                else
-//                                {
-//                                    // Catch allExceptions
-                                    Toast.makeText(Admin_Delete_Product2_Screen.this,nameID,Toast.LENGTH_SHORT).show();
-//
-//                                }
-//                            }
-//                        });
+                        db.child("Supermarkets_Products").child(nameID).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful())
+                                {
+                                    deletePicFromStorage(id);
+                                    Toast.makeText(Admin_Delete_Product2_Screen.this, "Product Deleted!", Toast.LENGTH_SHORT).show();
+                                }
+                                else
+                                {
+                                    // Catch allExceptions
+                                    Toast.makeText(Admin_Delete_Product2_Screen.this, "Failure deleting product from Supermarkets_Products Database", Toast.LENGTH_SHORT).show();
+
+                                }
+                            }
+                        });
                     }
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(Admin_Delete_Product2_Screen.this,"Failure deleting data from Database",Toast.LENGTH_SHORT).show();
+                Toast.makeText(Admin_Delete_Product2_Screen.this,"Failure deleting product from Products Database",Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void deletePicFromStorage(String id)
+    {
+        storageReference.child("Products").child(id).child("Images").child("Product Pic").delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+
+                Toast.makeText(Admin_Delete_Product2_Screen.this,"Picture deleted successfully",Toast.LENGTH_SHORT).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(Admin_Delete_Product2_Screen.this,"Failure deleting product pic from Storage",Toast.LENGTH_SHORT).show();
             }
         });
     }

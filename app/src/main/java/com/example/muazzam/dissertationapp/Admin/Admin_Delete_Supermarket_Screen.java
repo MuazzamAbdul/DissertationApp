@@ -228,7 +228,7 @@ public class Admin_Delete_Supermarket_Screen extends AppCompatActivity {
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(Admin_Delete_Supermarket_Screen.this,"Failure deleting data from Database",Toast.LENGTH_SHORT).show();
+                Toast.makeText(Admin_Delete_Supermarket_Screen.this,"Failure deleting data from Supermarkets Database",Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -245,23 +245,28 @@ public class Admin_Delete_Supermarket_Screen extends AppCompatActivity {
                 for (DataSnapshot ds : dataSnapshot.getChildren())
                 {
                     String nameID = ds.getKey();
-                    if(nameID.contains(id))
+
+                    String superID = nameID.substring(0,nameID.indexOf('-'));
+
+
+                    if(superID.equals(id))
                     {
-//                        db.child("Supermarkets_Products").child(nameID).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
-//                            @Override
-//                            public void onComplete(@NonNull Task<Void> task) {
-//                                if (task.isSuccessful())
-//                                {
-//                                    Toast.makeText(Admin_Delete_Supermarket_Screen.this, "Supermarket Deleted!", Toast.LENGTH_SHORT).show();
-//                                }
-//                                else
-//                                {
-//                                    // Catch allExceptions
-//                                    Toast.makeText(Admin_Delete_Supermarket_Screen.this,"Failure deleting supermarket from Database",Toast.LENGTH_SHORT).show();
 //
-//                                }
-//                            }
-//                        });
+                        db.child("Supermarkets_Products").child(nameID).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful())
+                                {
+                                    Toast.makeText(Admin_Delete_Supermarket_Screen.this, "Supermarket Deleted!", Toast.LENGTH_SHORT).show();
+                                }
+                                else
+                                {
+                                    // Catch allExceptions
+                                    Toast.makeText(Admin_Delete_Supermarket_Screen.this,"Failure deleting supermarket from Supermarkets_Products Database",Toast.LENGTH_SHORT).show();
+
+                                }
+                            }
+                        });
                     }
                 }
             }
