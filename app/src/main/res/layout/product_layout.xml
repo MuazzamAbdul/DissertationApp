@@ -35,7 +35,7 @@
             android:drawablePadding="10dp"
             android:fontFamily="serif"
             android:text="Product Name"
-            android:textColor="@color/adminTextColor"
+            android:textColor="@color/colorPrimary"
             android:textSize="20sp"
             android:textStyle="bold" />
 

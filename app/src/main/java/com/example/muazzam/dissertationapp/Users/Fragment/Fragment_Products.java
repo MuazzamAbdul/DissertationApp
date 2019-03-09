@@ -21,6 +21,7 @@ import com.example.muazzam.dissertationapp.Model.Products;
 import com.example.muazzam.dissertationapp.Prevalent.Prevalent;
 import com.example.muazzam.dissertationapp.R;
 import com.example.muazzam.dissertationapp.Users.Category_Screen;
+import com.example.muazzam.dissertationapp.Users.Product_Supermarket_Screen;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -98,7 +99,7 @@ public class Fragment_Products extends Fragment {
                 madapter.setOnItemClickListener(new ProductAdapter.OnItemClickListener() {
                     @Override
                     public void onItemClick(int position) {
-                        Intent intent = new Intent(getActivity(),Category_Screen.class);
+                        Intent intent = new Intent(getActivity(),Product_Supermarket_Screen.class);
                         startActivity(intent);
 
                         Products selectedProd = productList.get(position);

@@ -121,7 +121,7 @@ public class Admin_Delete_Supermarket_Screen extends AppCompatActivity {
                     for(DataSnapshot dSnapshot : dataSnapshot.child(location).getChildren()) {
                         String id = dSnapshot.getKey();
 //
-                        String name = String.valueOf(dSnapshot.child("Supermarket Name").getValue(String.class));
+                        String name = String.valueOf(dSnapshot.child("Name").getValue(String.class));
                         list.add(new Admin_Supermarket_List(name + " " + "[ " + id +" ]"));
                         idList.add(id);
                     }

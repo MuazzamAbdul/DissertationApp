@@ -58,6 +58,7 @@ public class Cat_Prod_Screen extends AppCompatActivity
     private String category;
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
+    private Uri prodPicture;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -138,6 +139,7 @@ public class Cat_Prod_Screen extends AppCompatActivity
                 storageReference.child("Products").child(model.getID()).child("Images").child("Product Pic").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
+                        prodPicture = uri;
 //                Picasso.get().load(uri).fit().centerCrop().into(imagePic);
 //                imagePic.setImageURI(uri);
                         Glide.with(Cat_Prod_Screen.this).load(uri).into(holder.prodPic);
@@ -147,8 +149,9 @@ public class Cat_Prod_Screen extends AppCompatActivity
                     @Override
                     public void onClick(View v) {
 
-                        Intent intent = new Intent(Cat_Prod_Screen.this,Category_Screen.class);
+                        Intent intent = new Intent(Cat_Prod_Screen.this,Product_Supermarket_Screen.class);
                         startActivity(intent);
+                        intent.putExtra("Picture",prodPicture);
                         Products selectedProd = new Products(model.getName(),model.getID(),model.getCategory(),model.getDescription());
                         Prevalent.displayProducts = selectedProd;
                     }
@@ -309,7 +312,7 @@ public class Cat_Prod_Screen extends AppCompatActivity
             }
 
             @Override
-            protected void onBindViewHolder(@NonNull final ProductViewHolder holder, int position, @NonNull Products model) {
+            protected void onBindViewHolder(@NonNull final ProductViewHolder holder, int position, @NonNull final Products model) {
 
                 holder.txtname.setText(model.getName());
                 holder.txtdesc.setText(model.getDescription());
@@ -320,6 +323,17 @@ public class Cat_Prod_Screen extends AppCompatActivity
 //                Picasso.get().load(uri).fit().centerCrop().into(imagePic);
 //                imagePic.setImageURI(uri);
                         Glide.with(Cat_Prod_Screen.this).load(uri).into(holder.prodPic);
+                    }
+                });
+
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        Intent intent = new Intent(Cat_Prod_Screen.this,Product_Supermarket_Screen.class);
+                        startActivity(intent);
+                        Products selectedProd = new Products(model.getName(),model.getID(),model.getCategory(),model.getDescription());
+                        Prevalent.displayProducts = selectedProd;
                     }
                 });
             }

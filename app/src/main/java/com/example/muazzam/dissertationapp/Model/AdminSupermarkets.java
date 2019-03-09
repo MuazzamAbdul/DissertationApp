@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class AdminSupermarkets {
 
     private ArrayList<String> supName,supId;
-    private String id, name;
+    private String id,name;
 
     public AdminSupermarkets(String id, String name) {
         this.id = id;

@@ -133,9 +133,9 @@ public class Admin_Add_Supermarket_Screen extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 HashMap<String,Object> userDataMap = new HashMap<>();
-                userDataMap.put("Supermarket ID",id);
-                userDataMap.put("Supermarket Name",name);
-                userDataMap.put("Supermarket Location",location);
+                userDataMap.put("ID",id);
+                userDataMap.put("Name",name);
+                userDataMap.put("Location",location);
 
                 databaseReference.child("Supermarkets").child(location).child(id).updateChildren(userDataMap)
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
