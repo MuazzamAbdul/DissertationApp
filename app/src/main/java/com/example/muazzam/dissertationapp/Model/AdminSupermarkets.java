@@ -18,8 +18,6 @@ public class AdminSupermarkets {
 
     }
 
-
-
     public AdminSupermarkets()
     {
         supName = new ArrayList<>();

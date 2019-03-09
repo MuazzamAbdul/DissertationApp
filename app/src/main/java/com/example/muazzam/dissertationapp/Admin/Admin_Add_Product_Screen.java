@@ -217,7 +217,7 @@ public class Admin_Add_Product_Screen extends AppCompatActivity {
                         String id = dSnapshot.getKey();
 
 //                        supId.add(id);
-                        String name = String.valueOf(dSnapshot.child("Supermarket Name").getValue(String.class));
+                        String name = String.valueOf(dSnapshot.child("Name").getValue(String.class));
 //                        supName.add(name);
                         adminSupermarkets.addId(id);
                         adminSupermarkets.addName(name);
