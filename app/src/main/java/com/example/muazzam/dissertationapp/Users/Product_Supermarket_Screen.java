@@ -39,7 +39,7 @@ public class Product_Supermarket_Screen extends AppCompatActivity {
 
     private ImageView close,productPic;
     private TextView pname,pdesc;
-    private String cityName;
+    private String location;
     private StorageReference storageReference;
     private FirebaseStorage firebaseStorage;
     private RecyclerView recyclerView;
@@ -92,16 +92,13 @@ public class Product_Supermarket_Screen extends AppCompatActivity {
 
 
 
-        recyclerView = findViewById(R.id.rvSupermarkets);
-        recyclerView.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
 
 
     }
 
 
-    private void setUpLocation(){
+    private void  setUpLocation(){
+
         if(android.support.v4.app.ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 && android.support.v4.app.ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)
         {
@@ -109,7 +106,7 @@ public class Product_Supermarket_Screen extends AppCompatActivity {
         }
         else
         {
-            fetchLocation();
+             fetchLocation();
         }
     }
 
@@ -122,10 +119,12 @@ public class Product_Supermarket_Screen extends AppCompatActivity {
     }
 
     private void fetchLocation() {
+
+
         if(android.support.v4.app.ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 && android.support.v4.app.ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)
         {
-            return;
+            return ;
         }
         fusedLocationClient.getLastLocation()
                 .addOnSuccessListener(this, new OnSuccessListener<Location>() {
@@ -141,24 +140,19 @@ public class Product_Supermarket_Screen extends AppCompatActivity {
 
                             if ((latitude <= -20.193921 && latitude >=-20.334203)   && (longitude>=57.483448 && longitude <= 57.629066))
                             {
-                                cityName = "Moka";
-//                                Toast.makeText(Product_Supermarket_Screen.this,"Moka",Toast.LENGTH_SHORT).show();
+                                retrieveSupermarket("Moka");
 
                             }
 
                             if ((latitude <= -20.137545&& latitude >=-20.193921)   && (longitude>=57.471481 && longitude <= 57.552166))
                             {
-                                cityName = "Port-Louis";
-//                                Toast.makeText(Product_Supermarket_Screen.this,"Port-Louis",Toast.LENGTH_SHORT).show();
+                                retrieveSupermarket("Port-Louis");
                             }
 
                             if (((latitude <= -20.203829&& latitude >=-20.396059)   && (longitude>=57.451060 && longitude <= 57.485295)) || ((latitude <= -20.239755&& latitude >=-20.396059)   && (longitude>=57.485295 && longitude <= 57.515951)))
                             {
-                                cityName = "Plaine Wilhems";
-//                                Toast.makeText(Product_Supermarket_Screen.this,"Plaine Wilhems",Toast.LENGTH_SHORT).show();
+                                retrieveSupermarket("Plaines Wilhems");
                             }
-                            retrieveSupermarket(cityName);
-
                         }
                     }
                 });
@@ -167,7 +161,12 @@ public class Product_Supermarket_Screen extends AppCompatActivity {
 
     private void retrieveSupermarket(String cityName) {
 
-        Toast.makeText(Product_Supermarket_Screen.this,cityName,Toast.LENGTH_SHORT).show();
+        recyclerView = findViewById(R.id.rvSupermarkets);
+        recyclerView.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+
+                                        Toast.makeText(Product_Supermarket_Screen.this,cityName,Toast.LENGTH_SHORT).show();
 
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Supermarkets").child(cityName);
 
@@ -193,9 +192,6 @@ public class Product_Supermarket_Screen extends AppCompatActivity {
         };
         recyclerView.setAdapter(adapter);
         adapter.startListening();
-
-
-
     }
 
     @Override
