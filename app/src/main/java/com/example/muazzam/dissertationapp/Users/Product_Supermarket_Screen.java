@@ -29,8 +29,11 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
@@ -39,12 +42,13 @@ public class Product_Supermarket_Screen extends AppCompatActivity {
 
     private ImageView close,productPic;
     private TextView pname,pdesc;
-    private String location;
+    private String prodPrice;
     private StorageReference storageReference;
     private FirebaseStorage firebaseStorage;
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private DatabaseReference databaseReference;
+    private FirebaseDatabase firebaseDatabase;
 
     private static final int MY_PERMISSIONS_REQUEST_CODE = 1 ;
     private FusedLocationProviderClient fusedLocationClient;
@@ -55,6 +59,7 @@ public class Product_Supermarket_Screen extends AppCompatActivity {
         setContentView(R.layout.activity_product__supermarket__screen);
 
         firebaseStorage = FirebaseStorage.getInstance();
+        firebaseDatabase = FirebaseDatabase.getInstance();
         storageReference = firebaseStorage.getReference();
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
@@ -166,7 +171,7 @@ public class Product_Supermarket_Screen extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-                                        Toast.makeText(Product_Supermarket_Screen.this,cityName,Toast.LENGTH_SHORT).show();
+        Toast.makeText(Product_Supermarket_Screen.this,cityName,Toast.LENGTH_SHORT).show();
 
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Supermarkets").child(cityName);
 
@@ -186,7 +191,8 @@ public class Product_Supermarket_Screen extends AppCompatActivity {
             protected void onBindViewHolder(@NonNull SupermarketViewHolder holder, int position, @NonNull Supermarkets model) {
 
                 holder.superName.setText(model.getName());
-                holder.price.setText(model.getID());
+                prodPrice = retrievePrice(model.getID());
+                holder.price.setText(prodPrice);
 
             }
         };
@@ -205,6 +211,38 @@ public class Product_Supermarket_Screen extends AppCompatActivity {
 
         }
 
+    }
+
+    private String retrievePrice(final String superID)
+    {
+        final String[] price = new String[1];
+        DatabaseReference mDb = firebaseDatabase.getReference();
+
+        mDb.child("Supermarkets_Products").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot ds : dataSnapshot.getChildren())
+                {
+                    String nameID = ds.getKey();
+                    String superProdId = superID + "-" + Prevalent.displayProducts.getID();
+
+                    if(superProdId.equals(nameID))
+                    {
+                        Toast.makeText(Product_Supermarket_Screen.this,superProdId,Toast.LENGTH_SHORT).show();
+                        price[0] = String.valueOf(ds.child("Price").getValue(String.class));
+                    }
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        return price[0];
     }
 
 }
