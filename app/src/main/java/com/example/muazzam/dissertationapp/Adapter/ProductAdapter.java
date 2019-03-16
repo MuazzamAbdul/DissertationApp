@@ -34,6 +34,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     public void setOnItemClickListener(OnItemClickListener listener){
         mListener = listener;
     }
+
+
     public static class ProductViewHoolder extends RecyclerView.ViewHolder{
 
         public TextView txtname,txtdesc;

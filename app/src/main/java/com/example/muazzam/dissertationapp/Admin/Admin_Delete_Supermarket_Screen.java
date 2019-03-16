@@ -245,10 +245,7 @@ public class Admin_Delete_Supermarket_Screen extends AppCompatActivity {
                 for (DataSnapshot ds : dataSnapshot.getChildren())
                 {
                     String nameID = ds.getKey();
-
                     String superID = nameID.substring(0,nameID.indexOf('-'));
-
-
                     if(superID.equals(id))
                     {
 //
