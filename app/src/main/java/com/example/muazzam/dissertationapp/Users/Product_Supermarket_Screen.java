@@ -6,36 +6,29 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.support.v4.view.GravityCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.example.muazzam.dissertationapp.Adapter.ProductAdapter;
 import com.example.muazzam.dissertationapp.Adapter.SupermarketProductpriceAdapter;
-import com.example.muazzam.dissertationapp.Add_To_Cart_Screen;
-import com.example.muazzam.dissertationapp.Admin.Admin_Delete_Supermarket_Screen;
 import com.example.muazzam.dissertationapp.Model.DisplaySuperProdPrice;
-import com.example.muazzam.dissertationapp.Model.Products;
-import com.example.muazzam.dissertationapp.Model.Supermarkets;
 import com.example.muazzam.dissertationapp.Prevalent.Prevalent;
 import com.example.muazzam.dissertationapp.R;
-import com.example.muazzam.dissertationapp.ViewHolder.ProductViewHolder;
-import com.example.muazzam.dissertationapp.ViewHolder.SupermarketViewHolder;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.example.muazzam.dissertationapp.Shopping_Cart_Screen;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -49,9 +42,8 @@ import java.util.ArrayList;
 
 public class Product_Supermarket_Screen extends AppCompatActivity {
 
-    private ImageView close,productPic;
+    private ImageView productPic;
     private TextView pname,pdesc;
-    private String prodPrice;
     private StorageReference storageReference;
     private FirebaseStorage firebaseStorage;
     private RecyclerView recyclerView;
@@ -79,19 +71,11 @@ public class Product_Supermarket_Screen extends AppCompatActivity {
         setupUIViews();
         setUpLocation();
 
-        close.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
 
     }
 
     private void setupUIViews()
     {
-        close = findViewById(R.id.ivClose);
         pname = findViewById(R.id.tvPname);
         pdesc = findViewById(R.id.tvPDesc);
         productPic = findViewById(R.id.ivProduct);
@@ -110,11 +94,60 @@ public class Product_Supermarket_Screen extends AppCompatActivity {
             }
         });
 
+        Toolbar toolbar = findViewById(R.id.toolbarSupermarkets);
+        setSupportActionBar(toolbar);
+        toolbar.setTitle("Supermarkets");
 
+        ActionBar actionbar = getSupportActionBar();
+        actionbar.setDisplayHomeAsUpEnabled(true);
+        actionbar.setHomeAsUpIndicator(R.drawable.ic_action_arrow_back);
 
 
 
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+//                Intent intent = new Intent(FAQ_Screen.this,Home_Screen.class);
+//                startActivity(intent);
+                return true;
+
+            case R.id.shopping_cart:
+                Intent intent = new Intent(Product_Supermarket_Screen.this,Shopping_Cart_Screen.class);
+                startActivity(intent);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.cat_prod_menu, menu);
+        MenuItem item = menu.findItem(R.id.app_bar_search);
+
+        SearchView searchView = (SearchView) item.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                madapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+        return super.onCreateOptionsMenu(menu);
+    }
+
 
 
     private void  setUpLocation(){
@@ -214,7 +247,7 @@ public class Product_Supermarket_Screen extends AppCompatActivity {
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(Product_Supermarket_Screen.this,"Failure deleting data from Supermarkets Database",Toast.LENGTH_SHORT).show();
+                Toast.makeText(Product_Supermarket_Screen.this,"Failure retrieving data from Supermarkets Database",Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -267,7 +300,7 @@ public class Product_Supermarket_Screen extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                Toast.makeText(Product_Supermarket_Screen.this,"Failure retrieving Price",Toast.LENGTH_SHORT).show();
             }
         });
     }

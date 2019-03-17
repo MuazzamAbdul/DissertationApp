@@ -5,16 +5,20 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import com.example.muazzam.dissertationapp.Model.DisplaySuperProdPrice;
+import com.example.muazzam.dissertationapp.Model.Products;
 import com.example.muazzam.dissertationapp.R;
 
 import java.util.ArrayList;
 
-public class SupermarketProductpriceAdapter extends RecyclerView.Adapter<SupermarketProductpriceAdapter.SupermarketProductpriceViewHolder> {
+public class SupermarketProductpriceAdapter extends RecyclerView.Adapter<SupermarketProductpriceAdapter.SupermarketProductpriceViewHolder> implements Filterable {
 
     private ArrayList<DisplaySuperProdPrice> list;
+    private ArrayList<DisplaySuperProdPrice> listFull;
     private OnItemClickListener mListener;
 
     public interface OnItemClickListener{
@@ -67,6 +71,7 @@ public class SupermarketProductpriceAdapter extends RecyclerView.Adapter<Superma
 
     public SupermarketProductpriceAdapter(ArrayList<DisplaySuperProdPrice> list) {
         this.list = list;
+        listFull = new ArrayList<>(list);
     }
 
     @NonNull
@@ -89,4 +94,44 @@ public class SupermarketProductpriceAdapter extends RecyclerView.Adapter<Superma
     public int getItemCount() {
         return  list.size();
     }
+
+    @Override
+    public Filter getFilter() {
+        return productFilter;
+    }
+
+    private Filter productFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            ArrayList<DisplaySuperProdPrice> filteredList = new ArrayList<>();
+
+            if (constraint == null || constraint.length() == 0)
+            {
+                filteredList.addAll(listFull);
+            }
+            else
+            {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+
+                for (DisplaySuperProdPrice item : listFull){
+                    if (item.getName().toLowerCase().startsWith(filterPattern))
+                    {
+                        filteredList.add(item);
+                    }
+                }
+            }
+
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+
+            list.clear();
+            list.addAll((ArrayList) results.values);
+            notifyDataSetChanged();
+        }
+    };
 }

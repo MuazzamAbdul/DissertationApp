@@ -1,4 +1,4 @@
-package com.example.muazzam.dissertationapp;
+package com.example.muazzam.dissertationapp.Users;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -14,10 +14,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
-import com.example.muazzam.dissertationapp.Admin.Admin_Delete_Product2_Screen;
 import com.example.muazzam.dissertationapp.Prevalent.Prevalent;
-import com.example.muazzam.dissertationapp.Users.Product_Supermarket_Screen;
-import com.example.muazzam.dissertationapp.Users.UpdateAccount_Screen;
+import com.example.muazzam.dissertationapp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -141,7 +139,7 @@ public class Add_To_Cart_Screen extends AppCompatActivity {
         userAuthKey = user.getUid();
 
 
-        databaseReference.child("Cart").child(userAuthKey).child("Products").child(Prevalent.displayProducts.getID())
+        databaseReference.child("Cart").child(userAuthKey).child("Products").child(Prevalent.displayProducts.getID() + "-" + superName.getText().toString())
                 .addListenerForSingleValueEvent(new ValueEventListener() {
 
             @Override
@@ -157,7 +155,7 @@ public class Add_To_Cart_Screen extends AppCompatActivity {
                 userDataMap.put("Quantity",qty.getNumber());
                 userDataMap.put("Price",Prevalent.supermarketProductPrice.getPrice());
 
-                databaseReference.child("Cart").child(userAuthKey).child("Products").child(Prevalent.displayProducts.getID())
+                databaseReference.child("Cart").child(userAuthKey).child("Products").child(Prevalent.displayProducts.getID() + "-" + superName.getText().toString())
                         .updateChildren(userDataMap)
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override

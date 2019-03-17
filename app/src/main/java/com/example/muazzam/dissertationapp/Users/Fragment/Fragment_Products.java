@@ -20,6 +20,7 @@ import com.example.muazzam.dissertationapp.Adapter.ProductAdapter;
 import com.example.muazzam.dissertationapp.Model.Products;
 import com.example.muazzam.dissertationapp.Prevalent.Prevalent;
 import com.example.muazzam.dissertationapp.R;
+import com.example.muazzam.dissertationapp.Shopping_Cart_Screen;
 import com.example.muazzam.dissertationapp.Users.Category_Screen;
 import com.example.muazzam.dissertationapp.Users.Product_Supermarket_Screen;
 import com.google.firebase.database.DataSnapshot;
@@ -147,12 +148,12 @@ public class Fragment_Products extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-//        switch (item.getItemId()) {
-//            case R.id.itshopping_cart:
-//                Intent intent = new Intent(getActivity(),Category_Screen.class);
-//                startActivity(intent);
-//                return true;
-//        }
+        switch (item.getItemId()) {
+            case R.id.itshopping_cart:
+                Intent intent = new Intent(getActivity(),Shopping_Cart_Screen.class);
+                startActivity(intent);
+                return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 }

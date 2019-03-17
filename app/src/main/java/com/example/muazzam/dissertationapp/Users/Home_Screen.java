@@ -23,6 +23,7 @@ import com.example.muazzam.dissertationapp.Adapter.PageAdapter;
 import com.example.muazzam.dissertationapp.Model.Users;
 import com.example.muazzam.dissertationapp.Prevalent.Prevalent;
 import com.example.muazzam.dissertationapp.R;
+import com.example.muazzam.dissertationapp.Shopping_Cart_Screen;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -147,7 +148,7 @@ public class Home_Screen extends AppCompatActivity
                 return true;
 
             case R.id.itshopping_cart:
-                Intent intent = new Intent(this,Category_Screen.class);
+                Intent intent = new Intent(this,Shopping_Cart_Screen.class);
                 startActivity(intent);
                 return true;
         }
