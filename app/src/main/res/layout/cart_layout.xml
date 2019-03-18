@@ -5,7 +5,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="10dp"
     android:layout_margin="10dp"
-
     app:cardElevation="15dp">
 
     <RelativeLayout
@@ -26,9 +25,9 @@
                 android:id="@+id/prodNameCart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dp"
                 android:fontFamily="serif"
                 android:gravity="center"
+                android:padding="5dp"
                 android:text="Product Name"
                 android:textColor="@color/colorPrimary"
                 android:textSize="14sp"
@@ -50,29 +49,54 @@
                 android:id="@+id/prodPriceCart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dp"
-
                 android:drawablePadding="10dp"
+
                 android:fontFamily="serif"
                 android:gravity="center"
+                android:padding="5dp"
                 android:text="Price"
                 android:textColor="@color/adminTextColor"
                 android:textSize="14sp" />
 
-            <TextView
-                android:id="@+id/QtyCart"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:drawablePadding="10dp"
-                android:fontFamily="serif"
-                android:gravity="center"
-                android:text="Quantity: "
-                android:textColor="@color/adminTextColor"
-                android:textSize="14sp" />
+                android:orientation="horizontal">
 
+                <TextView
+                    android:id="@+id/QtyCart"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="10dp"
+                    android:fontFamily="serif"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="Quantity: "
+                    android:textColor="@color/adminTextColor"
+                    android:textSize="14sp" />
+
+                <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
+                    android:id="@+id/btnQtyCart"
+                    android:layout_width="100dp"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:gravity="center"
+                    app:initialNumber="1"
+                    app:textSize="10sp" />
+            </LinearLayout>
         </LinearLayout>
 
+        <ImageView
+            android:id="@+id/ivDeleteProdCart"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="41dp"
+            android:layout_marginEnd="4dp"
+            app:srcCompat="@drawable/ic_action_red_delete" />
 
     </RelativeLayout>
 </android.support.v7.widget.CardView>

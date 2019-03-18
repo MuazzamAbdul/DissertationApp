@@ -18,7 +18,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.muazzam.dissertationapp.Admin.Admin_Delete_Product2_Screen;
 import com.example.muazzam.dissertationapp.Model.Cart;
 import com.example.muazzam.dissertationapp.ViewHolder.CartViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -65,7 +64,7 @@ public class Shopping_Cart_Screen extends AppCompatActivity {
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder exit = new AlertDialog.Builder(Shopping_Cart_Screen.this);
+                AlertDialog.Builder exit = new AlertDialog.Builder(Shopping_Cart_Screen.this,R.style.DialogAlert);
                 exit.setMessage("Do you want to delete Cart?")
                         .setCancelable(false)
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
@@ -135,12 +134,38 @@ public class Shopping_Cart_Screen extends AppCompatActivity {
             }
 
             @Override
-            protected void onBindViewHolder(@NonNull CartViewHolder holder, int position, @NonNull Cart model) {
+            protected void onBindViewHolder(@NonNull CartViewHolder holder, int position, @NonNull final Cart model) {
 
                 holder.nameCart.setText(model.getName());
                 holder.priceCart.setText("Price: Rs " + model.getPrice());
                 holder.supermarketCart.setText("From: " + model.getSupermarket());
-                holder.qtyCart.setText("Quantity: " + model.getQuantity());
+                holder.qtyCart.setNumber(model.getQuantity());
+
+                holder.deleteProd.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        AlertDialog.Builder exit = new AlertDialog.Builder(Shopping_Cart_Screen.this,R.style.DialogAlert);
+                        exit.setMessage("Do you want to delete Product?")
+                                .setCancelable(false)
+                                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        deleteProductFromCart(model.getID() +"-" + model.getSupermarket());
+                                    }
+                                })
+                                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.cancel();
+                                    }
+                                });
+                        AlertDialog alert = exit.create();
+                        alert.setTitle("Warning");
+                        alert.show();
+
+                    }
+                });
 
             }
 
@@ -221,6 +246,38 @@ public class Shopping_Cart_Screen extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
+                Toast.makeText(Shopping_Cart_Screen.this,"Failure retrieving products from Cart",Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void deleteProductFromCart(final String id)
+    {
+        final DatabaseReference mDb = firebaseDatabase.getReference();
+
+        mDb.child("Cart").child(userAuthKey).child("Products").child(id).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                if (dataSnapshot.exists())
+                {
+                    mDb.child("Cart").child(userAuthKey).child("Products").child(id).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            calculateAmount();
+                            Toast.makeText(Shopping_Cart_Screen.this,"Item deleted from cart",Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+                else
+                {
+                    Toast.makeText(Shopping_Cart_Screen.this,"Cart is empty!",Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
                 Toast.makeText(Shopping_Cart_Screen.this,"Failure retrieving products from Cart",Toast.LENGTH_SHORT).show();
             }
         });

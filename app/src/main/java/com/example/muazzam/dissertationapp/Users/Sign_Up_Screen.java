@@ -24,6 +24,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Sign_Up_Screen extends AppCompatActivity {
 
@@ -75,6 +77,9 @@ public class Sign_Up_Screen extends AppCompatActivity {
         address = userAddress.getText().toString();
         phneNo = userPhoneNo.getText().toString().trim();
 
+        Pattern emailPattern = Pattern.compile("^.+@.+\\..+$");
+        Matcher matcher =emailPattern.matcher(email);
+
         if (TextUtils.isEmpty(name))
         {
             userName.setError("Please enter Name");
@@ -82,6 +87,10 @@ public class Sign_Up_Screen extends AppCompatActivity {
         else if(TextUtils.isEmpty(email))
         {
             userEmail.setError("Please enter Email");
+        }
+        else if (!matcher.matches())
+        {
+            userEmail.setError("Invalid Email");
         }
         else if(TextUtils.isEmpty(password))
         {
@@ -114,7 +123,7 @@ public class Sign_Up_Screen extends AppCompatActivity {
         }
         return  result;
     }
-//
+
     private void CreateAccount()
     {
         loadingBar.setTitle("Creating Account");
@@ -143,7 +152,7 @@ public class Sign_Up_Screen extends AppCompatActivity {
                 {
                     //catch all exceptions
                     loadingBar.dismiss();
-                    Toast.makeText(Sign_Up_Screen.this,"Registration failed",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Sign_Up_Screen.this,"This email " + email + " already exists!!",Toast.LENGTH_SHORT).show();
                 }
 
             }

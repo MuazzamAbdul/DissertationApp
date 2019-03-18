@@ -73,7 +73,7 @@ public class Add_To_Cart_Screen extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                AlertDialog.Builder exit = new AlertDialog.Builder(Add_To_Cart_Screen.this);
+                AlertDialog.Builder exit = new AlertDialog.Builder(Add_To_Cart_Screen.this,R.style.DialogAlert);
                 exit.setMessage("Add product to Shopping Cart?")
                         .setCancelable(false)
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
