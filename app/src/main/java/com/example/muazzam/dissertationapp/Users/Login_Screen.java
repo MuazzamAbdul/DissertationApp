@@ -118,14 +118,14 @@ public class Login_Screen extends AppCompatActivity {
 //                        Users userdata = new Users(password,email,"123456","stpierre");
 //                        Prevalent.onlineUser = userdata;
                         loadingBar.dismiss();
-//                        checkEmailVerification();
+                        checkEmailVerification();
 
                         //Delete these part to enable email verification
-                        Toast.makeText(Login_Screen.this,"Login Successful!",Toast.LENGTH_SHORT).show();
-                        finish();
-                        Intent intent = new Intent(Login_Screen.this,Home_Screen.class);
-                        startActivity(intent);
-                        ///////
+//                        Toast.makeText(Login_Screen.this,"Login Successful!",Toast.LENGTH_SHORT).show();
+//                        finish();
+//                        Intent intent = new Intent(Login_Screen.this,Home_Screen.class);
+//                        startActivity(intent);
+//                        ///////
                     }
                     else
                     {

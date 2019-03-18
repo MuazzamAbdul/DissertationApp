@@ -158,10 +158,10 @@ public class Admin_Add_Product_Screen extends AppCompatActivity {
         {
             prodCat.setError("Please enter product Category");
         }
-        else if (list.contains(productId))
-        {
-            prodId.setError("Product ID already taken");
-        }
+//        else if (list.contains(productId))
+//        {
+//            prodId.setError("Product ID already taken");
+//        }
         else
         {
             result = true;
