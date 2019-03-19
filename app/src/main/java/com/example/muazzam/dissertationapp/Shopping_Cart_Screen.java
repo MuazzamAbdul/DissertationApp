@@ -37,7 +37,7 @@ import java.text.DecimalFormat;
 public class Shopping_Cart_Screen extends AppCompatActivity {
 
     private DatabaseReference databaseReference;
-    private String userAuthKey;
+    private String userAuthKey,tot;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser user;
     private RecyclerView recyclerView;
@@ -85,6 +85,16 @@ public class Shopping_Cart_Screen extends AppCompatActivity {
             }
         });
 
+        checkout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                Intent intent = new Intent(Shopping_Cart_Screen.this,Choose_Payment_Method_Screen.class);
+                startActivity(intent);
+                intent.putExtra("Price",tot);
+            }
+        });
+
     }
 
     private void setupUIVIews()
@@ -92,6 +102,7 @@ public class Shopping_Cart_Screen extends AppCompatActivity {
 
         totAmt = findViewById(R.id.tvTotalPrice);
         delete = findViewById(R.id.btnDeleteAll);
+        checkout = findViewById(R.id.btnCheckOut);
         Toolbar toolbar = findViewById(R.id.toolbarShopping);
         setSupportActionBar(toolbar);
         toolbar.setTitle("Shopping Cart");
@@ -139,7 +150,7 @@ public class Shopping_Cart_Screen extends AppCompatActivity {
                 holder.nameCart.setText(model.getName());
                 holder.priceCart.setText("Price: Rs " + model.getPrice());
                 holder.supermarketCart.setText("From: " + model.getSupermarket());
-                holder.qtyCart.setNumber(model.getQuantity());
+                holder.qtyCart.setText("Quantity: " + model.getQuantity());
 
                 holder.deleteProd.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -178,8 +189,7 @@ public class Shopping_Cart_Screen extends AppCompatActivity {
 
     private void calculateAmount(){
         Total = 0;
-        final String[] tot = new String[1];
-        tot[0] = "0.00";
+        tot = "0.00";
         final DecimalFormat df = new DecimalFormat(".##");
         final DatabaseReference mDb = firebaseDatabase.getReference();
 
@@ -200,14 +210,14 @@ public class Shopping_Cart_Screen extends AppCompatActivity {
                         Total = Total + amt;
 
                     }
-                     tot[0] = df.format(Total);
+                     tot = df.format(Total);
 
                 }
                 else
                 {
                     Toast.makeText(Shopping_Cart_Screen.this,"Cart is empty!",Toast.LENGTH_SHORT).show();
                 }
-                totAmt.setText("Rs " + tot[0]);
+                totAmt.setText("Rs " + tot);
 
             }
 

@@ -137,16 +137,6 @@ public class Sign_Up_Screen extends AppCompatActivity {
                 {
 
                     sendEmailVerification();
-
-                    //Delete these part to enable sendEmailVerification
-//                    loadingBar.dismiss();
-//                    saveUserData();
-////                    sendUserData();
-//                    firebaseAuth.signOut();
-//                    finish();
-//                    Intent intent = new Intent(Sign_Up_Screen.this,Login_Screen.class);
-//                    startActivity(intent);
-                    ///////
                 }
                 else
                 {
@@ -198,7 +188,6 @@ public class Sign_Up_Screen extends AppCompatActivity {
                     userDataMap.put("Address",address);
                     userDataMap.put("PhoneNumber",phneNo);
                     userDataMap.put("Key",useriD);
-//                    userDataMap.put("ImageUrl",downloadImageUrl);
 
                     RootRef.child("Users").child(useriD).updateChildren(userDataMap)
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -211,8 +200,6 @@ public class Sign_Up_Screen extends AppCompatActivity {
                                 Toast.makeText(Sign_Up_Screen.this,"Registration Successful, Verification mail sent!",Toast.LENGTH_SHORT).show();
                                 firebaseAuth.signOut();
                                 finish();
-                                Intent intent = new Intent(Sign_Up_Screen.this,Login_Screen.class);
-                                startActivity(intent);
                             }
                             else
                             {

@@ -12,8 +12,7 @@ import com.example.muazzam.dissertationapp.R;
 
 public class CartViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-    public TextView nameCart,priceCart,supermarketCart;
-    public ElegantNumberButton qtyCart;
+    public TextView nameCart,priceCart,supermarketCart,qtyCart;
     public ImageView deleteProd;
     public ItemClickListener listener;
 
@@ -23,7 +22,7 @@ public class CartViewHolder extends RecyclerView.ViewHolder implements View.OnCl
         nameCart = itemView.findViewById(R.id.prodNameCart);
         priceCart = itemView.findViewById(R.id.prodPriceCart);
         supermarketCart = itemView.findViewById(R.id.SuperCart);
-        qtyCart = itemView.findViewById(R.id.btnQtyCart);
+        qtyCart = itemView.findViewById(R.id.QtyCart);
         deleteProd = itemView.findViewById(R.id.ivDeleteProdCart);
 
     }
