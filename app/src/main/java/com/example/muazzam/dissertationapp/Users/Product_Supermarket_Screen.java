@@ -6,7 +6,6 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.net.Uri;
 import android.support.annotation.NonNull;
-import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,7 +14,6 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.TextView;
@@ -25,7 +23,6 @@ import com.example.muazzam.dissertationapp.Adapter.SupermarketProductpriceAdapte
 import com.example.muazzam.dissertationapp.Model.DisplaySuperProdPrice;
 import com.example.muazzam.dissertationapp.Prevalent.Prevalent;
 import com.example.muazzam.dissertationapp.R;
-import com.example.muazzam.dissertationapp.Shopping_Cart_Screen;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -204,6 +201,7 @@ public class Product_Supermarket_Screen extends AppCompatActivity {
 
                             if ((currentLat <= -20.137545&& currentLat >=-20.193921)   && (currentLong>=57.471481 && currentLong <= 57.552166))
                             {
+                                Toast.makeText(Product_Supermarket_Screen.this,"Port-Louis",Toast.LENGTH_SHORT).show();
                                 retrieveSupermarket("Port-Louis");
                                 retrieveSupermarketProductList();
                             }
@@ -259,6 +257,8 @@ public class Product_Supermarket_Screen extends AppCompatActivity {
 
     private String calculateDistance(String superLat,String superLong)
     {
+
+
         Double lat = Double.parseDouble(superLat);
         Double longi = Double.parseDouble(superLong);
 
@@ -267,11 +267,11 @@ public class Product_Supermarket_Screen extends AppCompatActivity {
         double dLon = (longi-currentLong)* (Math.PI/180);
 
 
-        currentLat = currentLat * (Math.PI/180);
+        double currentLat1 = currentLat * (Math.PI/180);
         lat = lat * (Math.PI/180);
 
         double a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-                Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(currentLat) * Math.cos(lat);
+                Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(currentLat1) * Math.cos(lat);
 
         double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
 
@@ -280,6 +280,7 @@ public class Product_Supermarket_Screen extends AppCompatActivity {
         final DecimalFormat df = new DecimalFormat(".##");
 
         String distance = df.format(d);
+
 
         return distance;
     }

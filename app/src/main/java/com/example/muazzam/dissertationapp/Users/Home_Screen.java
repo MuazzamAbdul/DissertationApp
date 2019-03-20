@@ -23,7 +23,6 @@ import com.example.muazzam.dissertationapp.Adapter.PageAdapter;
 import com.example.muazzam.dissertationapp.Model.Users;
 import com.example.muazzam.dissertationapp.Prevalent.Prevalent;
 import com.example.muazzam.dissertationapp.R;
-import com.example.muazzam.dissertationapp.Shopping_Cart_Screen;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;

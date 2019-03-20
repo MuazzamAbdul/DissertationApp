@@ -1,19 +1,22 @@
-package com.example.muazzam.dissertationapp;
+package com.example.muazzam.dissertationapp.Users;
 
 import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.muazzam.dissertationapp.Users.Cat_Prod_Screen;
+import com.example.muazzam.dissertationapp.R;
 
 public class Choose_Payment_Method_Screen extends AppCompatActivity {
     private String price;
     private TextView total;
+    private CardView debitCredit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,11 +24,19 @@ public class Choose_Payment_Method_Screen extends AppCompatActivity {
         setContentView(R.layout.activity_choose__payment__method__screen);
 
         setupUIViews();
+        debitCredit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Choose_Payment_Method_Screen.this,Category_Screen.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void setupUIViews()
     {
         total = findViewById(R.id.tvPricePay);
+        debitCredit = findViewById(R.id.cvPaymentCard);
         Toolbar toolbar = findViewById(R.id.toolbarPaymentMethod);
         setSupportActionBar(toolbar);
         toolbar.setTitle("Payment Method");
@@ -37,7 +48,7 @@ public class Choose_Payment_Method_Screen extends AppCompatActivity {
         Bundle getPrice = getIntent().getExtras();
         if (getPrice == null)
         {
-            return;
+            Toast.makeText(Choose_Payment_Method_Screen.this,price,Toast.LENGTH_SHORT).show();
         }
         else
         {

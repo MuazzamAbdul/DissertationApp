@@ -72,7 +72,7 @@ public class Login_Screen extends AppCompatActivity {
         login = findViewById(R.id.btnLogin);
         signup = findViewById(R.id.btnSignUp);
         forgetPass = findViewById(R.id.btnForgetPass);
-        loadingBar = new ProgressDialog(this);
+        loadingBar = new ProgressDialog(this,R.style.DialogAlert);
     }
 
     private boolean validateTextFields()

@@ -64,8 +64,8 @@
             android:name=".Admin.Admin_Delete_Product2_Screen"
             android:theme="@style/AdminAppTheme" />
         <activity android:name=".Users.Add_To_Cart_Screen" />
-        <activity android:name=".Shopping_Cart_Screen"></activity>
-        <activity android:name=".Choose_Payment_Method_Screen">
+        <activity android:name=".Users.Shopping_Cart_Screen"></activity>
+        <activity android:name=".Users.Choose_Payment_Method_Screen">
 
         </activity>
     </application>

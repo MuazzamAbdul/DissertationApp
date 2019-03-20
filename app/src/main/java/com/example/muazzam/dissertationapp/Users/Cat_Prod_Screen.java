@@ -25,7 +25,6 @@ import com.bumptech.glide.Glide;
 import com.example.muazzam.dissertationapp.Model.Products;
 import com.example.muazzam.dissertationapp.Prevalent.Prevalent;
 import com.example.muazzam.dissertationapp.R;
-import com.example.muazzam.dissertationapp.Shopping_Cart_Screen;
 import com.example.muazzam.dissertationapp.ViewHolder.ProductViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;

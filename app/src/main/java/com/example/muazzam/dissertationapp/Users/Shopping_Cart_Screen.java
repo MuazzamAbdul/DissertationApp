@@ -1,4 +1,4 @@
-package com.example.muazzam.dissertationapp;
+package com.example.muazzam.dissertationapp.Users;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.muazzam.dissertationapp.Model.Cart;
+import com.example.muazzam.dissertationapp.R;
 import com.example.muazzam.dissertationapp.ViewHolder.CartViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -90,8 +91,9 @@ public class Shopping_Cart_Screen extends AppCompatActivity {
             public void onClick(View v) {
                 finish();
                 Intent intent = new Intent(Shopping_Cart_Screen.this,Choose_Payment_Method_Screen.class);
+                intent.putExtra("Price",totAmt.getText().toString());
                 startActivity(intent);
-                intent.putExtra("Price",tot);
+
             }
         });
 
