@@ -10,7 +10,7 @@ import com.example.muazzam.dissertationapp.R;
 
 public class SupermarketViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-    public TextView superName,price;
+    public TextView superName,price,distance;
     public ItemClickListener listener;
 
     public SupermarketViewHolder(@NonNull View itemView) {
@@ -18,6 +18,7 @@ public class SupermarketViewHolder extends RecyclerView.ViewHolder implements Vi
 
         superName = itemView.findViewById(R.id.supermarket_name);
         price = itemView.findViewById(R.id.price);
+        distance = itemView.findViewById(R.id.superDistance);
     }
     public void setItemClickListener(ItemClickListener listener)
     {

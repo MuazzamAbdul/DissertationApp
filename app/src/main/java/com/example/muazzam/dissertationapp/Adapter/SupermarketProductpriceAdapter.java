@@ -31,13 +31,14 @@ public class SupermarketProductpriceAdapter extends RecyclerView.Adapter<Superma
 
     public static class SupermarketProductpriceViewHolder extends RecyclerView.ViewHolder
     {
-        public TextView superName,price;
+        public TextView superName,price,distance;
 
         public SupermarketProductpriceViewHolder(@NonNull View itemView,final OnItemClickListener listener) {
             super(itemView);
 
             superName = itemView.findViewById(R.id.supermarket_name);
             price = itemView.findViewById(R.id.price);
+            distance = itemView.findViewById(R.id.superDistance);
 
             superName.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -54,6 +55,20 @@ public class SupermarketProductpriceAdapter extends RecyclerView.Adapter<Superma
             });
 
             price.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null)
+                    {
+                        int position = getAdapterPosition();
+                        if(position != RecyclerView.NO_POSITION)
+                        {
+                            listener.onItemClick(position);
+                        }
+                    }
+                }
+            });
+
+            distance.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (listener != null)
@@ -88,6 +103,7 @@ public class SupermarketProductpriceAdapter extends RecyclerView.Adapter<Superma
 
         supermarketProductpriceViewHolder.superName.setText(currentItem.getName());
         supermarketProductpriceViewHolder.price.setText("Rs " + currentItem.getPrice());
+        supermarketProductpriceViewHolder.distance.setText("Distance: " + currentItem.getDistance() + " km");
     }
 
     @Override

@@ -38,6 +38,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class Product_Supermarket_Screen extends AppCompatActivity {
@@ -53,6 +54,7 @@ public class Product_Supermarket_Screen extends AppCompatActivity {
     private FirebaseDatabase firebaseDatabase;
     private ArrayList<String> supID;
     private ArrayList<DisplaySuperProdPrice> supProdList;
+    private Double currentLat,currentLong;
 
 
     private static final int MY_PERMISSIONS_REQUEST_CODE = 1 ;
@@ -188,11 +190,11 @@ public class Product_Supermarket_Screen extends AppCompatActivity {
                         if (location != null) {
                             // Logic to handle location object
 
-                            Double latitude = location.getLatitude();
-                            Double longitude = location.getLongitude();
+                            currentLat = location.getLatitude();
+                            currentLong = location.getLongitude();
 
 
-                            if ((latitude <= -20.193921 && latitude >=-20.334203)   && (longitude>=57.483448 && longitude <= 57.629066))
+                            if ((currentLat <= -20.193921 && currentLat >=-20.334203)   && (currentLong>=57.483448 && currentLong <= 57.629066))
                             {
                                 Toast.makeText(Product_Supermarket_Screen.this,"Moka",Toast.LENGTH_SHORT).show();
                                 retrieveSupermarket("Moka");
@@ -200,13 +202,13 @@ public class Product_Supermarket_Screen extends AppCompatActivity {
 
                             }
 
-                            if ((latitude <= -20.137545&& latitude >=-20.193921)   && (longitude>=57.471481 && longitude <= 57.552166))
+                            if ((currentLat <= -20.137545&& currentLat >=-20.193921)   && (currentLong>=57.471481 && currentLong <= 57.552166))
                             {
                                 retrieveSupermarket("Port-Louis");
                                 retrieveSupermarketProductList();
                             }
 
-                            if (((latitude <= -20.203829&& latitude >=-20.396059)   && (longitude>=57.451060 && longitude <= 57.485295)) || ((latitude <= -20.239755&& latitude >=-20.396059)   && (longitude>=57.485295 && longitude <= 57.515951)))
+                            if (((currentLat <= -20.203829&& currentLat >=-20.396059)   && (currentLong>=57.451060 && currentLong <= 57.485295)) || ((currentLat <= -20.239755&& currentLat >=-20.396059)   && (currentLong>=57.485295 && currentLong <= 57.515951)))
                             {
                                 retrieveSupermarket("Plaines Wilhems");
                                 retrieveSupermarketProductList();
@@ -242,7 +244,10 @@ public class Product_Supermarket_Screen extends AppCompatActivity {
 
 
                     String name = String.valueOf(ds.child("Name").getValue(String.class));
-                    supID.add(name + "/" + id);
+                    String superLat = String.valueOf(ds.child("Latitude").getValue(String.class));
+                    String superLong = String.valueOf(ds.child("Longitude").getValue(String.class));
+                    String distance = calculateDistance(superLat,superLong);
+                    supID.add(name + "/" + id + "|" + distance);
                 }
             }
             @Override
@@ -250,6 +255,33 @@ public class Product_Supermarket_Screen extends AppCompatActivity {
                 Toast.makeText(Product_Supermarket_Screen.this,"Failure retrieving data from Supermarkets Database",Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private String calculateDistance(String superLat,String superLong)
+    {
+        Double lat = Double.parseDouble(superLat);
+        Double longi = Double.parseDouble(superLong);
+
+        int R = 6371; // km (Earth radius)
+        double dLat = (lat-currentLat)* (Math.PI/180) ;
+        double dLon = (longi-currentLong)* (Math.PI/180);
+
+
+        currentLat = currentLat * (Math.PI/180);
+        lat = lat * (Math.PI/180);
+
+        double a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(currentLat) * Math.cos(lat);
+
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+
+        double d = R * c;
+
+        final DecimalFormat df = new DecimalFormat(".##");
+
+        String distance = df.format(d);
+
+        return distance;
     }
 
     private void retrieveSupermarketProductList()
@@ -265,13 +297,14 @@ public class Product_Supermarket_Screen extends AppCompatActivity {
 
                     for (String supernameID : supID)
                     {
-                        String superID = supernameID.substring(supernameID.indexOf('/')+1,supernameID.length());
+                        String superID = supernameID.substring(supernameID.indexOf('/')+1,supernameID.indexOf("|"));
                         String id = superID + "-" + Prevalent.displayProducts.getID();
                         if (nameID.equals(id))
                         {
                             String superName = supernameID.substring(0,supernameID.indexOf('/'));
+                            String superDistance = supernameID.substring(supernameID.indexOf('|') + 1, supernameID.length());
                             String price = String.valueOf(ds.child("Price").getValue(String.class));
-                            supProdList.add(new DisplaySuperProdPrice(superName,price));
+                            supProdList.add(new DisplaySuperProdPrice(superName,price,superDistance));
                         }
 
                     }

@@ -26,9 +26,9 @@ import java.util.HashMap;
 
 public class Admin_Add_Supermarket_Screen extends AppCompatActivity {
 
-    private EditText superId,superName,superLocation;
+    private EditText superId,superName,superLocation,lat,longi;
     private Button addSuper,cancel;
-    private String id, name,location;
+    private String id, name,location,latitude,longitude;
     private FirebaseDatabase firebaseDatabase;
     private ArrayList<String> list;
 
@@ -75,6 +75,8 @@ public class Admin_Add_Supermarket_Screen extends AppCompatActivity {
         superId = findViewById(R.id.etSupermarketId);
         superName = findViewById(R.id.etSupermarketName);
         superLocation = findViewById(R.id.etSupermarketLoc);
+        lat = findViewById(R.id.etLatitude);
+        longi = findViewById(R.id.etLongitude);
         addSuper= findViewById(R.id.btnAddSup);
         cancel = findViewById(R.id.btncancelSup);
         list = new ArrayList<>();
@@ -100,6 +102,8 @@ public class Admin_Add_Supermarket_Screen extends AppCompatActivity {
         id = superId.getText().toString();
         name = superName.getText().toString();
         location = superLocation.getText().toString();
+        latitude = lat.getText().toString();
+        longitude = longi.getText().toString();
 
 
          if (TextUtils.isEmpty(id))
@@ -114,6 +118,14 @@ public class Admin_Add_Supermarket_Screen extends AppCompatActivity {
         {
             superLocation.setError("Please enter supermarket Location");
         }
+         else if (TextUtils.isEmpty(latitude))
+         {
+             lat.setError("Please enter supermarket Latitude");
+         }
+         else if (TextUtils.isEmpty(longitude))
+         {
+             longi.setError("Please enter supermarket Longitude");
+         }
          else if (list.contains(id))
          {
              superId.setError("Supermarket ID already taken");
@@ -136,6 +148,8 @@ public class Admin_Add_Supermarket_Screen extends AppCompatActivity {
                 userDataMap.put("ID",id);
                 userDataMap.put("Name",name);
                 userDataMap.put("Location",location);
+                userDataMap.put("Latitude",latitude);
+                userDataMap.put("Longitude",longitude);
 
                 databaseReference.child("Supermarkets").child(location).child(id).updateChildren(userDataMap)
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
