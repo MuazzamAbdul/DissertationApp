@@ -89,10 +89,36 @@ public class Add_To_Cart_Screen extends AppCompatActivity {
                             }
                         });
                 AlertDialog alert = exit.create();
-                alert.setTitle("Purchase");
+                alert.setTitle("Purchase Product");
                 alert.show();
 
 
+            }
+        });
+
+        orderSuper.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                AlertDialog.Builder exit = new AlertDialog.Builder(Add_To_Cart_Screen.this,R.style.DialogAlert);
+                exit.setMessage("Order Product from supermarket?")
+                        .setCancelable(false)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                saveOrder();
+                                finish();
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+                AlertDialog alert = exit.create();
+                alert.setTitle("Purchase Product");
+                alert.show();
             }
         });
     }
@@ -124,6 +150,14 @@ public class Add_To_Cart_Screen extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+        Intent intent = new Intent(Add_To_Cart_Screen.this,Product_Supermarket_Screen.class);
+        startActivity(intent);
+    }
+
     private void addToCart()
     {
         final String saveCurrentTime,saveCurrentDate;
@@ -139,7 +173,7 @@ public class Add_To_Cart_Screen extends AppCompatActivity {
         userAuthKey = user.getUid();
 
 
-        databaseReference.child("Cart").child(userAuthKey).child("Products").child(Prevalent.displayProducts.getID() + "-" + superName.getText().toString())
+        databaseReference.child("Cart").child(userAuthKey).child("Products").child(Prevalent.supermarketProductPrice.getSuperid())
                 .addListenerForSingleValueEvent(new ValueEventListener() {
 
             @Override
@@ -155,7 +189,7 @@ public class Add_To_Cart_Screen extends AppCompatActivity {
                 userDataMap.put("Quantity",qty.getNumber());
                 userDataMap.put("Price",Prevalent.supermarketProductPrice.getPrice());
 
-                databaseReference.child("Cart").child(userAuthKey).child("Products").child(Prevalent.displayProducts.getID() + "-" + superName.getText().toString())
+                databaseReference.child("Cart").child(userAuthKey).child("Products").child(Prevalent.supermarketProductPrice.getSuperid())
                         .updateChildren(userDataMap)
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
@@ -181,5 +215,109 @@ public class Add_To_Cart_Screen extends AppCompatActivity {
         });
     }
 
+    private void saveOrder()
+    {
+        final String saveCurrentTime,saveCurrentDate;
+        Calendar currentDates = Calendar.getInstance();
+
+        SimpleDateFormat currentDate = new SimpleDateFormat("dd MM yyyy");
+        saveCurrentDate = currentDate.format(currentDates.getTime());
+
+        SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss a");
+        saveCurrentTime = currentTime.format(currentDates.getTime());
+
+        final DatabaseReference db = FirebaseDatabase.getInstance().getReference();
+        user = firebaseAuth.getCurrentUser();
+        userAuthKey = user.getUid();
+
+        db.child("Orders").child(userAuthKey).child(saveCurrentDate + " " + saveCurrentTime).child("Products").child(Prevalent.supermarketProductPrice.getSuperid()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                if (!dataSnapshot.exists())
+                {
+
+                    HashMap<String,Object> userDataMap = new HashMap<>();
+
+                    userDataMap.put("ID",Prevalent.displayProducts.getID());
+                    userDataMap.put("Name",prodName.getText().toString());
+                    userDataMap.put("Date", saveCurrentDate);
+                    userDataMap.put("Time",saveCurrentTime);
+                    userDataMap.put("Supermarket",superName.getText().toString());
+                    userDataMap.put("Quantity",qty.getNumber());
+                    userDataMap.put("Price",Prevalent.supermarketProductPrice.getPrice());
+//                    userDataMap.put("Status","Not Completed");
+
+                    db.child("Orders").child(userAuthKey).child(saveCurrentDate + " " + saveCurrentTime).child("Products").child(Prevalent.supermarketProductPrice.getSuperid())
+                            .updateChildren(userDataMap)
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+
+                                    if (task.isSuccessful())
+                                    {
+                                        Toast.makeText(Add_To_Cart_Screen.this,"Order Placed! Please collect product from Supermarket",Toast.LENGTH_SHORT).show();
+                                        decreaseQuantitySupermarket(Prevalent.supermarketProductPrice.getSuperid(),qty.getNumber());
+                                    }
+
+                                }
+                            });
+
+                }
+                else
+                {
+                    Toast.makeText(Add_To_Cart_Screen.this,"Order Already Exists!",Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void decreaseQuantitySupermarket(final String key, final String quantity)
+    {
+        final DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference();
+
+        databaseRef.child("Supermarkets_Products").child(key).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                String oldQty = String.valueOf(dataSnapshot.child("Quantity").getValue(String.class));
+
+                int oldQuantity = Integer.parseInt(oldQty);
+                int quantityOrdered = Integer.parseInt(quantity);
+                int newQuantity = oldQuantity - quantityOrdered;
+
+                String newQty = String.valueOf(newQuantity);
+
+
+                HashMap<String,Object> userDataMap = new HashMap<>();
+                userDataMap.put("Quantity",newQty);
+
+                databaseRef.child("Supermarkets_Products").child(key).updateChildren(userDataMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful())
+                        {
+                            Toast.makeText(Add_To_Cart_Screen.this,"Quantity Decremented",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(Add_To_Cart_Screen.this,"Failure decrementing products from Supermarkets",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+    }
 
 }

@@ -47,12 +47,12 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvShoppingCart"
         android:layout_width="match_parent"
-        android:layout_height="370dp"
-        android:background="@drawable/round_layout"
+        android:layout_height="332dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:background="@drawable/round_layout"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -63,7 +63,7 @@
     <android.support.v7.widget.CardView
         android:id="@+id/cardTotal"
         android:layout_width="match_parent"
-        android:layout_height="55dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -81,42 +81,148 @@
             android:layout_height="match_parent"
             android:background="@drawable/display_product_layout">
 
-            <TextView
-                android:id="@+id/tvTotal"
-                android:layout_width="170dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="7dp"
-                android:layout_toStartOf="@+id/tvTotalPrice"
-                android:fontFamily="serif"
-                android:gravity="left"
-                android:paddingStart="5dp"
-                android:paddingLeft="10dp"
-                android:paddingEnd="5dp"
-                android:text="Total Amount: "
-                android:textColor="@android:color/black"
-                android:textSize="18sp" />
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tvTotalPrice"
-                android:layout_width="167dp"
-                android:layout_height="29dp"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="6dp"
-                android:fontFamily="serif"
-                android:gravity="right"
-                android:paddingStart="5dp"
-                android:paddingEnd="5dp"
-                android:paddingRight="10dp"
-                android:text="Rs 0.00"
-                android:textColor="@android:color/black"
-                android:textSize="18sp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/tvTotalAmount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="7dp"
+                        android:layout_toStartOf="@+id/tvTotalPrice"
+                        android:fontFamily="serif"
+                        android:gravity="left"
+                        android:paddingStart="5dp"
+                        android:paddingLeft="10dp"
+                        android:paddingEnd="5dp"
+                        android:text="Total Amount: "
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/tvTotalPrice"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="6dp"
+                        android:fontFamily="serif"
+                        android:gravity="right"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp"
+                        android:paddingRight="10dp"
+                        android:text="Rs 0.00"
+                        android:textColor="@android:color/black"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/tvDelivery"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="7dp"
+                        android:layout_toStartOf="@+id/tvTotalPrice"
+                        android:fontFamily="serif"
+                        android:gravity="left"
+                        android:paddingStart="5dp"
+                        android:paddingLeft="10dp"
+                        android:paddingEnd="5dp"
+                        android:text="Delivery Fee:"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/tvDeliveryFee"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="6dp"
+                        android:fontFamily="serif"
+                        android:gravity="right"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp"
+                        android:paddingRight="10dp"
+                        android:text="+ Rs 150.00"
+                        android:textColor="@android:color/black"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/tvTotal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="7dp"
+                        android:layout_toStartOf="@+id/tvTotalPrice"
+                        android:fontFamily="serif"
+                        android:gravity="left"
+                        android:paddingStart="5dp"
+                        android:paddingLeft="10dp"
+                        android:paddingEnd="5dp"
+                        android:text="Total:"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/tvTotalFee"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="6dp"
+                        android:fontFamily="serif"
+                        android:gravity="right"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp"
+                        android:paddingRight="10dp"
+                        android:text="Rs 0.00"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/black"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+
+
 
         </RelativeLayout>
 

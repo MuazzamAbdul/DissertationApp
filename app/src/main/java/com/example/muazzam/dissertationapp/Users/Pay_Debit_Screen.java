@@ -7,10 +7,12 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,10 +32,12 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
 
-public class Choose_Payment_Method_Screen extends AppCompatActivity {
-    private String price;
-    private TextView total;
-    private CardView debitCredit,cashOnDelivery,paypal;
+public class Pay_Debit_Screen extends AppCompatActivity {
+
+    private TextView amount;
+    private EditText etCardName,etCardNo,etCardExp,etCardSec;
+    private String cname,cno,cexp,csec;
+    private Button pay;
     private String userAuthKey;
     private FirebaseAuth firebaseAuth;
     private FirebaseDatabase firebaseDatabase;
@@ -42,7 +46,7 @@ public class Choose_Payment_Method_Screen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_choose__payment__method__screen);
+        setContentView(R.layout.activity_pay__debit__screen);
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -50,66 +54,90 @@ public class Choose_Payment_Method_Screen extends AppCompatActivity {
         userAuthKey = user.getUid();
 
         setupUIViews();
-        debitCredit.setOnClickListener(new View.OnClickListener() {
+
+        pay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
-                Intent intent = new Intent(Choose_Payment_Method_Screen.this,Pay_Debit_Screen.class);
-                startActivity(intent);
+                if (validateTextFields())
+                {
+
+                    AlertDialog.Builder exit = new AlertDialog.Builder(Pay_Debit_Screen.this,R.style.DialogAlert);
+                    exit.setMessage("Confirm Payment?")
+                            .setCancelable(false)
+                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    saveShippingDetails();
+                                    retrieveProductFromCart();
+                                    finish();
+
+                                }
+                            })
+                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.cancel();
+                                }
+                            });
+                    AlertDialog alert = exit.create();
+                    alert.setTitle("Place Order");
+                    alert.show();
+                    }
             }
         });
 
-        cashOnDelivery.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                AlertDialog.Builder exit = new AlertDialog.Builder(Choose_Payment_Method_Screen.this,R.style.DialogAlert);
-                exit.setMessage("Pay By Cash??")
-                        .setCancelable(false)
-                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                saveShippingDetails();
-                                retrieveProductFromCart();
-                                finish();
-
-                            }
-                        })
-                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.cancel();
-                            }
-                        });
-                AlertDialog alert = exit.create();
-                alert.setTitle("Place Order");
-                alert.show();
-            }
-        });
-
-        paypal.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //redirect to paypal
-            }
-        });
     }
 
     private void setupUIViews()
     {
-        total = findViewById(R.id.tvPricePay);
-        debitCredit = findViewById(R.id.cvPaymentCard);
-        cashOnDelivery = findViewById(R.id.cvCashOnDel);
-        paypal = findViewById(R.id.cvPaypal);
-        Toolbar toolbar = findViewById(R.id.toolbarPaymentMethod);
+        Toolbar toolbar = findViewById(R.id.toolbarPaymentDebitCard);
         setSupportActionBar(toolbar);
-        toolbar.setTitle("Payment Method");
+        toolbar.setTitle("Payment");
 
         ActionBar actionbar = getSupportActionBar();
         actionbar.setDisplayHomeAsUpEnabled(true);
         actionbar.setHomeAsUpIndicator(R.drawable.ic_action_arrow_back);
 
-        total.setText(Prevalent.shippingDetails.getPrice());
+        etCardName = findViewById(R.id.etCardHolder);
+        etCardNo = findViewById(R.id.etCardNumber);
+        etCardExp = findViewById(R.id.etExpiryDate);
+        etCardSec = findViewById(R.id.etSecurityCode);
+        amount = findViewById(R.id.tvAmount);
+        pay = findViewById(R.id.btnPay);
+
+        amount.setText(Prevalent.shippingDetails.getPrice());
+    }
+
+    private boolean validateTextFields()
+    {
+        boolean result = false;
+        cname = etCardName.getText().toString();
+        cno = etCardNo.getText().toString();
+        cexp = etCardExp.getText().toString();
+        csec = etCardSec.getText().toString();
+
+        if (TextUtils.isEmpty(cname))
+        {
+            etCardName.setError("Please enter CardHolder Name");
+        }
+        else if(TextUtils.isEmpty(cno))
+        {
+            etCardNo.setError("Please enter Card Number");
+        }
+        else if (TextUtils.isEmpty(cexp))
+        {
+            etCardExp.setError("Please enter Expiry Date");
+        }
+        else if (TextUtils.isEmpty(csec))
+        {
+            etCardSec.setError("Please enter Security Code");
+        }
+        else
+        {
+            result = true;
+        }
+        return result;
     }
 
     @Override
@@ -120,7 +148,7 @@ public class Choose_Payment_Method_Screen extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 finish();
-                Intent intent = new Intent(Choose_Payment_Method_Screen.this,Billing_Info_Screen.class);
+                Intent intent = new Intent(Pay_Debit_Screen.this,Choose_Payment_Method_Screen.class);
                 startActivity(intent);
                 return true;
         }
@@ -130,9 +158,8 @@ public class Choose_Payment_Method_Screen extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-
         finish();
-        Intent intent = new Intent(Choose_Payment_Method_Screen.this,Billing_Info_Screen.class);
+        Intent intent = new Intent(Pay_Debit_Screen.this,Choose_Payment_Method_Screen.class);
         startActivity(intent);
     }
 
@@ -154,7 +181,7 @@ public class Choose_Payment_Method_Screen extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                HashMap<String,Object> userDataMap = new HashMap<>();
+                    HashMap<String,Object> userDataMap = new HashMap<>();
 
                 userDataMap.put("Name",Prevalent.shippingDetails.getFname() + " " + Prevalent.shippingDetails.getLname());
                 userDataMap.put("Address",Prevalent.shippingDetails.getAddress()+ ", " + Prevalent.shippingDetails.getCity());
@@ -166,7 +193,7 @@ public class Choose_Payment_Method_Screen extends AppCompatActivity {
 
                                 if (task.isSuccessful())
                                 {
-                                    Toast.makeText(Choose_Payment_Method_Screen.this,"Shipping Details saved!",Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(Pay_Debit_Screen.this,"Shipping Details saved!",Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
@@ -189,7 +216,7 @@ public class Choose_Payment_Method_Screen extends AppCompatActivity {
 
                 if (dataSnapshot.exists()) {
                     for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                        String key = ds.getKey();
+                            String key = ds.getKey();
 
                         String date = String.valueOf(ds.child("Date").getValue(String.class));
                         String id = String.valueOf(ds.child("ID").getValue(String.class));
@@ -207,7 +234,7 @@ public class Choose_Payment_Method_Screen extends AppCompatActivity {
                 }
                 else
                 {
-                    Toast.makeText(Choose_Payment_Method_Screen.this,"Cart does not exist!",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Pay_Debit_Screen.this,"Cart does not exist!",Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -253,22 +280,22 @@ public class Choose_Payment_Method_Screen extends AppCompatActivity {
                     databaseReference.child("Orders").child(userAuthKey).child(saveCurrentDate + " " + saveCurrentTime).child("Products").child(key)
                             .updateChildren(userDataMap)
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
 
-                                    if (task.isSuccessful())
-                                    {
-                                        Toast.makeText(Choose_Payment_Method_Screen.this,"Order Placed!",Toast.LENGTH_SHORT).show();
-                                        deleteCart();
-                                    }
+                            if (task.isSuccessful())
+                            {
+                                Toast.makeText(Pay_Debit_Screen.this,"Order Placed!",Toast.LENGTH_SHORT).show();
+                                deleteCart();
+                            }
 
-                                }
-                            });
+                        }
+                    });
 
                 }
                 else
                 {
-                    Toast.makeText(Choose_Payment_Method_Screen.this,"Order Already Exists!",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Pay_Debit_Screen.this,"Order Already Exists!",Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -294,13 +321,13 @@ public class Choose_Payment_Method_Screen extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
 
-                            Toast.makeText(Choose_Payment_Method_Screen.this,"Cart deleted!",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Pay_Debit_Screen.this,"Cart deleted!",Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
                 else
                 {
-                    Toast.makeText(Choose_Payment_Method_Screen.this,"Cart does not exist!",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Pay_Debit_Screen.this,"Cart does not exist!",Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -308,7 +335,7 @@ public class Choose_Payment_Method_Screen extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                Toast.makeText(Choose_Payment_Method_Screen.this,"Failure retrieving products from Cart",Toast.LENGTH_SHORT).show();
+                Toast.makeText(Pay_Debit_Screen.this,"Failure retrieving products from Cart",Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -338,7 +365,7 @@ public class Choose_Payment_Method_Screen extends AppCompatActivity {
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful())
                         {
-                            Toast.makeText(Choose_Payment_Method_Screen.this,"Quantity Decremented",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Pay_Debit_Screen.this,"Quantity Decremented",Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -348,11 +375,10 @@ public class Choose_Payment_Method_Screen extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(Choose_Payment_Method_Screen.this,"Failure decrementing products from Supermarkets",Toast.LENGTH_SHORT).show();
+                Toast.makeText(Pay_Debit_Screen.this,"Failure decrementing products from Supermarkets",Toast.LENGTH_SHORT).show();
             }
         });
 
 
     }
-
 }

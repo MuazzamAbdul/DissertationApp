@@ -124,8 +124,13 @@ public class Home_Screen extends AppCompatActivity
 //        DrawerLayout drawer =  findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        } else {
+        }
+        else {
             super.onBackPressed();
+            firebaseAuth.signOut();
+            finish();
+            Intent intent = new Intent(Home_Screen.this, Login_Screen.class);
+            startActivity(intent);
         }
     }
 

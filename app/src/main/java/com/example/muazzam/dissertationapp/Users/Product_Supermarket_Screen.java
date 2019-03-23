@@ -113,8 +113,6 @@ public class Product_Supermarket_Screen extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 finish();
-//                Intent intent = new Intent(FAQ_Screen.this,Home_Screen.class);
-//                startActivity(intent);
                 return true;
 
             case R.id.shopping_cart:
@@ -123,6 +121,12 @@ public class Product_Supermarket_Screen extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 
     @Override
@@ -305,7 +309,7 @@ public class Product_Supermarket_Screen extends AppCompatActivity {
                             String superName = supernameID.substring(0,supernameID.indexOf('/'));
                             String superDistance = supernameID.substring(supernameID.indexOf('|') + 1, supernameID.length());
                             String price = String.valueOf(ds.child("Price").getValue(String.class));
-                            supProdList.add(new DisplaySuperProdPrice(superName,price,superDistance));
+                            supProdList.add(new DisplaySuperProdPrice(id,superName,price,superDistance));
                         }
 
                     }

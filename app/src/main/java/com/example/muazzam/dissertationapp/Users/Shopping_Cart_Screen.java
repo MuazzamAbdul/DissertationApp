@@ -44,7 +44,7 @@ public class Shopping_Cart_Screen extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private double Total;
-    private TextView totAmt;
+    private TextView totAmt,totalFee,deliveryFee;
     private Button delete,checkout;
     private FirebaseDatabase firebaseDatabase;
 
@@ -90,8 +90,8 @@ public class Shopping_Cart_Screen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
-                Intent intent = new Intent(Shopping_Cart_Screen.this,Choose_Payment_Method_Screen.class);
-                intent.putExtra("Price",totAmt.getText().toString());
+                Intent intent = new Intent(Shopping_Cart_Screen.this,Billing_Info_Screen.class);
+                intent.putExtra("Price",totalFee.getText().toString());
                 startActivity(intent);
 
             }
@@ -105,6 +105,8 @@ public class Shopping_Cart_Screen extends AppCompatActivity {
         totAmt = findViewById(R.id.tvTotalPrice);
         delete = findViewById(R.id.btnDeleteAll);
         checkout = findViewById(R.id.btnCheckOut);
+        deliveryFee = findViewById(R.id.tvDeliveryFee);
+        totalFee = findViewById(R.id.tvTotalFee);
         Toolbar toolbar = findViewById(R.id.toolbarShopping);
         setSupportActionBar(toolbar);
         toolbar.setTitle("Shopping Cart");
@@ -130,6 +132,12 @@ public class Shopping_Cart_Screen extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 
     private void retrieveCartProducts()
@@ -214,17 +222,26 @@ public class Shopping_Cart_Screen extends AppCompatActivity {
                     }
                      tot = df.format(Total);
 
+
+                    String fee = deliveryFee.getText().toString();
+                    double deliveryFees = Double.parseDouble(fee.substring(fee.indexOf("Rs") + 2,fee.length()));
+                    double grandTotal = Total + deliveryFees;
+                    totalFee.setText("Rs " + df.format(grandTotal));
+
                 }
                 else
                 {
                     Toast.makeText(Shopping_Cart_Screen.this,"Cart is empty!",Toast.LENGTH_SHORT).show();
+                    deliveryFee.setText("+ Rs 0.00");
+                    totalFee.setText("Rs 0.00");
                 }
                 totAmt.setText("Rs " + tot);
-
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                Toast.makeText(Shopping_Cart_Screen.this,"Failure retrieving products from Cart",Toast.LENGTH_SHORT).show();
 
             }
         });

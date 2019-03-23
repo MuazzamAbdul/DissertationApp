@@ -2,13 +2,14 @@ package com.example.muazzam.dissertationapp.Model;
 
 public class DisplaySuperProdPrice {
 
-    private String name,price,distance;
+    private String superid,name,price,distance;
 
     public DisplaySuperProdPrice() {
     }
 
-    public DisplaySuperProdPrice(String name, String price,String distance) {
+    public DisplaySuperProdPrice(String superid,String name, String price,String distance) {
         this.name = name;
+        this.superid = superid;
         this.price = price;
         this.distance = distance;
     }
@@ -19,6 +20,14 @@ public class DisplaySuperProdPrice {
 
     public void setDistance(String distance) {
         this.distance = distance;
+    }
+
+    public String getSuperid() {
+        return superid;
+    }
+
+    public void setSuperid(String superid) {
+        this.superid = superid;
     }
 
     public String getName() {
