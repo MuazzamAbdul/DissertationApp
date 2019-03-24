@@ -13,11 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Users.Login_Screen">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".Users.Sign_Up_Screen" />
         <activity android:name=".Users.Category_Screen" />
@@ -66,11 +62,21 @@
         <activity android:name=".Users.Add_To_Cart_Screen" />
         <activity android:name=".Users.Shopping_Cart_Screen" />
         <activity android:name=".Users.Choose_Payment_Method_Screen" />
-        <activity android:name=".Users.Pay_Debit_Screen">
+        <activity android:name=".Users.Pay_Debit_Screen" />
+        <activity android:name=".Users.Billing_Info_Screen" />
+        <activity
+            android:name=".Admin_Order_Screen"
+            android:theme="@style/AdminAppTheme">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
 
         </activity>
-        <activity android:name=".Users.Billing_Info_Screen">
-        </activity>
+        <activity android:name=".Admin_Completed_Products_Screen"
+            android:theme="@style/AdminAppTheme"></activity>
     </application>
 
 </manifest>

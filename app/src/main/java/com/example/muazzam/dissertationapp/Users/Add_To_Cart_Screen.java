@@ -230,6 +230,50 @@ public class Add_To_Cart_Screen extends AppCompatActivity {
         user = firebaseAuth.getCurrentUser();
         userAuthKey = user.getUid();
 
+        final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+
+        databaseReference.child("Orders").child(userAuthKey).child(saveCurrentDate + " " + saveCurrentTime).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                if (!dataSnapshot.exists())
+                {
+
+                    HashMap<String,Object> userDataMap = new HashMap<>();
+
+                    userDataMap.put("Status","Ongoing");
+                    userDataMap.put("Total","Rs " + Prevalent.supermarketProductPrice.getPrice());
+
+
+                    databaseReference.child("Orders").child(userAuthKey).child(saveCurrentDate + " " + saveCurrentTime)
+                            .updateChildren(userDataMap)
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+
+                                    if (task.isSuccessful())
+                                    {
+                                        Toast.makeText(Add_To_Cart_Screen.this,"Status!",Toast.LENGTH_SHORT).show();
+
+                                    }
+
+                                }
+                            });
+
+                }
+                else
+                {
+                    Toast.makeText(Add_To_Cart_Screen.this,"Order Already Exists!",Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
         db.child("Orders").child(userAuthKey).child(saveCurrentDate + " " + saveCurrentTime).child("Products").child(Prevalent.supermarketProductPrice.getSuperid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

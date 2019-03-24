@@ -1,9 +1,11 @@
 package com.example.muazzam.dissertationapp.Users;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
@@ -73,6 +75,30 @@ public class Login_Screen extends AppCompatActivity {
         signup = findViewById(R.id.btnSignUp);
         forgetPass = findViewById(R.id.btnForgetPass);
         loadingBar = new ProgressDialog(this,R.style.DialogAlert);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        AlertDialog.Builder exit = new AlertDialog.Builder(Login_Screen.this,R.style.DialogAlert);
+        exit.setMessage("Exit App?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert = exit.create();
+        alert.setTitle("Exit");
+        alert.show();
     }
 
     private boolean validateTextFields()
@@ -146,7 +172,6 @@ public class Login_Screen extends AppCompatActivity {
         if (verified)
         {
             Toast.makeText(Login_Screen.this,"Login Successful!",Toast.LENGTH_SHORT).show();
-            finish();
             Intent intent = new Intent(Login_Screen.this,Home_Screen.class);
             startActivity(intent);
         }

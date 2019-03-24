@@ -23,7 +23,7 @@
         app:title="Add Product"
         app:titleTextAppearance="@style/TextAppearanceToolbar"
         app:titleTextColor="@color/adminTextColor"
-        />
+    />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/add_Product"

@@ -1,5 +1,6 @@
 package com.example.muazzam.dissertationapp.Users;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -122,15 +124,32 @@ public class Home_Screen extends AppCompatActivity
     @Override
     public void onBackPressed() {
 //        DrawerLayout drawer =  findViewById(R.id.drawer_layout);
+        super.onBackPressed();
+
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         }
         else {
-            super.onBackPressed();
-            firebaseAuth.signOut();
-            finish();
-            Intent intent = new Intent(Home_Screen.this, Login_Screen.class);
-            startActivity(intent);
+//            AlertDialog.Builder exit = new AlertDialog.Builder(Home_Screen.this,R.style.DialogAlert);
+//            exit.setMessage("Sign Out?")
+//                    .setCancelable(false)
+//                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+//                        @Override
+//                        public void onClick(DialogInterface dialog, int which) {
+                            firebaseAuth.signOut();
+                            finish();
+//                        }
+//                    })
+//                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+//                        @Override
+//                        public void onClick(DialogInterface dialog, int which) {
+//                            dialog.cancel();
+//                        }
+//                    });
+//            AlertDialog alert = exit.create();
+//            alert.setTitle("Exit");
+//            alert.show();
+
         }
     }
 
@@ -185,10 +204,27 @@ public class Home_Screen extends AppCompatActivity
             Intent intent = new Intent(Home_Screen.this, Settings_Screen.class);
             startActivity(intent);
         } else if (id == R.id.sign_out) {
-            firebaseAuth.signOut();
-            finish();
-            Intent intent = new Intent(Home_Screen.this, Login_Screen.class);
-            startActivity(intent);
+            AlertDialog.Builder exit = new AlertDialog.Builder(Home_Screen.this,R.style.DialogAlert);
+            exit.setMessage("Sign Out?")
+                    .setCancelable(false)
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            firebaseAuth.signOut();
+                            Intent intent = new Intent(Home_Screen.this, Login_Screen.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                    })
+                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+            AlertDialog alert = exit.create();
+            alert.setTitle("Exit");
+            alert.show();
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;
