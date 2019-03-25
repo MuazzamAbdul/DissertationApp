@@ -1,4 +1,4 @@
-package com.example.muazzam.dissertationapp;
+package com.example.muazzam.dissertationapp.Admin.Fragments;
 
 
 import android.content.Intent;
@@ -17,7 +17,9 @@ import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.muazzam.dissertationapp.Adapter.OrderCompleted;
+import com.example.muazzam.dissertationapp.Admin.Admin_Completed_Products_Screen;
 import com.example.muazzam.dissertationapp.Model.CompletedOrder;
+import com.example.muazzam.dissertationapp.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

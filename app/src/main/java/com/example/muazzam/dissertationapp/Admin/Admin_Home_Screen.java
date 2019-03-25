@@ -1,5 +1,7 @@
 package com.example.muazzam.dissertationapp.Admin;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -52,9 +54,29 @@ public class Admin_Home_Screen extends AppCompatActivity implements BottomNaviga
                 return true;
 
             case R.id.navigation_sign_out:
-                finish();
-                Intent intent = new Intent(Admin_Home_Screen.this,Login_Screen.class);
-                startActivity(intent);
+                AlertDialog.Builder exit = new AlertDialog.Builder(Admin_Home_Screen.this);
+                exit.setMessage("Do you want to Sign Out?")
+                        .setCancelable(false)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                finish();
+                                Intent intent = new Intent(Admin_Home_Screen.this,Login_Screen.class);
+                                startActivity(intent);
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                finish();
+
+                            }
+                        });
+                AlertDialog alert = exit.create();
+                alert.setTitle("Exit");
+                alert.show();
+
+
 
         }
 

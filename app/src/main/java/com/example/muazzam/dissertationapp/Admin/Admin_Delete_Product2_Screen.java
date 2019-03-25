@@ -119,7 +119,7 @@ public class Admin_Delete_Product2_Screen extends AppCompatActivity {
                 holder.deleteProd.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        AlertDialog.Builder exit = new AlertDialog.Builder(Admin_Delete_Product2_Screen.this);
+                        AlertDialog.Builder exit = new AlertDialog.Builder(Admin_Delete_Product2_Screen.this,R.style.AdminDialogAlert);
                         exit.setMessage("Do you want to delete Product?")
                                 .setCancelable(false)
                                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
@@ -186,7 +186,7 @@ public class Admin_Delete_Product2_Screen extends AppCompatActivity {
                 holder.deleteProd.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        AlertDialog.Builder exit = new AlertDialog.Builder(Admin_Delete_Product2_Screen.this);
+                        AlertDialog.Builder exit = new AlertDialog.Builder(Admin_Delete_Product2_Screen.this,R.style.AdminDialogAlert);
                         exit.setMessage("Do you want to delete Product?")
                                 .setCancelable(false)
                                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {

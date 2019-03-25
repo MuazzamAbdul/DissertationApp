@@ -5,29 +5,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/adminpicture"
-    tools:context=".Admin.Admin_Add_Product_Screen2">
+    tools:context=".Admin.Admin_Edit_ProductSuper_Screen">
+
+
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbarAddProduct2"
+        android:id="@+id/toolbarEditProduct"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
+        android:theme="@style/AdminAppTheme"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:title="Add Product"
+        app:title="Edit Product"
         app:titleTextAppearance="@style/TextAppearanceToolbar"
-        app:titleTextColor="@color/adminTextColor" />
+        app:titleTextColor="@color/adminTextColor"
+        />
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/productPic"
-        android:layout_width="125dp"
-        android:layout_height="125dp"
+        android:id="@+id/EditproductPic"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -41,36 +44,109 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.14" />
 
-    <Button
-        android:id="@+id/btncancel2"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="85dp"
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:background="@drawable/admin_rounded_button"
-        android:fontFamily="serif"
-        android:text="Cancel"
-        android:textAlignment="center"
-        android:textColor="@color/adminTextColor"
-        app:layout_constraintBottom_toBottomOf="@+id/toolbarAddProduct2"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="56dp"
+        android:background="@drawable/admin_round_layout"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/toolbarAddProduct2"
-        app:layout_constraintTop_toTopOf="@+id/toolbarAddProduct2" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/EditproductPic"
+        app:layout_constraintVertical_bias="0.245">
+
+
+        <TextView
+            android:id="@+id/tvEditProductName"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/rounded_textfield_myaccount"
+            android:drawablePadding="10dp"
+            android:fontFamily="serif"
+            android:gravity="fill"
+            android:paddingLeft="10dp"
+            android:text="Product Name"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tvEditSuperName"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/rounded_textfield_myaccount"
+            android:drawablePadding="10dp"
+            android:fontFamily="serif"
+            android:gravity="fill"
+            android:paddingLeft="10dp"
+            android:text="Supermarket Name"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+
+        <EditText
+            android:id="@+id/etEditProductQty"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/rounded_textfield"
+            android:drawablePadding="10dp"
+            android:ems="10"
+            android:paddingEnd="10dp"
+            android:fontFamily="serif"
+            android:hint="Quantity"
+            android:inputType="number"
+            android:paddingLeft="10dp"
+            android:textColor="@android:color/black"
+            android:textCursorDrawable="@drawable/admin_color_cursor" />
+
+        <EditText
+            android:id="@+id/etEditProductPrice"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/rounded_textfield"
+            android:drawablePadding="10dp"
+            android:ems="10"
+            android:fontFamily="serif"
+            android:hint="Price"
+            android:inputType="numberDecimal"
+            android:paddingLeft="10dp"
+            android:paddingEnd="10dp"
+            android:textColor="@android:color/black"
+            android:textCursorDrawable="@drawable/admin_color_cursor" />
+    </LinearLayout>
 
     <Button
-        android:id="@+id/btnAddProduct"
+        android:id="@+id/btnEditProduct"
         style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="143dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:padding="10dp"
         android:background="@drawable/admin_rounded_button"
         android:fontFamily="serif"
-        android:text="Add Product"
+        android:text="Done"
+        android:textSize="16sp"
         android:textAlignment="center"
         android:textColor="@color/adminTextColor"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -78,113 +154,6 @@
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="329dp"
-        android:layout_height="289dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/admin_round_layout"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.512"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/productPic"
-        app:layout_constraintVertical_bias="0.103">
-
-        <TextView
-            android:id="@+id/tvProductId"
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:background="@drawable/rounded_textfield_myaccount"
-            android:fontFamily="serif"
-            android:gravity="fill"
-            android:paddingLeft="10dp"
-            android:text="Product Id"
-            android:textColor="@android:color/black"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.736"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvAccountUserName"
-            app:layout_constraintVertical_bias="0.085" />
-
-        <TextView
-            android:id="@+id/tvProductName"
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="8dp"
-            android:background="@drawable/rounded_textfield_myaccount"
-            android:drawablePadding="10dp"
-            android:fontFamily="serif"
-            android:gravity="fill"
-            android:paddingLeft="10dp"
-
-            android:text="Product Name"
-            android:textColor="@android:color/black"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.736"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvAccountUserName"
-            app:layout_constraintVertical_bias="0.085" />
-
-        <Spinner
-            android:id="@+id/spinner"
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/spinner_bg"
-            android:dropDownSelector="#ffffff" />
-
-        <EditText
-            android:id="@+id/etProductQty"
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/rounded_textfield"
-            android:drawablePadding="10dp"
-            android:ems="10"
-            android:fontFamily="serif"
-            android:hint="Quantity"
-            android:paddingEnd="10dp"
-            android:inputType="number"
-            android:paddingLeft="10dp"
-            android:textColor="@android:color/black"
-            android:textCursorDrawable="@drawable/admin_color_cursor" />
-
-        <EditText
-            android:id="@+id/etProductPrice"
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/rounded_textfield"
-            android:drawablePadding="10dp"
-            android:ems="10"
-            android:fontFamily="serif"
-            android:hint="Price"
-            android:paddingEnd="10dp"
-            android:inputType="numberDecimal"
-            android:paddingLeft="10dp"
-            android:textColor="@android:color/black"
-            android:textCursorDrawable="@drawable/admin_color_cursor" />
-    </LinearLayout>
+        app:layout_constraintVertical_bias="0.228" />
 
 </android.support.constraint.ConstraintLayout>

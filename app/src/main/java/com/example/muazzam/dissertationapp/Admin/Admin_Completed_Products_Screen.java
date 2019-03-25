@@ -1,4 +1,4 @@
-package com.example.muazzam.dissertationapp;
+package com.example.muazzam.dissertationapp.Admin;
 
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.muazzam.dissertationapp.Model.Cart;
+import com.example.muazzam.dissertationapp.R;
 import com.example.muazzam.dissertationapp.ViewHolder.CartViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -31,9 +32,6 @@ public class Admin_Completed_Products_Screen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_completed__products__screen);
-
-
-
 
 
         Bundle getUserID = getIntent().getExtras();
@@ -56,7 +54,7 @@ public class Admin_Completed_Products_Screen extends AppCompatActivity {
     {
         Toolbar toolbar = findViewById(R.id.toolbarCompletedProduct);
         setSupportActionBar(toolbar);
-        toolbar.setTitle("Products");
+        toolbar.setTitle("Products Ordered");
 
         ActionBar actionbar = getSupportActionBar();
         actionbar.setDisplayHomeAsUpEnabled(true);

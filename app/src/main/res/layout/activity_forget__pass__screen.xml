@@ -75,6 +75,7 @@
         android:ems="10"
         android:fontFamily="serif"
         android:hint="Email"
+        android:paddingEnd="10dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@android:color/black"
         android:textCursorDrawable="@drawable/color_cursor"

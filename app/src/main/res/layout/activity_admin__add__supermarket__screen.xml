@@ -69,6 +69,7 @@
             android:ems="10"
             android:fontFamily="serif"
             android:hint="Supermarket Id"
+            android:paddingEnd="10dp"
             android:inputType="text"
             android:paddingLeft="10dp"
             android:textColor="@android:color/black"
@@ -87,6 +88,7 @@
             android:fontFamily="serif"
             android:hint="Supermarket Name"
             android:inputType="text"
+            android:paddingEnd="10dp"
             android:paddingLeft="10dp"
             android:textColor="@android:color/black"
             android:textCursorDrawable="@drawable/admin_color_cursor" />
@@ -104,6 +106,7 @@
             android:fontFamily="serif"
             android:hint="Supermarket Location"
             android:inputType="text"
+            android:paddingEnd="10dp"
             android:paddingLeft="10dp"
             android:textColor="@android:color/black"
             android:textCursorDrawable="@drawable/admin_color_cursor" />
@@ -121,6 +124,7 @@
             android:fontFamily="serif"
             android:hint="Longitude"
             android:inputType="text"
+            android:paddingEnd="10dp"
             android:paddingLeft="10dp"
             android:textColor="@android:color/black"
             android:textCursorDrawable="@drawable/admin_color_cursor" />
@@ -136,6 +140,7 @@
             android:drawablePadding="10dp"
             android:ems="10"
             android:fontFamily="serif"
+            android:paddingEnd="10dp"
             android:hint="Latitude"
             android:inputType="text"
             android:paddingLeft="10dp"

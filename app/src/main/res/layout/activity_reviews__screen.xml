@@ -119,6 +119,7 @@
         android:layout_marginBottom="8dp"
         android:background="@drawable/rounded_textfield_myaccount"
         android:ems="10"
+        android:paddingEnd="10dp"
         android:fontFamily="serif"
         android:hint="Leave your message here"
         android:inputType="textPersonName"

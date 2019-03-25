@@ -5,6 +5,7 @@ import com.example.muazzam.dissertationapp.Model.AdminSupermarkets;
 import com.example.muazzam.dissertationapp.Model.DisplaySuperProdPrice;
 import com.example.muazzam.dissertationapp.Model.Products;
 import com.example.muazzam.dissertationapp.Model.ShippingDetails;
+import com.example.muazzam.dissertationapp.Model.Supermarkets;
 import com.example.muazzam.dissertationapp.Model.Users;
 
 public class Prevalent {
@@ -20,6 +21,8 @@ public class Prevalent {
     public static DisplaySuperProdPrice supermarketProductPrice;
 
     public static ShippingDetails shippingDetails;
+
+    public static Supermarkets supermarkets;
 
 
 }

@@ -20,7 +20,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="180dp"
-
+        android:paddingEnd="10dp"
 
         android:background="@drawable/rounded_textfield"
         android:backgroundTint="#ffffff"
@@ -64,6 +64,7 @@
 
         android:drawableStart="@drawable/ic_action_email"
         android:drawableLeft="@drawable/ic_action_email"
+        android:paddingEnd="10dp"
         android:drawablePadding="10dp"
         android:ems="10"
         android:hint="Email"

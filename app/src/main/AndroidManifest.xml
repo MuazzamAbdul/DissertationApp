@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.muazzam.dissertationapp">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
 
     <application
         android:allowBackup="true"
@@ -12,9 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Users.Login_Screen">
-
-        </activity>
+        <activity android:name=".Users.Login_Screen" />
         <activity android:name=".Users.Sign_Up_Screen" />
         <activity android:name=".Users.Category_Screen" />
         <activity
@@ -32,7 +32,13 @@
         <activity
             android:name=".Admin.Admin_Home_Screen"
             android:label="@string/title_activity_admin__home__screen"
-            android:theme="@style/AdminAppTheme" />
+            android:theme="@style/AdminAppTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".Admin.Admin_Add_Product_Screen"
             android:theme="@style/AdminAppTheme" />
@@ -65,17 +71,24 @@
         <activity android:name=".Users.Pay_Debit_Screen" />
         <activity android:name=".Users.Billing_Info_Screen" />
         <activity
-            android:name=".Admin_Order_Screen"
-            android:theme="@style/AdminAppTheme">
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-        </activity>
-        <activity android:name=".Admin_Completed_Products_Screen"
+            android:name=".Admin.Admin_Order_Screen"
+            android:theme="@style/AdminAppTheme" />
+        <activity
+            android:name=".Admin.Admin_Completed_Products_Screen"
+            android:theme="@style/AdminAppTheme" />
+        <activity
+            android:name=".Admin.Admin_Modify_Supermarket_Screen"
+            android:theme="@style/AdminAppTheme" />
+        <activity
+            android:name=".Admin.Admin_Edit_Supermarket_Screen"
+            android:theme="@style/AdminAppTheme" />
+        <activity
+            android:name=".Admin.Admin_Edit_ProductSuper_Screen"
+            android:theme="@style/AdminAppTheme" />
+        <activity
+            android:name=".Admin.Admin_Edit_Products_Screen"
+            android:theme="@style/AdminAppTheme" />
+        <activity android:name=".Admin.Admin_Edit_Product2_Screen"
             android:theme="@style/AdminAppTheme"></activity>
     </application>
 

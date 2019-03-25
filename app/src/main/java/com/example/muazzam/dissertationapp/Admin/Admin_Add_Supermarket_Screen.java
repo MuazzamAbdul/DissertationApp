@@ -1,5 +1,8 @@
 package com.example.muazzam.dissertationapp.Admin;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
@@ -47,8 +50,29 @@ public class Admin_Add_Supermarket_Screen extends AppCompatActivity {
             public void onClick(View v) {
                 if (validateTextFields())
                 {
-                    uploadSupermarketData();
-                    Toast.makeText(Admin_Add_Supermarket_Screen.this,"Okay",Toast.LENGTH_SHORT).show();
+
+                    AlertDialog.Builder exit = new AlertDialog.Builder(Admin_Add_Supermarket_Screen.this,R.style.AdminDialogAlert);
+                    exit.setMessage("Do you want to add  product?")
+                            .setCancelable(false)
+                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    uploadSupermarketData();
+                                    Toast.makeText(Admin_Add_Supermarket_Screen.this,"Okay",Toast.LENGTH_SHORT).show();
+                                }
+                            })
+                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    finish();
+                                    Intent intent = new Intent(Admin_Add_Supermarket_Screen.this,Admin_Home_Screen.class);
+                                    startActivity(intent);
+                                }
+                            });
+                    AlertDialog alert = exit.create();
+                    alert.setTitle("Warning");
+                    alert.show();
+
 
                 }
             }

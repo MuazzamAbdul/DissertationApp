@@ -5,30 +5,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/adminpicture"
-    tools:context=".Admin.Admin_Add_Product_Screen">
+    tools:context=".Admin.Admin_Edit_Product2_Screen">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbarAddProduct1"
+        android:id="@+id/toolbarProducts2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
+        android:background="@color/adminColorPrimary"
         android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
+        android:theme="@style/AdminAppTheme"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:title="Add Product"
+        app:title="Edit Product"
         app:titleTextAppearance="@style/TextAppearanceToolbar"
-        app:titleTextColor="@color/adminTextColor"
-    />
+        app:titleTextColor="@color/adminTextColor" />
+
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/add_Product"
-        android:layout_width="125dp"
-        android:layout_height="125dp"
+        android:id="@+id/add_Product2"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -40,44 +40,44 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbarAddProduct1"
-        app:layout_constraintVertical_bias="0.037" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbarProducts2"
+        app:layout_constraintVertical_bias="0.048" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
-        android:layout_width="330dp"
-        android:layout_height="255dp"
-        android:layout_marginStart="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="10dp"
         android:background="@drawable/admin_round_layout"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_Product"
-        app:layout_constraintVertical_bias="0.126">
+        app:layout_constraintTop_toBottomOf="@+id/add_Product2"
+        app:layout_constraintVertical_bias="0.15">
 
-        <EditText
-            android:id="@+id/etProductId"
+        <TextView
+            android:id="@+id/tvProdID"
             android:layout_width="match_parent"
             android:layout_height="45dp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/rounded_textfield"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/rounded_textfield_myaccount"
             android:drawablePadding="10dp"
-            android:ems="10"
             android:fontFamily="serif"
-            android:hint="Product ID"
-            android:inputType="text"
+            android:gravity="fill"
             android:paddingLeft="10dp"
-            android:paddingEnd="10dp"
+            android:text="Product ID"
             android:textColor="@android:color/black"
-            android:textCursorDrawable="@drawable/admin_color_cursor" />
+            android:textSize="18sp" />
+
 
         <EditText
-            android:id="@+id/etProductName"
+            android:id="@+id/etEProductName"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_marginLeft="10dp"
@@ -95,7 +95,7 @@
             android:textCursorDrawable="@drawable/admin_color_cursor" />
 
         <EditText
-            android:id="@+id/etProductDesc"
+            android:id="@+id/etEProductDesc"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_marginLeft="10dp"
@@ -106,36 +106,17 @@
             android:ems="10"
             android:fontFamily="serif"
             android:hint="Product Description"
-            android:paddingEnd="10dp"
             android:inputType="text"
             android:paddingLeft="10dp"
-            android:textColor="@android:color/black"
-            android:textCursorDrawable="@drawable/admin_color_cursor" />
-
-        <EditText
-            android:id="@+id/etProductCat"
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/rounded_textfield"
-            android:drawablePadding="10dp"
-            android:ems="10"
-            android:fontFamily="serif"
-            android:hint="Product Category"
-            android:inputType="text"
             android:paddingEnd="10dp"
-            android:paddingLeft="10dp"
             android:textColor="@android:color/black"
             android:textCursorDrawable="@drawable/admin_color_cursor" />
-
     </LinearLayout>
 
     <Button
-        android:id="@+id/btnInsert"
+        android:id="@+id/btnProdDone"
         style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="143dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
@@ -143,14 +124,18 @@
         android:layout_marginBottom="8dp"
         android:background="@drawable/admin_rounded_button"
         android:fontFamily="serif"
-        android:text="Add into supermarket"
+        android:padding="10dp"
+        android:text="Done"
         android:textAlignment="center"
         android:textColor="@color/adminTextColor"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-        app:layout_constraintVertical_bias="0.527" />
+        app:layout_constraintVertical_bias="0.228" />
+
+
 
 </android.support.constraint.ConstraintLayout>

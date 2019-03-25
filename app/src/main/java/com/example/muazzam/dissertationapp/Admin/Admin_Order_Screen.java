@@ -1,4 +1,4 @@
-package com.example.muazzam.dissertationapp;
+package com.example.muazzam.dissertationapp.Admin;
 
 import android.support.design.widget.TabItem;
 import android.support.design.widget.TabLayout;
@@ -11,6 +11,7 @@ import android.view.MenuItem;
 
 import com.example.muazzam.dissertationapp.Adapter.AdminPageAdapter;
 import com.example.muazzam.dissertationapp.Adapter.PageAdapter;
+import com.example.muazzam.dissertationapp.R;
 
 public class Admin_Order_Screen extends AppCompatActivity {
 

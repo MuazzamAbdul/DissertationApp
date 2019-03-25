@@ -117,8 +117,7 @@ public class Admin_Add_Product_Screen2 extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 finish();
-                                Intent intent = new Intent(Admin_Add_Product_Screen2.this,Admin_Home_Screen.class);
-                                startActivity(intent);
+
                             }
                         });
                 AlertDialog alert = exit.create();

@@ -162,7 +162,7 @@ public class Admin_Delete_Supermarket_Screen extends AppCompatActivity {
             @Override
             public void onDeleteClick(final int position) {
 
-                AlertDialog.Builder exit = new AlertDialog.Builder(Admin_Delete_Supermarket_Screen.this);
+                AlertDialog.Builder exit = new AlertDialog.Builder(Admin_Delete_Supermarket_Screen.this,R.style.AdminDialogAlert);
                 exit.setMessage("Do you want to delete supermarket?")
                         .setCancelable(false)
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {

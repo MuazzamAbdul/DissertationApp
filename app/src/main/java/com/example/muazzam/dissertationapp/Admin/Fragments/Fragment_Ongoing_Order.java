@@ -1,4 +1,4 @@
-package com.example.muazzam.dissertationapp;
+package com.example.muazzam.dissertationapp.Admin.Fragments;
 
 
 import android.content.DialogInterface;
@@ -18,11 +18,10 @@ import android.view.ViewGroup;
 import android.widget.SearchView;
 import android.widget.Toast;
 
-import com.example.muazzam.dissertationapp.Adapter.OrderCompleted;
 import com.example.muazzam.dissertationapp.Adapter.OrderOngoing;
+import com.example.muazzam.dissertationapp.Admin.Admin_Completed_Products_Screen;
 import com.example.muazzam.dissertationapp.Model.CompletedOrder;
-import com.example.muazzam.dissertationapp.Prevalent.Prevalent;
-import com.example.muazzam.dissertationapp.Users.Add_To_Cart_Screen;
+import com.example.muazzam.dissertationapp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;

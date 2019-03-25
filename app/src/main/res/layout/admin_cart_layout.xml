@@ -54,7 +54,7 @@
                 android:fontFamily="serif"
                 android:gravity="center"
                 android:padding="5dp"
-                android:text="Price"
+                android:text="Total: "
                 android:textColor="@color/adminTextColor"
                 android:textSize="14sp" />
 
