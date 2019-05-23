@@ -8,14 +8,21 @@
             android:id="@+id/my_account"
             android:icon="@drawable/ic_action_account"
             android:title="@string/my_account" />
+
+        <item
+            android:id="@+id/supermarket_map"
+            android:icon="@drawable/ic_action_supermarket"
+            android:title="Supermarkets" />
+
+        <item
+            android:id="@+id/recipes"
+            android:icon="@drawable/ic_action_receipts"
+            android:title="Recipes" />
         <item
             android:id="@+id/reviews"
             android:icon="@drawable/ic_action_reviews"
             android:title="Reviews" />
-        <item
-            android:id="@+id/settings"
-            android:icon="@drawable/ic_action_settings"
-            android:title="@string/settings" />
+
 
     </group>
 

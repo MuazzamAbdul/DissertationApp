@@ -25,6 +25,7 @@ import com.bumptech.glide.Glide;
 import com.example.muazzam.dissertationapp.Model.Products;
 import com.example.muazzam.dissertationapp.Prevalent.Prevalent;
 import com.example.muazzam.dissertationapp.R;
+import com.example.muazzam.dissertationapp.SupermarketMap_Screen;
 import com.example.muazzam.dissertationapp.ViewHolder.ProductViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -236,7 +237,10 @@ public class Cat_Prod_Screen extends AppCompatActivity
 
             Intent intent = new Intent(Cat_Prod_Screen.this, About_Us_Screen.class);
             startActivity(intent);
-        } else if (id == R.id.settings) {
+        } else if (id == R.id.supermarket_map) {
+            Intent intent = new Intent(Cat_Prod_Screen.this, SupermarketMap_Screen.class);
+            startActivity(intent);
+        } else if (id == R.id.recipes) {
             Intent intent = new Intent(Cat_Prod_Screen.this, Settings_Screen.class);
             startActivity(intent);
         } else if (id == R.id.sign_out) {

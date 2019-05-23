@@ -25,6 +25,8 @@ import com.example.muazzam.dissertationapp.Adapter.PageAdapter;
 import com.example.muazzam.dissertationapp.Model.Users;
 import com.example.muazzam.dissertationapp.Prevalent.Prevalent;
 import com.example.muazzam.dissertationapp.R;
+import com.example.muazzam.dissertationapp.Recipes_Screen;
+import com.example.muazzam.dissertationapp.SupermarketMap_Screen;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -130,25 +132,25 @@ public class Home_Screen extends AppCompatActivity
             drawer.closeDrawer(GravityCompat.START);
         }
         else {
-//            AlertDialog.Builder exit = new AlertDialog.Builder(Home_Screen.this,R.style.DialogAlert);
-//            exit.setMessage("Sign Out?")
-//                    .setCancelable(false)
-//                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-//                        @Override
-//                        public void onClick(DialogInterface dialog, int which) {
+            AlertDialog.Builder exit = new AlertDialog.Builder(Home_Screen.this,R.style.DialogAlert);
+            exit.setMessage("Sign Out?")
+                    .setCancelable(false)
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
                             firebaseAuth.signOut();
                             finish();
-//                        }
-//                    })
-//                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
-//                        @Override
-//                        public void onClick(DialogInterface dialog, int which) {
-//                            dialog.cancel();
-//                        }
-//                    });
-//            AlertDialog alert = exit.create();
-//            alert.setTitle("Exit");
-//            alert.show();
+                        }
+                    })
+                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+            AlertDialog alert = exit.create();
+            alert.setTitle("Exit");
+            alert.show();
 
         }
     }
@@ -200,9 +202,12 @@ public class Home_Screen extends AppCompatActivity
 
             Intent intent = new Intent(Home_Screen.this, About_Us_Screen.class);
             startActivity(intent);
-        } else if (id == R.id.settings) {
-            Intent intent = new Intent(Home_Screen.this, Settings_Screen.class);
+        } else if (id == R.id.supermarket_map) {
+            Intent intent = new Intent(Home_Screen.this, SupermarketMap_Screen.class);
             startActivity(intent);
+        } else if (id == R.id.recipes) {
+                Intent intent = new Intent(Home_Screen.this, Recipes_Screen.class);
+                startActivity(intent);
         } else if (id == R.id.sign_out) {
             AlertDialog.Builder exit = new AlertDialog.Builder(Home_Screen.this,R.style.DialogAlert);
             exit.setMessage("Sign Out?")
