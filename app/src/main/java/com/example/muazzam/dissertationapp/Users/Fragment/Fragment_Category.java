@@ -57,7 +57,7 @@ public class Fragment_Category extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(),Cat_Prod_Screen.class);
-                intent.putExtra("Category","FruitVeg");
+                intent.putExtra("Category","Fruits&vegetables");
                 startActivity(intent);
             }
         });
@@ -111,7 +111,7 @@ public class Fragment_Category extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(),Cat_Prod_Screen.class);
-                intent.putExtra("Category","FruitVeg");
+                intent.putExtra("Category","Cannery");
                 startActivity(intent);
             }
         });

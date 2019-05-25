@@ -42,6 +42,7 @@
     <string name="delete">Delete</string>
     <string name="title_activity_cat__prod__screen">Cat_Prod_Screen</string>
     <string name="title_activity_supermarket_map__screen">Map</string>
+    <string name="title_activity_get_direction__screen">Map</string>
 
 
 </resources>

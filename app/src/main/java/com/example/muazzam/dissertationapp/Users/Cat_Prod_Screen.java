@@ -25,7 +25,6 @@ import com.bumptech.glide.Glide;
 import com.example.muazzam.dissertationapp.Model.Products;
 import com.example.muazzam.dissertationapp.Prevalent.Prevalent;
 import com.example.muazzam.dissertationapp.R;
-import com.example.muazzam.dissertationapp.SupermarketMap_Screen;
 import com.example.muazzam.dissertationapp.ViewHolder.ProductViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -141,8 +140,7 @@ public class Cat_Prod_Screen extends AppCompatActivity
                     @Override
                     public void onSuccess(Uri uri) {
                         prodPicture = uri;
-//                Picasso.get().load(uri).fit().centerCrop().into(imagePic);
-//                imagePic.setImageURI(uri);
+
                         Glide.with(Cat_Prod_Screen.this).load(uri).into(holder.prodPic);
                     }
                 });
@@ -270,10 +268,6 @@ public class Cat_Prod_Screen extends AppCompatActivity
 
                 usernameText.setText(userName);
                 usernameEmail.setText(userEmail);
-//                Users userData = new Users(userName,userEmail,userAddress,userPhone);
-//                Prevalent.onlineUser = userData;
-//                usernameText.setText(Prevalent.onlineUser.getName());
-//                usernameEmail.setText(Prevalent.onlineUser.getEmail());
             }
 
             @Override
@@ -282,15 +276,10 @@ public class Cat_Prod_Screen extends AppCompatActivity
             }
         });
 
-//                usernameText.setText(Prevalent.onlineUser.getName());
-//                usernameEmail.setText(Prevalent.onlineUser.getEmail());
-
         StorageReference storageReference = firebaseStorage.getReference();
-
         storageReference.child("Users").child(userAuthKey).child("Images").child("Profile Pic").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
-
                 Picasso.get().load(uri).fit().centerCrop().into(imagePic);
             }
         });
@@ -298,7 +287,6 @@ public class Cat_Prod_Screen extends AppCompatActivity
 
     private void firebaseSearch(String searchText)
     {
-
         if (!searchText.isEmpty())
         {
             searchText = searchText.substring(0,1).toUpperCase()+ searchText.substring(1,searchText.length()).toLowerCase();
@@ -324,8 +312,6 @@ public class Cat_Prod_Screen extends AppCompatActivity
                 storageReference.child("Products").child(model.getID()).child("Images").child("Product Pic").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
-//                Picasso.get().load(uri).fit().centerCrop().into(imagePic);
-//                imagePic.setImageURI(uri);
                         Glide.with(Cat_Prod_Screen.this).load(uri).into(holder.prodPic);
                     }
                 });
@@ -344,6 +330,5 @@ public class Cat_Prod_Screen extends AppCompatActivity
         };
         recyclerView.setAdapter(adapter);
         adapter.startListening();
-
     }
 }

@@ -13,7 +13,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Users.Login_Screen" />
+        <activity android:name=".Users.Login_Screen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".Users.Sign_Up_Screen" />
         <activity android:name=".Users.Category_Screen" />
         <activity
@@ -31,13 +37,7 @@
         <activity
             android:name=".Admin.Admin_Home_Screen"
             android:label="@string/title_activity_admin__home__screen"
-            android:theme="@style/AdminAppTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:theme="@style/AdminAppTheme" />
         <activity
             android:name=".Admin.Admin_Add_Product_Screen"
             android:theme="@style/AdminAppTheme" />
@@ -103,15 +103,13 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".SupermarketMap_Screen"
+            android:name=".Users.SupermarketMap_Screen"
             android:label="@string/title_activity_supermarket_map__screen" />
-        <activity android:name=".Recipes_Screen">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".Users.Recipes_Screen" />
+        <activity android:name=".Users.Recipe_Product_Screen" />
+        <activity
+            android:name=".Users.GetDirection_Screen"
+            android:label="@string/title_activity_get_direction__screen"></activity>
     </application>
 
 </manifest>

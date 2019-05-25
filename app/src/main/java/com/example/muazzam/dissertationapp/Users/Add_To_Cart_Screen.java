@@ -107,7 +107,29 @@ public class Add_To_Cart_Screen extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 saveOrder();
-                                finish();
+                                AlertDialog.Builder exit = new AlertDialog.Builder(Add_To_Cart_Screen.this,R.style.DialogAlert);
+                                exit.setMessage("Get Direction to supermarket?")
+                                        .setCancelable(false)
+                                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                Intent intent = new Intent(Add_To_Cart_Screen.this,GetDirection_Screen.class);
+                                                intent.putExtra("Name",Prevalent.supermarketProductPrice.getName());
+                                                intent.putExtra("ID",Prevalent.supermarketProductPrice.getSuperid().substring(0,Prevalent.supermarketProductPrice.getSuperid().indexOf("-")));
+                                                startActivity(intent);
+                                                finish();
+                                            }
+                                        })
+                                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                dialog.cancel();
+                                                finish();
+                                            }
+                                        });
+                                AlertDialog alert = exit.create();
+                                alert.setTitle("Get Direction");
+                                alert.show();
                             }
                         })
                         .setNegativeButton("No", new DialogInterface.OnClickListener() {
