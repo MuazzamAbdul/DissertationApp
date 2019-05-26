@@ -119,23 +119,5 @@ public class Change_Pass_Screen extends AppCompatActivity {
                 }
             }
         });
-
-
-//        firebaseUser.updateEmail("muazzamabdul@hotmail.com").addOnCompleteListener(new OnCompleteListener<Void>() {
-//            @Override
-//            public void onComplete(@NonNull Task<Void> task) {
-//                {
-//                    if (task.isSuccessful())
-//                    {
-//                        Toast.makeText(Change_Pass_Screen.this,"Email Updated", Toast.LENGTH_SHORT).show();
-//                        finish();
-//                    }
-//                    else
-//                    {
-//                        Toast.makeText(Change_Pass_Screen.this,"Email Update Failed!", Toast.LENGTH_SHORT).show();
-//                    }
-//                }
-//            }
-//        });
     }
 }

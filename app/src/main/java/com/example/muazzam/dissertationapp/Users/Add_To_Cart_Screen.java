@@ -208,6 +208,7 @@ public class Add_To_Cart_Screen extends AppCompatActivity {
                 userDataMap.put("Date", saveCurrentDate);
                 userDataMap.put("Time",saveCurrentTime);
                 userDataMap.put("Supermarket",superName.getText().toString());
+                userDataMap.put("SupermarketID",Prevalent.supermarketProductPrice.getSuperid().substring(0,Prevalent.supermarketProductPrice.getSuperid().indexOf("-")));
                 userDataMap.put("Quantity",qty.getNumber());
                 userDataMap.put("Price",Prevalent.supermarketProductPrice.getPrice());
 

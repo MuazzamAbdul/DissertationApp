@@ -89,11 +89,17 @@ public class Shopping_Cart_Screen extends AppCompatActivity {
         checkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
-                Intent intent = new Intent(Shopping_Cart_Screen.this,Billing_Info_Screen.class);
-                intent.putExtra("Price",totalFee.getText().toString());
-                startActivity(intent);
-
+                if (totalFee.getText().toString().equals("Rs 0.00"))
+                {
+                    Toast.makeText(Shopping_Cart_Screen.this,"Cart is empty!",Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    finish();
+                    Intent intent = new Intent(Shopping_Cart_Screen.this,Billing_Info_Screen.class);
+                    intent.putExtra("Price",totalFee.getText().toString());
+                    startActivity(intent);
+                }
             }
         });
 
@@ -172,7 +178,7 @@ public class Shopping_Cart_Screen extends AppCompatActivity {
                                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
-                                        deleteProductFromCart(model.getID() +"-" + model.getSupermarket());
+                                        deleteProductFromCart(  model.getSupermarketID()+"-" + model.getID());
                                     }
                                 })
                                 .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -231,7 +237,6 @@ public class Shopping_Cart_Screen extends AppCompatActivity {
                 }
                 else
                 {
-                    Toast.makeText(Shopping_Cart_Screen.this,"Cart is empty!",Toast.LENGTH_SHORT).show();
                     deliveryFee.setText("+ Rs 0.00");
                     totalFee.setText("Rs 0.00");
                 }
@@ -283,6 +288,7 @@ public class Shopping_Cart_Screen extends AppCompatActivity {
     private void deleteProductFromCart(final String id)
     {
         final DatabaseReference mDb = firebaseDatabase.getReference();
+
 
         mDb.child("Cart").child(userAuthKey).child("Products").child(id).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

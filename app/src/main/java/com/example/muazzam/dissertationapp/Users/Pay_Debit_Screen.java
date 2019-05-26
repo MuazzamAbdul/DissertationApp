@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.muazzam.dissertationapp.Model.Wallet;
 import com.example.muazzam.dissertationapp.Prevalent.Prevalent;
 import com.example.muazzam.dissertationapp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -29,8 +30,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Iterator;
 
 public class Pay_Debit_Screen extends AppCompatActivity {
 
@@ -42,6 +45,7 @@ public class Pay_Debit_Screen extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private FirebaseDatabase firebaseDatabase;
     private FirebaseUser user;
+    private ArrayList<String> card;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,8 +89,6 @@ public class Pay_Debit_Screen extends AppCompatActivity {
                     }
             }
         });
-
-
     }
 
     private void setupUIViews()
@@ -106,7 +108,10 @@ public class Pay_Debit_Screen extends AppCompatActivity {
         amount = findViewById(R.id.tvAmount);
         pay = findViewById(R.id.btnPay);
 
+        card = new ArrayList<>();
         amount.setText(Prevalent.shippingDetails.getPrice());
+
+        card.add("12356789");
     }
 
     private boolean validateTextFields()
@@ -117,6 +122,7 @@ public class Pay_Debit_Screen extends AppCompatActivity {
         cexp = etCardExp.getText().toString();
         csec = etCardSec.getText().toString();
 
+
         if (TextUtils.isEmpty(cname))
         {
             etCardName.setError("Please enter CardHolder Name");
@@ -125,6 +131,10 @@ public class Pay_Debit_Screen extends AppCompatActivity {
         {
             etCardNo.setError("Please enter Card Number");
         }
+        else if (!card.contains(cno))
+        {
+            Toast.makeText(Pay_Debit_Screen.this,"Card not available",Toast.LENGTH_SHORT).show();
+        }
         else if (TextUtils.isEmpty(cexp))
         {
             etCardExp.setError("Please enter Expiry Date");
@@ -132,6 +142,10 @@ public class Pay_Debit_Screen extends AppCompatActivity {
         else if (TextUtils.isEmpty(csec))
         {
             etCardSec.setError("Please enter Security Code");
+        }
+        else if (csec.length() < 4)
+        {
+            Toast.makeText(Pay_Debit_Screen.this,"Security code not up to standards",Toast.LENGTH_SHORT).show();
         }
         else
         {
@@ -229,8 +243,6 @@ public class Pay_Debit_Screen extends AppCompatActivity {
                         saveOrders(key,date,id,name,price,qty,supermarket,time);
                         decreaseQuantitySupermarket(key,qty);
                     }
-
-
                 }
                 else
                 {
