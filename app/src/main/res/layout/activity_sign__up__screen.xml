@@ -20,8 +20,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.656">
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:layout_constraintVertical_bias="0.252">
 
         <EditText
             android:id="@+id/etName"
@@ -34,9 +34,9 @@
             android:focusable="true"
             android:fontFamily="serif"
             android:hint=" Name"
-            android:paddingEnd="10dp"
             android:inputType="textPersonName"
             android:paddingLeft="10dp"
+            android:paddingEnd="10dp"
             android:textColor="@android:color/black"
             android:textCursorDrawable="@drawable/color_cursor"
             android:textSize="18sp"
@@ -51,12 +51,12 @@
             android:background="@drawable/rounded_textfield"
             android:drawableLeft="@drawable/ic_action_email"
             android:drawablePadding="10dp"
-            android:paddingEnd="10dp"
             android:ems="10"
             android:fontFamily="serif"
             android:hint=" Email"
             android:inputType="textEmailAddress"
             android:paddingLeft="10dp"
+            android:paddingEnd="10dp"
             android:textColor="@android:color/black"
             android:textCursorDrawable="@drawable/color_cursor" />
 
@@ -68,12 +68,12 @@
             android:background="@drawable/rounded_textfield"
             android:drawableLeft="@drawable/ic_action_password"
             android:drawablePadding="10dp"
-            android:paddingEnd="10dp"
             android:ems="10"
             android:fontFamily="serif"
             android:hint=" Password"
             android:inputType="textPassword"
             android:paddingLeft="10dp"
+            android:paddingEnd="10dp"
             android:textColor="@android:color/black"
             android:textCursorDrawable="@drawable/color_cursor" />
 
@@ -85,12 +85,12 @@
             android:background="@drawable/rounded_textfield"
             android:drawableLeft="@drawable/ic_action_checkbox"
             android:drawablePadding="10dp"
-            android:paddingEnd="10dp"
             android:ems="10"
             android:fontFamily="serif"
             android:hint="Confirm Password"
             android:inputType="textPassword"
             android:paddingLeft="10dp"
+            android:paddingEnd="10dp"
             android:textColor="@android:color/black"
             android:textCursorDrawable="@drawable/color_cursor" />
 
@@ -103,11 +103,11 @@
             android:drawableLeft="@drawable/ic_action_address"
             android:drawablePadding="10dp"
             android:ems="10"
-            android:paddingEnd="10dp"
             android:fontFamily="serif"
             android:hint=" Address"
             android:inputType="textPersonName"
             android:paddingLeft="10dp"
+            android:paddingEnd="10dp"
             android:textColor="@android:color/black"
             android:textCursorDrawable="@drawable/color_cursor" />
 
@@ -120,11 +120,11 @@
             android:drawableLeft="@drawable/ic_action_phoneno"
             android:drawablePadding="10dp"
             android:ems="10"
-            android:paddingEnd="10dp"
             android:fontFamily="serif"
             android:hint=" Phone Number"
             android:inputType="number"
             android:paddingLeft="10dp"
+            android:paddingEnd="10dp"
             android:textColor="@android:color/black"
             android:textCursorDrawable="@drawable/color_cursor" />
 
@@ -147,6 +147,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signuplay"
         app:layout_constraintVertical_bias="0.486" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.042"
+        app:srcCompat="@drawable/signuplogo" />
 
 
 </android.support.constraint.ConstraintLayout>

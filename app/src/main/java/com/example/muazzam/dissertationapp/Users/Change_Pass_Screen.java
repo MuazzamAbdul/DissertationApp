@@ -16,6 +16,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+/**
+ * Class to change password.
+ */
 public class Change_Pass_Screen extends AppCompatActivity {
 
     private EditText oldPass,newPass,confirmPass;
@@ -23,6 +26,11 @@ public class Change_Pass_Screen extends AppCompatActivity {
     private String oldP,newP,confirmP;
     private FirebaseUser firebaseUser;
 
+    /**
+     * Create activity.
+     * Change password when done button is pressed.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +54,9 @@ public class Change_Pass_Screen extends AppCompatActivity {
         });
     }
 
-
+    /**
+     * Create UI Views.
+     */
     private void setupUIViews()
     {
         Toolbar toolbar = findViewById(R.id.toolbarChangePass);
@@ -60,13 +70,18 @@ public class Change_Pass_Screen extends AppCompatActivity {
         cancel = findViewById(R.id.btnCancel_Pass);
     }
 
+    /**
+     * Finish activity.
+     */
     private void sendUserToMyAccount()
     {
         finish();
-//        Intent intent = new Intent(Change_Pass_Screen.this,My_Account_Screen.class);
-//        startActivity(intent);
     }
 
+    /**
+     * Validate text boxes.
+     * @return
+     */
     private boolean validatePass()
     {
         boolean result = false;
@@ -75,7 +90,7 @@ public class Change_Pass_Screen extends AppCompatActivity {
         confirmP = confirmPass.getText().toString();
         if (TextUtils.isEmpty(oldP))
         {
-            oldPass.setError("Please enter your old address");
+            oldPass.setError("Please enter your old Password");
         }
         else if(TextUtils.isEmpty(newP))
         {
@@ -98,10 +113,12 @@ public class Change_Pass_Screen extends AppCompatActivity {
         {
             result = true;
         }
-
         return result;
     }
 
+    /**
+     * Change password with new password in database.
+     */
     private void changePassword()
     {
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -110,7 +127,7 @@ public class Change_Pass_Screen extends AppCompatActivity {
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful())
                 {
-                    Toast.makeText(Change_Pass_Screen.this,"Password Updated", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Change_Pass_Screen.this,"Password Successfully Updated", Toast.LENGTH_SHORT).show();
                     finish();
                 }
                 else

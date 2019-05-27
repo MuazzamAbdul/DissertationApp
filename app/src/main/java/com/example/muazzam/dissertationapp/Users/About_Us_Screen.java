@@ -14,11 +14,19 @@ import android.widget.Toast;
 
 import com.example.muazzam.dissertationapp.R;
 
+/**
+ * Class displaying information about application.
+ */
 public class About_Us_Screen extends AppCompatActivity {
 
     private TextView email;
     private Button send;
 
+    /**
+     *
+     * @param savedInstanceState
+     * Create activity and send email to admin when send button is clicked.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,12 +41,14 @@ public class About_Us_Screen extends AppCompatActivity {
         });
     }
 
+    /**
+     * Create UI for activity.
+     */
     private void setupUIViews()
     {
         Toolbar toolbar = findViewById(R.id.toolbarAboutUs);
         setSupportActionBar(toolbar);
         toolbar.setTitle("About Us");
-
         ActionBar actionbar = getSupportActionBar();
         actionbar.setDisplayHomeAsUpEnabled(true);
         actionbar.setHomeAsUpIndicator(R.drawable.ic_action_arrow_back);
@@ -47,6 +57,11 @@ public class About_Us_Screen extends AppCompatActivity {
         send = findViewById(R.id.btnSendEmail);
     }
 
+    /**
+     * @param item
+     * @return
+     * Redirect to previous activity when back arrow is clicked.
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -61,10 +76,12 @@ public class About_Us_Screen extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Send email to admin.
+     */
     private void sendEmail()
     {
         String recipient = "muazzamabdul@gmail.com";
-
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setData(Uri.parse("mailto:"));
         intent.putExtra(Intent.EXTRA_EMAIL,new String[] {recipient});

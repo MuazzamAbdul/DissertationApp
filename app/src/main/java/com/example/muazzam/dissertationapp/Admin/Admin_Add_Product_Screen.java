@@ -216,17 +216,13 @@ public class Admin_Add_Product_Screen extends AppCompatActivity {
                     for(DataSnapshot dSnapshot : dataSnapshot.child(location).getChildren()) {
                         String id = dSnapshot.getKey();
 
-//                        supId.add(id);
                         String name = String.valueOf(dSnapshot.child("Name").getValue(String.class));
-//                        supName.add(name);
                         adminSupermarkets.addId(id);
                         adminSupermarkets.addName(name);
 
-//                        Prevalent.adminSupermarkets.addName(name);
-                    }
+                        }
                 }
                 Prevalent.adminSupermarkets = adminSupermarkets;
-//                loadingBar2.dismiss();
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {

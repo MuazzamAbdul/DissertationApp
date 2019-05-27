@@ -20,7 +20,6 @@ import android.view.ViewGroup;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.bumptech.glide.Glide;
 import com.example.muazzam.dissertationapp.Model.Products;
 import com.example.muazzam.dissertationapp.Prevalent.Prevalent;
@@ -39,12 +38,13 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
-
 import de.hdodenhof.circleimageview.CircleImageView;
 
+/**
+ * Class displaying products of previously selected category.
+ */
 public class Cat_Prod_Screen extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
 
     private TextView usernameText;
     private TextView usernameEmail;
@@ -60,6 +60,10 @@ public class Cat_Prod_Screen extends AppCompatActivity
     private RecyclerView.LayoutManager layoutManager;
     private Uri prodPicture;
 
+    /**
+     * @param savedInstanceState
+     * Create activity.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,11 +78,14 @@ public class Cat_Prod_Screen extends AppCompatActivity
 
     }
 
+    /**
+     * Create UI views.
+     * Get category name from previous activity.
+     */
     private void setupUIViews()
     {
         Toolbar toolbar = findViewById(R.id.toolbarCat);
         setSupportActionBar(toolbar);
-
 
         ActionBar actionbar = getSupportActionBar();
         actionbar.setDisplayHomeAsUpEnabled(true);
@@ -94,7 +101,6 @@ public class Cat_Prod_Screen extends AppCompatActivity
         else
         {
             category = getCategory.getString("Category");
-            Toast.makeText(Cat_Prod_Screen.this,category,Toast.LENGTH_SHORT).show();
         }
         toolbar.setTitle(category);
 
@@ -104,6 +110,9 @@ public class Cat_Prod_Screen extends AppCompatActivity
         recyclerView.setLayoutManager(layoutManager);
     }
 
+    /**
+     * Create recycler view containing all products fetched from database.
+     */
     @Override
     protected void onStart() {
         super.onStart();
@@ -116,7 +125,6 @@ public class Cat_Prod_Screen extends AppCompatActivity
         usernameEmail = headerView.findViewById(R.id.tvnavbar_email);
         imagePic = headerView.findViewById(R.id.reg_Users);
         getUserData();
-
 
         FirebaseRecyclerOptions<Products> options  = new FirebaseRecyclerOptions.Builder<Products>()
                 .setQuery(databaseReference,Products.class).build();
@@ -140,14 +148,12 @@ public class Cat_Prod_Screen extends AppCompatActivity
                     @Override
                     public void onSuccess(Uri uri) {
                         prodPicture = uri;
-
                         Glide.with(Cat_Prod_Screen.this).load(uri).into(holder.prodPic);
                     }
                 });
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
                         Intent intent = new Intent(Cat_Prod_Screen.this,Product_Supermarket_Screen.class);
                         startActivity(intent);
                         intent.putExtra("Picture",prodPicture);
@@ -162,9 +168,11 @@ public class Cat_Prod_Screen extends AppCompatActivity
 
     }
 
+    /**
+     * Close drawer when nav button id pressed.
+     */
     @Override
     public void onBackPressed() {
-//        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -172,6 +180,11 @@ public class Cat_Prod_Screen extends AppCompatActivity
         }
     }
 
+    /**
+     * @param menu
+     * @return menu containing search button.
+     * Performs search on products based on query string.
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -195,6 +208,13 @@ public class Cat_Prod_Screen extends AppCompatActivity
         return super.onCreateOptionsMenu(menu);
     }
 
+    /**
+     *
+     * @param item
+     * @return
+     * Open drawer when nav button is pressed.
+     * Redirect user to shopping cart when shopping button is pressed.
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -213,6 +233,12 @@ public class Cat_Prod_Screen extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     *
+     * @param item
+     * @return
+     * Redirect to specific activity when tab found in nav drawer is pressed.
+     */
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -220,19 +246,15 @@ public class Cat_Prod_Screen extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.my_account) {
-
             Intent intent = new Intent(Cat_Prod_Screen.this, My_Account_Screen.class);
             startActivity(intent);
         }else if (id == R.id.faq) {
-
             Intent intent = new Intent(Cat_Prod_Screen.this, FAQ_Screen.class);
             startActivity(intent);
         } else if (id ==R.id.reviews) {
-
             Intent intent = new Intent(Cat_Prod_Screen.this, Reviews_Screen.class);
             startActivity(intent);
         } else if (id == R.id.about_us) {
-
             Intent intent = new Intent(Cat_Prod_Screen.this, About_Us_Screen.class);
             startActivity(intent);
         } else if (id == R.id.supermarket_map) {
@@ -251,6 +273,9 @@ public class Cat_Prod_Screen extends AppCompatActivity
         return true;
     }
 
+    /**
+     * Retrieve Details and picture about user from database.
+     */
     private void getUserData()
     {
         DatabaseReference mDb = firebaseDatabase.getReference();
@@ -259,7 +284,6 @@ public class Cat_Prod_Screen extends AppCompatActivity
         mDb.child("Users").child(userAuthKey).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
 
                 String userEmail = String.valueOf(dataSnapshot.child("Email").getValue());
                 String userName = String.valueOf(dataSnapshot.child("Name").getValue());
@@ -285,6 +309,10 @@ public class Cat_Prod_Screen extends AppCompatActivity
         });
     }
 
+    /**
+     * Build recycler view displaying products that are searched in search bar.
+     * @param searchText
+     */
     private void firebaseSearch(String searchText)
     {
         if (!searchText.isEmpty())

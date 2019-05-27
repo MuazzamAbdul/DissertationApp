@@ -20,7 +20,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.muazzam.dissertationapp.Adapter.PageAdapter;
 import com.example.muazzam.dissertationapp.Model.Users;
 import com.example.muazzam.dissertationapp.Prevalent.Prevalent;
@@ -36,7 +35,6 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
-
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Home_Screen extends AppCompatActivity
@@ -77,19 +75,13 @@ public class Home_Screen extends AppCompatActivity
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-
             }
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
-
             }
         });
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-
-
-
-
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -98,8 +90,6 @@ public class Home_Screen extends AppCompatActivity
         usernameText= headerView.findViewById(R.id.tvnavbar_name);
         usernameEmail = headerView.findViewById(R.id.tvnavbar_email);
         imagePic = headerView.findViewById(R.id.reg_Users);
-
-
     }
 
     private void setupUIViews()
@@ -113,7 +103,6 @@ public class Home_Screen extends AppCompatActivity
         actionbar.setHomeAsUpIndicator(R.drawable.ic_action_menu);
 
         drawer = findViewById(R.id.drawer_layout);
-
         tabLayout = findViewById(R.id.tabLayout);
         viewPager = findViewById(R.id.tabViewPager);
         tabCat = findViewById(R.id.tabCategory);
@@ -130,25 +119,25 @@ public class Home_Screen extends AppCompatActivity
             drawer.closeDrawer(GravityCompat.START);
         }
         else {
-            AlertDialog.Builder exit = new AlertDialog.Builder(Home_Screen.this,R.style.DialogAlert);
-            exit.setMessage("Sign Out?")
-                    .setCancelable(false)
-                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
+//            AlertDialog.Builder exit = new AlertDialog.Builder(Home_Screen.this,R.style.DialogAlert);
+//            exit.setMessage("Sign Out?")
+//                    .setCancelable(false)
+//                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+//                        @Override
+//                        public void onClick(DialogInterface dialog, int which) {
                             firebaseAuth.signOut();
                             finish();
-                        }
-                    })
-                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.cancel();
-                        }
-                    });
-            AlertDialog alert = exit.create();
-            alert.setTitle("Exit");
-            alert.show();
+//                        }
+//                    })
+//                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+//                        @Override
+//                        public void onClick(DialogInterface dialog, int which) {
+//                            dialog.cancel();
+//                        }
+//                    });
+//            AlertDialog alert = exit.create();
+//            alert.setTitle("Exit");
+//            alert.show();
 
         }
     }
@@ -185,19 +174,15 @@ public class Home_Screen extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.my_account) {
-
             Intent intent = new Intent(Home_Screen.this, My_Account_Screen.class);
             startActivity(intent);
         }else if (id == R.id.faq) {
-
             Intent intent = new Intent(Home_Screen.this, FAQ_Screen.class);
             startActivity(intent);
         } else if (id ==R.id.reviews) {
-
             Intent intent = new Intent(Home_Screen.this, Reviews_Screen.class);
             startActivity(intent);
         } else if (id == R.id.about_us) {
-
             Intent intent = new Intent(Home_Screen.this, About_Us_Screen.class);
             startActivity(intent);
         } else if (id == R.id.supermarket_map) {

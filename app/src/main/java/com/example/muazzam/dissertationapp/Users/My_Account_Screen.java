@@ -50,8 +50,6 @@ public class My_Account_Screen extends AppCompatActivity {
         storageReference.child("Users").child(userAuthKey).child("Images").child("Profile Pic").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
-//                Picasso.get().load(uri).fit().centerCrop().into(imagePic);
-//                imagePic.setImageURI(uri);
                 Glide.with(My_Account_Screen.this).load(uri).into(imagePic);
             }
         });
@@ -131,8 +129,6 @@ public class My_Account_Screen extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 finish();
-//                Intent intent = new Intent(My_Account_Screen.this,Home_Screen.class);
-//                startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }

@@ -180,7 +180,7 @@ public class Fragment_Ongoing_Order extends Fragment {
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful())
                         {
-                            Toast.makeText(getActivity(),"Status Changed",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(),"Order put as completed",Toast.LENGTH_SHORT).show();
                         }
 
 

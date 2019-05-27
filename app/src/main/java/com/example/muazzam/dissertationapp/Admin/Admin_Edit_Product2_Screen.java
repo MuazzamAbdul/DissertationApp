@@ -1,5 +1,7 @@
 package com.example.muazzam.dissertationapp.Admin;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
@@ -82,8 +84,26 @@ public class Admin_Edit_Product2_Screen extends AppCompatActivity {
             public void onClick(View v) {
                 if (validateTextFields())
                 {
-                    storeProductPic();
-                    storeProductDetails();
+                    AlertDialog.Builder exit = new AlertDialog.Builder(Admin_Edit_Product2_Screen.this,R.style.AdminDialogAlert);
+                    exit.setMessage("Do you want to Update Product?")
+                            .setCancelable(false)
+                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    storeProductPic();
+                                    storeProductDetails();
+                                }
+                            })
+                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.cancel();
+                                }
+                            });
+                    AlertDialog alert = exit.create();
+                    alert.setTitle("Warning");
+                    alert.show();
+
                 }
             }
         });
@@ -196,7 +216,6 @@ public class Admin_Edit_Product2_Screen extends AppCompatActivity {
         uploadTask.addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-//                Toast.makeText(Admin_Edit_Product2_Screen.this,"Error in storing product pic!",Toast.LENGTH_SHORT).show();
             }
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override

@@ -41,7 +41,7 @@ public class Pay_Debit_Screen extends AppCompatActivity {
     private EditText etCardName,etCardNo,etCardExp,etCardSec;
     private String cname,cno,cexp,csec;
     private Button pay;
-    private String userAuthKey;
+    private String userAuthKey, saveCurrentsDate;;
     private FirebaseAuth firebaseAuth;
     private FirebaseDatabase firebaseDatabase;
     private FirebaseUser user;
@@ -112,6 +112,13 @@ public class Pay_Debit_Screen extends AppCompatActivity {
         amount.setText(Prevalent.shippingDetails.getPrice());
 
         card.add("12356789");
+
+        Calendar currentDates = Calendar.getInstance();
+
+        SimpleDateFormat currentDate = new SimpleDateFormat("MM/yy");
+        saveCurrentsDate = currentDate.format(currentDates.getTime());
+
+
     }
 
     private boolean validateTextFields()
@@ -133,19 +140,23 @@ public class Pay_Debit_Screen extends AppCompatActivity {
         }
         else if (!card.contains(cno))
         {
-            Toast.makeText(Pay_Debit_Screen.this,"Card not available",Toast.LENGTH_SHORT).show();
+            etCardNo.setError("Please enter valid Card Number");
         }
         else if (TextUtils.isEmpty(cexp))
         {
             etCardExp.setError("Please enter Expiry Date");
         }
+        else if (cexp.compareTo(saveCurrentsDate) < 0)
+        {
+            etCardExp.setError("Please enter valid Expiry Date");
+        }
         else if (TextUtils.isEmpty(csec))
         {
             etCardSec.setError("Please enter Security Code");
         }
-        else if (csec.length() < 4)
+        else if ((csec.length() < 3) || (csec.length() > 3) )
         {
-            Toast.makeText(Pay_Debit_Screen.this,"Security code not up to standards",Toast.LENGTH_SHORT).show();
+            etCardSec.setError("Security code not up to standards");
         }
         else
         {
@@ -205,9 +216,9 @@ public class Pay_Debit_Screen extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
 
-                                if (task.isSuccessful())
+                                if (!task.isSuccessful())
                                 {
-                                    Toast.makeText(Pay_Debit_Screen.this,"Shipping Details saved!",Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(Pay_Debit_Screen.this,"Error in saving shipping details",Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
@@ -290,9 +301,9 @@ public class Pay_Debit_Screen extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
 
-                                    if (task.isSuccessful())
+                                    if (!task.isSuccessful())
                                     {
-                                        Toast.makeText(Pay_Debit_Screen.this,"Status!",Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(Pay_Debit_Screen.this,"Error in placing order!",Toast.LENGTH_SHORT).show();
 
                                     }
 
@@ -329,7 +340,6 @@ public class Pay_Debit_Screen extends AppCompatActivity {
                     userDataMap.put("Supermarket",supermarket);
                     userDataMap.put("Quantity",qty);
                     userDataMap.put("Price",price);
-//                    userDataMap.put("Status","Not Completed");
 
                     databaseReference.child("Orders").child(userAuthKey).child(saveCurrentDate + " " + saveCurrentTime).child("Products").child(key)
                             .updateChildren(userDataMap)
@@ -339,7 +349,7 @@ public class Pay_Debit_Screen extends AppCompatActivity {
 
                             if (task.isSuccessful())
                             {
-                                Toast.makeText(Pay_Debit_Screen.this,"Order Placed!",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Pay_Debit_Screen.this,"Order Placed! Thank you for your purchase.",Toast.LENGTH_SHORT).show();
                                 deleteCart();
                             }
 
@@ -375,7 +385,7 @@ public class Pay_Debit_Screen extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
 
-                            Toast.makeText(Pay_Debit_Screen.this,"Cart deleted!",Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(Pay_Debit_Screen.this,"Cart deleted!",Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
@@ -417,9 +427,9 @@ public class Pay_Debit_Screen extends AppCompatActivity {
                 databaseRef.child("Supermarkets_Products").child(key).updateChildren(userDataMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful())
+                        if (!task.isSuccessful())
                         {
-                            Toast.makeText(Pay_Debit_Screen.this,"Quantity Decremented",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Pay_Debit_Screen.this,"Error in decrementing quantity in supermarket!",Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

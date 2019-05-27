@@ -111,8 +111,6 @@ public class Admin_Delete_Product2_Screen extends AppCompatActivity {
                 storageReference.child("Products").child(model.getID()).child("Images").child("Product Pic").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
-//                Picasso.get().load(uri).fit().centerCrop().into(imagePic);
-//                imagePic.setImageURI(uri);
                         Glide.with(Admin_Delete_Product2_Screen.this).load(uri).into(holder.prodPic);
                     }
                 });
@@ -337,11 +335,11 @@ public class Admin_Delete_Product2_Screen extends AppCompatActivity {
 
                 Toast.makeText(Admin_Delete_Product2_Screen.this,"Picture deleted successfully",Toast.LENGTH_SHORT).show();
             }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(Admin_Delete_Product2_Screen.this,"Failure deleting product pic from Storage",Toast.LENGTH_SHORT).show();
-            }
+//        }).addOnFailureListener(new OnFailureListener() {
+//            @Override
+//            public void onFailure(@NonNull Exception e) {
+//                Toast.makeText(Admin_Delete_Product2_Screen.this,"Failure deleting product pic from Storage",Toast.LENGTH_SHORT).show();
+//            }
         });
     }
 }

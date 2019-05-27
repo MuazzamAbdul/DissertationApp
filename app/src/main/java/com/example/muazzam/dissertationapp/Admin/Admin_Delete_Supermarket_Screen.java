@@ -152,11 +152,6 @@ public class Admin_Delete_Supermarket_Screen extends AppCompatActivity {
         adapter.setOnItemClickListener(new SupermarketListAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-//                Intent intent = new Intent(Admin_Delete_Supermarket_Screen.this,Category_Screen.class);
-//                startActivity(intent);
-//                Admin_Supermarket_List nameId  = list.get(position);
-//                String id = nameId.getName();
-//                Toast.makeText(Admin_Delete_Supermarket_Screen.this,id,Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -209,7 +204,6 @@ public class Admin_Delete_Supermarket_Screen extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if(task.isSuccessful()) {
-                                        buildRecyclerView();
                                         Toast.makeText(Admin_Delete_Supermarket_Screen.this, "Supermarket Deleted!", Toast.LENGTH_SHORT).show();
                                     }
                                     else

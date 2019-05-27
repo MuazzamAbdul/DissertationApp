@@ -88,8 +88,6 @@ public class Product_Supermarket_Screen extends AppCompatActivity {
             @Override
             public void onSuccess(Uri uri) {
                 Picasso.get().load(uri).fit().centerCrop().into(productPic);
-//                imagePic.setImageURI(uri);
-//                Glide.with(Product_Supermarket_Screen.this).load(uri).into(productPic);
             }
         });
 
@@ -197,7 +195,7 @@ public class Product_Supermarket_Screen extends AppCompatActivity {
 
                             if ((currentLat <= -20.193921 && currentLat >=-20.334203)   && (currentLong>=57.483448 && currentLong <= 57.629066))
                             {
-                                Toast.makeText(Product_Supermarket_Screen.this,"Moka",Toast.LENGTH_SHORT).show();
+//                                Toast.makeText(Product_Supermarket_Screen.this,"Moka",Toast.LENGTH_SHORT).show();
                                 retrieveSupermarket("Moka");
                                 retrieveSupermarketProductList();
 
@@ -205,7 +203,7 @@ public class Product_Supermarket_Screen extends AppCompatActivity {
 
                             if ((currentLat <= -20.137545&& currentLat >=-20.193921)   && (currentLong>=57.471481 && currentLong <= 57.552166))
                             {
-                                Toast.makeText(Product_Supermarket_Screen.this,"Port-Louis",Toast.LENGTH_SHORT).show();
+//                                Toast.makeText(Product_Supermarket_Screen.this,"Port-Louis",Toast.LENGTH_SHORT).show();
                                 retrieveSupermarket("Port-Louis");
                                 retrieveSupermarketProductList();
                             }

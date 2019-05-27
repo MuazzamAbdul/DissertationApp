@@ -37,7 +37,7 @@ public class Admin_Delete_Product_Screen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Admin_Delete_Product_Screen.this,Admin_Delete_Product2_Screen.class);
-                intent.putExtra("Category","FruitVeg");
+                intent.putExtra("Category","Fruit&vegetables");
                 startActivity(intent);
             }
         });
@@ -91,7 +91,7 @@ public class Admin_Delete_Product_Screen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Admin_Delete_Product_Screen.this,Admin_Delete_Product2_Screen.class);
-                intent.putExtra("Category","FruitVeg");
+                intent.putExtra("Category","Cannery");
                 startActivity(intent);
             }
         });
@@ -143,8 +143,6 @@ public class Admin_Delete_Product_Screen extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 finish();
-//                Intent intent = new Intent(Admin_Registered_Users.this,Home_Screen.class);
-//                startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }

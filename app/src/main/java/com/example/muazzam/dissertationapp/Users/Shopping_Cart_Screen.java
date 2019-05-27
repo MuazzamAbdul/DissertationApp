@@ -266,7 +266,7 @@ public class Shopping_Cart_Screen extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             calculateAmount();
-                            Toast.makeText(Shopping_Cart_Screen.this,"Cart is now empty",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Shopping_Cart_Screen.this,"Cart deleted!",Toast.LENGTH_SHORT).show();
                         }
                     });
                 }

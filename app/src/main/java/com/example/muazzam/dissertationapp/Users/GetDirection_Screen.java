@@ -35,6 +35,9 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class to get direction to specific supermarket.
+ */
 public class GetDirection_Screen extends FragmentActivity implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
@@ -60,6 +63,10 @@ public class GetDirection_Screen extends FragmentActivity implements OnMapReadyC
     Marker myCurrent;
     Marker SuperDestination;
 
+    /**
+     * Create activity containing map.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +80,9 @@ public class GetDirection_Screen extends FragmentActivity implements OnMapReadyC
         setUpLocation();
     }
 
+    /**
+     * Get intent from previous activity.
+     */
     private void setupUIViews()
     {
         Bundle getDetails = getIntent().getExtras();
@@ -88,6 +98,12 @@ public class GetDirection_Screen extends FragmentActivity implements OnMapReadyC
     }
 
 
+    /**
+     * Check if permission has been granted.
+     * @param requestCode
+     * @param permissions
+     * @param grantResults
+     */
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 
@@ -104,6 +120,9 @@ public class GetDirection_Screen extends FragmentActivity implements OnMapReadyC
         }
     }
 
+    /**
+     * Check if required permissions has been granted in manifest.
+     */
     private void setUpLocation() {
         if (android.support.v4.app.ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 && android.support.v4.app.ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -117,14 +136,16 @@ public class GetDirection_Screen extends FragmentActivity implements OnMapReadyC
         }
     }
 
+    /**
+     * Obtain location of user.
+     * Display marker where the user is currently at.
+     */
     private void displayLocation() {
         if (android.support.v4.app.ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 && android.support.v4.app.ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
         mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
-
-
         if(mLastLocation!=null)
         {
             latitude=mLastLocation.getLatitude();
@@ -139,13 +160,15 @@ public class GetDirection_Screen extends FragmentActivity implements OnMapReadyC
                     .position(new LatLng(latitude, longitude))
                     .title("YOU")
                     .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
-
             //move camera to this postion
-            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latitude, longitude), 15f));
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latitude, longitude), 10f));
         }
 
     }
 
+    /**
+     * Create a location request.
+     */
     private void createLocationRequest(){
         mLocationRequest=new LocationRequest();
         mLocationRequest.setInterval(UPDATE_INTERVAL);
@@ -154,16 +177,21 @@ public class GetDirection_Screen extends FragmentActivity implements OnMapReadyC
         mLocationRequest.setSmallestDisplacement(DISPLACEMENT);
     }
 
+    /**
+     * Build Google Api Client.
+     */
     protected synchronized void buildGoogleApiClient() {
         mGoogleApiClient=new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
                 .addApi(LocationServices.API).build();
         mGoogleApiClient.connect();
-
     }
 
-
+    /**
+     * Check if play services have been granted.
+     * @return
+     */
     private boolean checkPlayServices(){
         int resultCode= GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
         if(resultCode!=ConnectionResult.SUCCESS)
@@ -182,7 +210,9 @@ public class GetDirection_Screen extends FragmentActivity implements OnMapReadyC
         return true;
     }
 
-
+    /**
+     * Request run time permission.
+     */
     private void requestRuntimePermisson() {
         android.support.v4.app.ActivityCompat.requestPermissions(this, new String[]
                 {
@@ -211,6 +241,11 @@ public class GetDirection_Screen extends FragmentActivity implements OnMapReadyC
         LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
     }
 
+    /**
+     * Retrieve latitude and longitude of supermarket.
+     * Display marker for supermarket.
+     * @param googleMap
+     */
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
@@ -218,7 +253,6 @@ public class GetDirection_Screen extends FragmentActivity implements OnMapReadyC
         final List<Marker> markerList = new ArrayList<>();
 
         //adding markers for winner
-
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         databaseReference.child("Supermarkets").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -243,7 +277,6 @@ public class GetDirection_Screen extends FragmentActivity implements OnMapReadyC
                     }
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Toast.makeText(GetDirection_Screen.this,"Failure retrieving details from Supermarkets database",Toast.LENGTH_SHORT).show();
@@ -267,6 +300,5 @@ public class GetDirection_Screen extends FragmentActivity implements OnMapReadyC
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-
     }
 }

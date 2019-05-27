@@ -52,21 +52,18 @@ public class Admin_Add_Supermarket_Screen extends AppCompatActivity {
                 {
 
                     AlertDialog.Builder exit = new AlertDialog.Builder(Admin_Add_Supermarket_Screen.this,R.style.AdminDialogAlert);
-                    exit.setMessage("Do you want to add  product?")
+                    exit.setMessage("Do you want to add  Supermarket?")
                             .setCancelable(false)
                             .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     uploadSupermarketData();
-                                    Toast.makeText(Admin_Add_Supermarket_Screen.this,"Okay",Toast.LENGTH_SHORT).show();
                                 }
                             })
                             .setNegativeButton("No", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    finish();
-                                    Intent intent = new Intent(Admin_Add_Supermarket_Screen.this,Admin_Home_Screen.class);
-                                    startActivity(intent);
+                                    dialog.cancel();
                                 }
                             });
                     AlertDialog alert = exit.create();
@@ -182,7 +179,7 @@ public class Admin_Add_Supermarket_Screen extends AppCompatActivity {
 
                                 if (task.isSuccessful())
                                 {
-                                    Toast.makeText(Admin_Add_Supermarket_Screen.this,"Upload Successful!",Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(Admin_Add_Supermarket_Screen.this,"Supermarket Added!",Toast.LENGTH_SHORT).show();
                                     finish();
                                 }
                                 else

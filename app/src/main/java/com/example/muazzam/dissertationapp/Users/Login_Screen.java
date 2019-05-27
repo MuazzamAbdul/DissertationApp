@@ -77,29 +77,29 @@ public class Login_Screen extends AppCompatActivity {
         loadingBar = new ProgressDialog(this,R.style.DialogAlert);
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-
-        AlertDialog.Builder exit = new AlertDialog.Builder(Login_Screen.this,R.style.DialogAlert);
-        exit.setMessage("Exit App?")
-                .setCancelable(false)
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        finish();
-                    }
-                })
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
-        AlertDialog alert = exit.create();
-        alert.setTitle("Exit");
-        alert.show();
-    }
+//    @Override
+//    public void onBackPressed() {
+//        super.onBackPressed();
+//
+//        AlertDialog.Builder exit = new AlertDialog.Builder(Login_Screen.this,R.style.DialogAlert);
+//        exit.setMessage("Exit App?")
+//                .setCancelable(false)
+//                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        finish();
+//                    }
+//                })
+//                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        dialog.cancel();
+//                    }
+//                });
+//        AlertDialog alert = exit.create();
+//        alert.setTitle("Exit");
+//        alert.show();
+//    }
 
     private boolean validateTextFields()
     {
@@ -141,21 +141,11 @@ public class Login_Screen extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful())
                     {
-//                        Users userdata = new Users(password,email,"123456","stpierre");
-//                        Prevalent.onlineUser = userdata;
                         loadingBar.dismiss();
                         checkEmailVerification();
-
-                        //Delete these part to enable email verification
-//                        Toast.makeText(Login_Screen.this,"Login Successful!",Toast.LENGTH_SHORT).show();
-//                        finish();
-//                        Intent intent = new Intent(Login_Screen.this,Home_Screen.class);
-//                        startActivity(intent);
-//                        ///////
                     }
                     else
                     {
-                        // Load data from database to know actual problem
                         loadingBar.dismiss();
                         Toast.makeText(Login_Screen.this,"Wrong Credentials!",Toast.LENGTH_SHORT).show();
                     }

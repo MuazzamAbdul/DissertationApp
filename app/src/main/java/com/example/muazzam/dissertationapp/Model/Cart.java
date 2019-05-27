@@ -2,14 +2,15 @@ package com.example.muazzam.dissertationapp.Model;
 
 public class Cart {
 
-    private String ID,Name,Date,Time,Supermarket,Quantity,Price;
+    private String ID,Name,Date,Time,Supermarket,SupermarketID,Quantity,Price;
 
-    public Cart(String ID, String name, String date, String time, String supermarket, String quantity, String price) {
+    public Cart(String ID, String name, String date, String time, String supermarket, String supermarketid,  String quantity, String price) {
         this.ID = ID;
         Name = name;
         Date = date;
         Time = time;
         Supermarket = supermarket;
+        SupermarketID = supermarketid;
         Quantity = quantity;
         Price = price;
     }
@@ -17,6 +18,13 @@ public class Cart {
     public Cart() {
     }
 
+    public String getSupermarketID() {
+        return SupermarketID;
+    }
+
+    public void setSupermarketID(String supermarketID) {
+        SupermarketID = supermarketID;
+    }
 
     public String getID() {
         return ID;

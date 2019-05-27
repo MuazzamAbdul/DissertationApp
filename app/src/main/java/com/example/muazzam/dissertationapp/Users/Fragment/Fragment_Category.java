@@ -1,43 +1,34 @@
 package com.example.muazzam.dissertationapp.Users.Fragment;
 
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.example.muazzam.dissertationapp.R;
 import com.example.muazzam.dissertationapp.Users.Cat_Prod_Screen;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-
 import de.hdodenhof.circleimageview.CircleImageView;
-
 
 /**
  * A simple {@link Fragment} subclass.
+ * Fragment displaying products by each category.
  */
 public class Fragment_Category extends Fragment {
-
-    private DatabaseReference databaseReference;
-    private RecyclerView recyclerView;
-    private RecyclerView.LayoutManager layoutManager;
-    private StorageReference storageReference;
-    private FirebaseStorage firebaseStorage;
-
 
     public Fragment_Category() {
         // Required empty public constructor
     }
 
-
+    /**
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return view containing all the categories of products.
+     * Clicking on different category will redirect user to specific produts of that category.
+     */
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_fragment__category, container, false);
 
@@ -51,7 +42,6 @@ public class Fragment_Category extends Fragment {
         CircleImageView oil = view.findViewById(R.id.Oil);
         CircleImageView beverages = view.findViewById(R.id.Beverages);
         CircleImageView personalCare = view.findViewById(R.id.Personal_Care);
-
 
         fruitVeg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -142,11 +132,6 @@ public class Fragment_Category extends Fragment {
                 startActivity(intent);
             }
         });
-
-
-
         return view;
     }
-
-
 }

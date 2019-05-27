@@ -89,12 +89,10 @@ public class Admin_Edit_ProductSuper_Screen extends AppCompatActivity {
                     AlertDialog alert = exit.create();
                     alert.setTitle("Warning");
                     alert.show();
-                    saveProductDetails();
+////                    saveProductDetails();
                 }
             }
         });
-
-
     }
 
     private void setupUIViews()

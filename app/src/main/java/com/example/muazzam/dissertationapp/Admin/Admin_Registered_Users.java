@@ -130,8 +130,6 @@ public class Admin_Registered_Users extends AppCompatActivity {
                 storageReference.child("Users").child(model.getKey()).child("Images").child("Profile Pic").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
-//                Picasso.get().load(uri).fit().centerCrop().into(imagePic);
-//                imagePic.setImageURI(uri);
                         Glide.with(Admin_Registered_Users.this).load(uri).into(holder.userpic);
                     }
                 });
@@ -159,19 +157,9 @@ public class Admin_Registered_Users extends AppCompatActivity {
                 storageReference.child("Users").child(model.getKey()).child("Images").child("Profile Pic").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
-//                Picasso.get().load(uri).fit().centerCrop().into(imagePic);
-//                imagePic.setImageURI(uri);
                         Glide.with(Admin_Registered_Users.this).load(uri).into(holder.userpic);
                     }
                 });
-
-//                holder.itemView.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        Intent intent = new Intent(Admin_Registered_Users.this,Category_Screen.class);
-//                        startActivity(intent);
-//                    }
-//                });
             }
 
             @NonNull

@@ -218,15 +218,6 @@ public class Admin_Add_Product_Screen2 extends AppCompatActivity {
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 Toast.makeText(Admin_Add_Product_Screen2.this,"Upload successful",Toast.LENGTH_SHORT).show();
                 loadingBar.dismiss();
-//                Task<Uri> urlTask = taskSnapshot.getStorage().getDownloadUrl();
-//                if(urlTask.isSuccessful())
-//                {
-//                    Uri downloadUrl = urlTask.getResult();
-//
-//                    Toast.makeText(Admin_Add_Product_Screen2.this,downloadUrl.toString(),Toast.LENGTH_SHORT).show();
-//                }
-
-                //image successfully Uploaded
             }
         });
     }
@@ -252,7 +243,7 @@ public class Admin_Add_Product_Screen2 extends AppCompatActivity {
                                 if (task.isSuccessful())
                                 {
                                     loadingBar.dismiss();
-                                    Toast.makeText(Admin_Add_Product_Screen2.this,"Update Successful!",Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(Admin_Add_Product_Screen2.this,"Product Added!",Toast.LENGTH_SHORT).show();
                                 }
                                 else
                                 {
@@ -290,7 +281,7 @@ public class Admin_Add_Product_Screen2 extends AppCompatActivity {
                                 if (task.isSuccessful())
                                 {
                                     loadingBar.dismiss();
-                                    Toast.makeText(Admin_Add_Product_Screen2.this,"Update Successful!",Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(Admin_Add_Product_Screen2.this,"Product Added!",Toast.LENGTH_SHORT).show();
                                 }
                                 else
                                 {

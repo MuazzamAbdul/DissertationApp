@@ -5,88 +5,68 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/log"
-
     tools:context=".Users.Login_Screen">
 
     <EditText
         android:id="@+id/password"
         android:layout_width="250dp"
         android:layout_height="45dp"
-
         android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginBottom="180dp"
-        android:paddingEnd="10dp"
-
         android:background="@drawable/rounded_textfield"
         android:backgroundTint="#ffffff"
         android:drawableStart="@drawable/ic_action_password"
         android:drawableLeft="@drawable/ic_action_password"
         android:drawablePadding="10dp"
-
         android:ems="10"
+        android:fontFamily="serif"
         android:hint="@string/password"
         android:inputType="textPassword"
         android:paddingLeft="10dp"
-
+        android:paddingEnd="10dp"
         android:selectAllOnFocus="true"
         android:singleLine="false"
         android:textColor="@android:color/black"
-
         android:textCursorDrawable="@drawable/color_cursor"
         android:textSize="18sp"
-        android:fontFamily="serif"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/useremail"
-        app:layout_constraintVertical_bias="0.473" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <EditText
         android:id="@+id/useremail"
         android:layout_width="250dp"
         android:layout_height="45dp"
-
         android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-
-        android:layout_marginTop="6dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="208dp"
         android:background="@drawable/rounded_textfield"
         android:backgroundTint="#ffffff"
-
         android:drawableStart="@drawable/ic_action_email"
         android:drawableLeft="@drawable/ic_action_email"
-        android:paddingEnd="10dp"
         android:drawablePadding="10dp"
         android:ems="10"
+        android:fontFamily="serif"
         android:hint="Email"
-
         android:inputType="textPersonName"
         android:paddingLeft="10dp"
+        android:paddingEnd="10dp"
         android:selectAllOnFocus="true"
-
         android:singleLine="false"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@android:color/black"
-        android:textSize="18sp"
-        android:fontFamily="serif"
-
-
         android:textCursorDrawable="@drawable/color_cursor"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.517"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        app:layout_constraintVertical_bias="0.547"
         tools:textColor="@android:color/white" />
 
     <Button
@@ -95,35 +75,32 @@
         android:layout_width="150dp"
         android:layout_height="45dp"
         android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="7dp"
-        android:layout_marginRight="7dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/rounded_button"
+        android:fontFamily="serif"
         android:text="@string/login"
         android:textAppearance="@style/TextAppearance.AppCompat.Button"
         android:textColor="@android:color/background_light"
-        android:fontFamily="serif"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password"
-        app:layout_constraintVertical_bias="0.219" />
+        app:layout_constraintVertical_bias="0.201" />
 
     <Button
         android:id="@+id/btnSignUp"
-        style="@style/Widget.AppCompat.Button.Borderless"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:fontFamily="serif"
+        android:background="@drawable/rounded_button"
         android:text="@string/signup"
         android:textAppearance="@style/TextAppearance.AppCompat.Button"
         android:textColor="@android:color/background_light"
@@ -155,5 +132,35 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnLogin"
         app:layout_constraintVertical_bias="0.37" />
+
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/imageView3"
+        android:layout_width="296dp"
+        android:layout_height="125dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:elevation="10dp"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.281">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/applogo" />
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
 
 </android.support.constraint.ConstraintLayout>

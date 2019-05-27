@@ -26,8 +26,6 @@ public class Admin_Home_Screen extends AppCompatActivity implements BottomNaviga
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin__home__screen);
 
-
-
         bottomNavigationView = findViewById(R.id.navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
         bottomNavigationView.setSelectedItemId(R.id.navigation_home);
@@ -68,7 +66,7 @@ public class Admin_Home_Screen extends AppCompatActivity implements BottomNaviga
                         .setNegativeButton("No", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                finish();
+                                dialog.cancel();
 
                             }
                         });

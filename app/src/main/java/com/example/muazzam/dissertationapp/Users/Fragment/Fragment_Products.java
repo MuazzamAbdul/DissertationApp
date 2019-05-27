@@ -35,6 +35,7 @@ import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
+ * Class containing all products.
  */
 public class Fragment_Products extends Fragment {
 
@@ -52,7 +53,14 @@ public class Fragment_Products extends Fragment {
         // Required empty public constructor
     }
 
-
+    /**
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return view containing all products found in database.
+     * Retrieve products from database and put in recycler view.
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -62,9 +70,6 @@ public class Fragment_Products extends Fragment {
         firebaseDatabase = FirebaseDatabase.getInstance();
         firebaseStorage = FirebaseStorage.getInstance();
         storageReference = firebaseStorage.getReference();
-
-
-
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_fragment__products, container, false);
 
@@ -74,8 +79,6 @@ public class Fragment_Products extends Fragment {
         mDb.child("Products").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     String category = ds.getKey();
 
@@ -87,15 +90,12 @@ public class Fragment_Products extends Fragment {
                          cat = String.valueOf(dSnapshot.child("Category").getValue(String.class));
                          id = String.valueOf(dSnapshot.child("ID").getValue(String.class));
                         productList.add(new Products(name,id,cat,desc));
-
                     }
                 }
-
                 recyclerView = view.findViewById(R.id.rvTabProduct);
                 recyclerView.setHasFixedSize(true);
                 layoutManager = new LinearLayoutManager(getContext());
                 madapter = new ProductAdapter(productList);
-
                 madapter.setOnItemClickListener(new ProductAdapter.OnItemClickListener() {
                     @Override
                     public void onItemClick(int position) {
@@ -108,25 +108,25 @@ public class Fragment_Products extends Fragment {
                 });
                 recyclerView.setLayoutManager(layoutManager);
                 recyclerView.setAdapter(madapter);
-
-
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Toast.makeText(getActivity(),"Failure Retrieving data from Database",Toast.LENGTH_SHORT).show();
             }
         });
-
-
-
         return view;
     }
 
+    /**
+     *
+     * @param menu
+     * @param inflater
+     * Search button in toolbar to search for specific products.
+     */
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 
         inflater.inflate(R.menu.prod_menu,menu);
-
         MenuItem searchItem = menu.findItem(R.id.search);
         SearchView searchView = (SearchView) searchItem.getActionView();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -144,6 +144,12 @@ public class Fragment_Products extends Fragment {
         super.onCreateOptionsMenu(menu, inflater);
     }
 
+    /**
+     *
+     * @param item
+     * @return
+     * Redirect to shopping cart when shopping cart item is clicked.
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 

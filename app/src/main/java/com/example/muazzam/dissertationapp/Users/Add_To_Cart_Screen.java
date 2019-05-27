@@ -91,8 +91,6 @@ public class Add_To_Cart_Screen extends AppCompatActivity {
                 AlertDialog alert = exit.create();
                 alert.setTitle("Purchase Product");
                 alert.show();
-
-
             }
         });
 
@@ -166,8 +164,6 @@ public class Add_To_Cart_Screen extends AppCompatActivity {
             @Override
             public void onSuccess(Uri uri) {
                 Picasso.get().load(uri).fit().centerCrop().into(prodPic);
-//                imagePic.setImageURI(uri);
-//                Glide.with(Product_Supermarket_Screen.this).load(uri).into(productPic);
             }
         });
     }
@@ -262,10 +258,11 @@ public class Add_To_Cart_Screen extends AppCompatActivity {
                 if (!dataSnapshot.exists())
                 {
 
+                    double total = Double.parseDouble(Prevalent.supermarketProductPrice.getPrice()) * Double.parseDouble(qty.getNumber());
                     HashMap<String,Object> userDataMap = new HashMap<>();
 
                     userDataMap.put("Status","Ongoing");
-                    userDataMap.put("Total","Rs " + Prevalent.supermarketProductPrice.getPrice());
+                    userDataMap.put("Total","Rs " + String.valueOf(total));
 
 
                     databaseReference.child("Orders").child(userAuthKey).child(saveCurrentDate + " " + saveCurrentTime)
@@ -274,9 +271,9 @@ public class Add_To_Cart_Screen extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
 
-                                    if (task.isSuccessful())
+                                    if (!task.isSuccessful())
                                     {
-                                        Toast.makeText(Add_To_Cart_Screen.this,"Status!",Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(Add_To_Cart_Screen.this,"Error in saving order!",Toast.LENGTH_SHORT).show();
 
                                     }
 
@@ -368,9 +365,9 @@ public class Add_To_Cart_Screen extends AppCompatActivity {
                 databaseRef.child("Supermarkets_Products").child(key).updateChildren(userDataMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful())
+                        if (!task.isSuccessful())
                         {
-                            Toast.makeText(Add_To_Cart_Screen.this,"Quantity Decremented",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Add_To_Cart_Screen.this,"Error in decreasing quantity in supermarket",Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

@@ -82,7 +82,6 @@ public class UpdateAccount_Screen extends AppCompatActivity {
                     }
                     uploadData();
                     setUpdateToUsers();
-//                    finish();
                 }
             }
         });
@@ -199,10 +198,8 @@ public class UpdateAccount_Screen extends AppCompatActivity {
 
                                     if (task.isSuccessful())
                                     {
-                                        Toast.makeText(UpdateAccount_Screen.this,"Update Successful!",Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(UpdateAccount_Screen.this,"Details Updated!",Toast.LENGTH_SHORT).show();
                                         finish();
-//                                        Intent intent = new Intent(UpdateAccount_Screen.this,My_Account_Screen.class);
-//                                        startActivity(intent);
                                     }
                                     else
                                     {
@@ -261,8 +258,6 @@ public class UpdateAccount_Screen extends AppCompatActivity {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
-//                Toast.makeText(UpdateAccount_Screen.this,"Upload successful",Toast.LENGTH_SHORT).show();
-                //image successfully Uploaded
             }
         });
     }

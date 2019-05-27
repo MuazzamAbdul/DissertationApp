@@ -11,17 +11,24 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.example.muazzam.dissertationapp.Model.ShippingDetails;
 import com.example.muazzam.dissertationapp.Prevalent.Prevalent;
 import com.example.muazzam.dissertationapp.R;
 
+/**
+ * Class to input shipping information.
+ */
 public class Billing_Info_Screen extends AppCompatActivity {
 
     private EditText etfname,etlname,etaddr,etcity;
     private String fname,lname,address,city,price;
     private Button proceed;
 
+    /**
+     * @param savedInstanceState
+     * Create activity.
+     * Send email when proceed button is clicked.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +51,9 @@ public class Billing_Info_Screen extends AppCompatActivity {
         });
     }
 
+    /**
+     * Create activity.
+     */
     private void setupUIViews()
     {
         Toolbar toolbar = findViewById(R.id.toolbarShippingDetails);
@@ -63,15 +73,18 @@ public class Billing_Info_Screen extends AppCompatActivity {
         Bundle getPrice = getIntent().getExtras();
         if (getPrice == null)
         {
-            Toast.makeText(Billing_Info_Screen.this,price,Toast.LENGTH_SHORT).show();
+//            Toast.makeText(Billing_Info_Screen.this,price,Toast.LENGTH_SHORT).show();
         }
         else
         {
             price = getPrice.getString("Price");
-            Toast.makeText(Billing_Info_Screen.this,price,Toast.LENGTH_SHORT).show();
         }
     }
 
+    /**
+     * Performs validation on all text boxes.
+     * @return whether validation is successful or not.
+     */
     private boolean validateTextFields()
     {
         boolean result = false;
@@ -103,7 +116,11 @@ public class Billing_Info_Screen extends AppCompatActivity {
         return result;
     }
 
-
+    /**
+     * Redirect to previous activity when back arrow is pressed.
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -119,10 +136,12 @@ public class Billing_Info_Screen extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Redirect to previous activity when back arrow on phone is pressed.
+     */
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-
         finish();
         Intent intent = new Intent(Billing_Info_Screen.this,Shopping_Cart_Screen.class);
         startActivity(intent);

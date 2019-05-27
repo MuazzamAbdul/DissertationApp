@@ -10,13 +10,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.example.muazzam.dissertationapp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
-
+/**
+ * Class to obtain new password in case password is forgotten.
+ */
 public class Forget_Pass_Screen extends AppCompatActivity {
 
     private EditText userEmail;
@@ -24,13 +25,16 @@ public class Forget_Pass_Screen extends AppCompatActivity {
     private Button cancel;
     private FirebaseAuth firebaseAuth;
     public static Boolean reset = false;
+
+    /**
+     * Create activity containing reset button for password.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forget__pass__screen);
         setupUIViews();
-
-
 
         resetPass.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,6 +53,9 @@ public class Forget_Pass_Screen extends AppCompatActivity {
 
     }
 
+    /**
+     * Create UI Views.
+     */
     private void setupUIViews()
     {
         userEmail = findViewById(R.id.etOldPass);
@@ -61,10 +68,13 @@ public class Forget_Pass_Screen extends AppCompatActivity {
         toolbar.setTitle("Forget Password");
     }
 
+    /**
+     * Validate text box.
+     * Send password reset email to user.
+     */
     private void changePassword()
     {
         String email = userEmail.getText().toString().trim();
-
         if (TextUtils.isEmpty(email))
         {
             userEmail.setError("Please enter your email address");
@@ -92,6 +102,9 @@ public class Forget_Pass_Screen extends AppCompatActivity {
         }
     }
 
+    /**
+     * Send user to Login Screen.
+     */
     private void sendUserToLogin()
     {
         finish();
